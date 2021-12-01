@@ -81,7 +81,7 @@ ${NAME}: ${OBJS}
 
 clean:
 	-@rm -f ${OBJS} 2>/dev/null || true
-	@echo "\033[0;31m=> libft obj deleted <=\033[0m"
+	@echo "\033[0;31m=> $(NAME) obj deleted <=\033[0m"
 
 fclean: clean
 	-@rm -f ${NAME} 2>/dev/null || true
