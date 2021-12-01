@@ -5,6 +5,4 @@
 a.out
 prog
 .vscode
-
-
-libft
+libft/*
