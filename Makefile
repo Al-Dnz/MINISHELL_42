@@ -1,5 +1,7 @@
 NAME	= minishell
-SRC		= main.c \
+
+SRC	= src/main.c \
+      src/shell/path_manager.c
 
 INC = inc
 OBJ_DIR = obj
@@ -9,21 +11,23 @@ LIB = ./libft/libft.a
 LIBFT = ./libft
 CFLAGS = -Wall -Werror -Wextra
 LIBFLAGS = -lreadline -ltermcap
-OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+
+OBJ = $(SRC:.c=.o)
+
+.c.o:
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 all:
 	@mkdir -p $(OBJ_DIR)
 	@(make -C $(LIBFT))
 	@$(MAKE) -s $(NAME)
+	@mv src/*.o src/*/**.o $(OBJ_DIR)
 
 $(NAME): $(OBJ)
 	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAGS) 
 	@echo "\033[0;32m----------------------------------\033[0m"
 	@echo "\033[0;32m| => $(NAME) well created ! <= |\033[0m"
 	@echo "\033[0;32m----------------------------------\033[0m"
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	${CC} $(CFLAGS) -I $(INC) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
