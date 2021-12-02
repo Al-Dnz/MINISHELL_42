@@ -1,4 +1,4 @@
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 int	broken_loop(char **env)
 {
@@ -21,14 +21,16 @@ int main_loop(char **env)
 		if (line == NULL)
 			break ;
 		if (line && *line)
+		{
 			add_history(line);
-		printf("[%s]\n", line);
+			run(line, env);
+		}
+		// printf("[%s]\n", line);
 		if (line)
 			ft_strclr(&line);
 	}
 	return (0);
 }
-
 
 int	main(int argc, char **argv, char **env)
 {
