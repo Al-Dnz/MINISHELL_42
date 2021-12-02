@@ -15,4 +15,25 @@
 
 # include "../libft/libft.h"
 
+typedef enum e_error
+{
+	NO_ERROR,
+	SUCCESS,
+	BASIC_ERROR
+}t_error;
+
+typedef struct s_ms
+{
+	char	*line;
+	char	*copy;
+	int		error;
+} t_ms;
+
+
+void	error(t_ms *ms);
+int		check_line(char *line);
+
+//parsing
+int		change_line(t_ms *ms);
+
 #endif

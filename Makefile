@@ -1,7 +1,10 @@
 NAME	= minishell
 
-SRC	= src/main.c \
-      src/shell/path_manager.c
+SRC	= src/mainivan.c \
+      src/shell/error.c \
+      src/shell/path_manager.c \
+	  src/shell/check_line.c \
+	  src/parsing/change_line.c
 
 INC = inc
 OBJ_DIR = obj
