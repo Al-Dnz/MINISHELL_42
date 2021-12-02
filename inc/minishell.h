@@ -18,7 +18,7 @@
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 
-void		multi_pipeline(char ***matrix, char **env);
+static inline void		multi_pipeline(char ***matrix, char **env);
 void		run(char *line, char **env);
 
 #endif

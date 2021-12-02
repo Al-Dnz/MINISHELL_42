@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void multi_pipeline(char ***matrix, char **env)
+static inline void multi_pipeline(char ***matrix, char **env)
 {
 	int fd[2];
 	pid_t pid;
