@@ -36,6 +36,7 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
+	(void)env;
 	
 	ft_putstr_fd("hello from minishell\n", 2);
 	if (argc > 2 && ft_strequ(argv[1], "-c"))
@@ -44,6 +45,17 @@ int	main(int argc, char **argv, char **env)
 		return (EXIT_SUCCESS);
 	}
 	main_loop(env);
+	// char *line;
+	// char **tab;
+
+	// while (1)
+	// {
+	// 	line = readline("> ");
+	// 	tab = ft_special_split(line, '|');
+	// 	ft_print_tab2(tab);
+	// 	write(1, "\n", 1);
+	// 	ft_free_tab(tab);
+	// }
 	return (EXIT_SUCCESS);
 }
 
