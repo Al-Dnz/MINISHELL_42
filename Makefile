@@ -4,12 +4,13 @@ SRC	= src/main.c \
       src/shell/path_manager.c \
 	  src/shell/run_manager.c \
 	  src/shell/print_error.c \
-	  src/parsing/check_syntax.c
+	  src/parsing/check_syntax.c \
 	  src/parsing/ft_special_split.c \
 	  src/parsing/ft_special_split_util.c \
 	  src/parsing/right_char.c \
-	  src/parsing/arg_util.c \
-	  src/parsing/redir_util.c \
+	  src/architecture/arg_util.c \
+	  src/architecture/redir_util.c \
+	  src/architecture/btree_util.c \
 
 INC = inc
 OBJ_DIR = obj

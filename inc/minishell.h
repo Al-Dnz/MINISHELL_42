@@ -15,14 +15,6 @@
 
 # include "../libft/libft.h"
 
-typedef struct s_data
-{
-	int		err;
-	char	*token_err;
-} t_data;
-
-t_data	g_data;
-
 typedef struct	s_split
 {
 	int		k;
@@ -33,6 +25,12 @@ typedef struct	s_split
 	char	c;
 	char	**str;
 }				t_split;
+
+typedef struct s_data
+{
+	int		err;
+	char	*token_err;
+} t_data;
 
 typedef struct s_redir
 {
@@ -64,7 +62,7 @@ typedef struct s_btree
 	struct s_btree	*right;
 }				t_btree;
 
-
+t_data	g_data;
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
@@ -96,6 +94,11 @@ void	redir_clr(t_redir **redir);
 t_arg	*new_arg(char *str);
 void	del_arg(t_arg *arg);
 void	arg_clr(t_arg **arg);
+
+int	unquoted_string_size(char *str);
+int	quoted_string_size(char *str, char quote);
+int	operator_size(char *line);
+int	token_size(char *line);
 
 
 
