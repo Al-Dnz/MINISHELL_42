@@ -22,7 +22,7 @@
 # RETRO INGENEERING
 
 1. A quoi sert sg()->stop;
-
+2. echo yolo |
 
 
 # TO DO
