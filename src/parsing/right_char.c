@@ -23,7 +23,7 @@ int	is_redir_op(char *str)
 
 int	is_word(char *str)
 {
-	if (str == NULL || is_redirection(str) == 1 || ft_strequ(str, "|"))
+	if (str == NULL || is_redir_op(str) == 1 || ft_strequ(str, "|"))
 		return (0);
 	return (1);
 }
