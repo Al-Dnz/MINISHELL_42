@@ -39,4 +39,10 @@ void			ft_write_words_minishell(char const *s, int words, t_split *sp);
 
 char		**ft_special_split(char const *s, char c);
 
+
+int	is_quote(char c);
+int	is_operator(char c);
+int	is_pipe_op(char c);
+int	is_redir_op(char *str);
+
 #endif

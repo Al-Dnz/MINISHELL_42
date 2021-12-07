@@ -5,6 +5,7 @@ SRC	= src/main.c \
 	  src/shell/run_manager.c \
 	  src/parsing/ft_special_split.c \
 	  src/parsing/ft_special_split_util.c \
+	  src/parsing/right_char.c \
 
 INC = inc
 OBJ_DIR = obj
