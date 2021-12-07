@@ -3,6 +3,8 @@ NAME	= minishell
 SRC	= src/main.c \
       src/shell/path_manager.c \
 	  src/shell/run_manager.c \
+	  src/shell/print_error.c \
+	  src/pars/check_syntax.c
 	  src/parsing/ft_special_split.c \
 	  src/parsing/ft_special_split_util.c \
 	  src/parsing/right_char.c \

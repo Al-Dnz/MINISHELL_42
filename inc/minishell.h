@@ -15,6 +15,14 @@
 
 # include "../libft/libft.h"
 
+typedef struct s_data
+{
+	int		err;
+	char	*token_err;
+} t_data;
+
+t_data	g_data;
+
 typedef struct	s_split
 {
 	int		k;
@@ -64,6 +72,9 @@ char		*find_path(char *cmd);
 static inline void		multi_pipeline(char ***matrix, char **env);
 void		run(char *line, char **env);
 
+void		print_error(void);
+
+int 		check_syntax(char *line);
 void			ft_free_begin_tab(char **str, int index);
 int				protection(char const *s, int i, char c, t_split *split);
 void			ft_write_words_util(char const *s, t_split *sp);
