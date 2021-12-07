@@ -26,6 +26,38 @@ typedef struct	s_split
 	char	**str;
 }				t_split;
 
+typedef struct s_redir
+{
+	int				kind;
+	char			*file;
+	int				hdoc_fd;
+	struct s_redir	*next;
+}				t_redir;
+
+typedef struct s_hdoc
+{
+	int				fd;
+	char			*end;
+	struct s_hdoc	*next;
+}		t_hdoc;
+
+typedef	struct s_arg
+{	
+	char *word;
+	struct s_arg *next;
+}		t_arg;
+
+typedef struct s_btree
+{
+	t_arg			*arg;
+	t_redir			*redir;
+	t_hdoc			*hdoc;
+	struct s_btree	*left;
+	struct s_btree	*right;
+}				t_btree;
+
+
+
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 
@@ -44,5 +76,16 @@ int	is_quote(char c);
 int	is_operator(char c);
 int	is_pipe_op(char c);
 int	is_redir_op(char *str);
+
+
+t_redir	*new_redir(char *str);
+void	del_redir(t_redir *redir);
+void	redir_clr(t_redir **redir);
+
+t_arg	*new_arg(char *str);
+void	del_arg(t_arg *arg);
+void	arg_clr(t_arg **arg);
+
+
 
 #endif
