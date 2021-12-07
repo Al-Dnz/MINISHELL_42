@@ -15,13 +15,13 @@
 
 # include "../libft/libft.h"
 
-typedef struct s_ms
+typedef struct s_data
 {
 	int		err;
 	char	*token_err;
-} t_ms;
+} t_data;
 
-t_ms	g_ms;
+t_data	g_data;
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
