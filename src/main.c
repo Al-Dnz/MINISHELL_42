@@ -23,7 +23,10 @@ int main_loop(char **env)
 		if (line && *line)
 		{
 			add_history(line);
-			run(line, env);
+			if (!check_syntax(line))
+				print_error();//////
+			else
+				run(line, env);
 		}
 		// printf("[%s]\n", line);
 		if (line)
@@ -37,6 +40,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	
+	ft_bzero(&g_ms, sizeof(g_ms));
 	ft_putstr_fd("hello from minishell\n", 2);
 	if (argc > 2 && ft_strequ(argv[1], "-c"))
 	{

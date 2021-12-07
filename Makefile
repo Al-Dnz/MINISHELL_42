@@ -3,6 +3,8 @@ NAME	= minishell
 SRC	= src/main.c \
       src/shell/path_manager.c \
 	  src/shell/run_manager.c \
+	  src/shell/print_error.c \
+	  src/pars/check_syntax.c
 
 INC = inc
 OBJ_DIR = obj

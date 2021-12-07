@@ -15,10 +15,22 @@
 
 # include "../libft/libft.h"
 
+typedef struct s_ms
+{
+	int		err;
+	char	*token_err;
+} t_ms;
+
+t_ms	g_ms;
+
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 
 static inline void		multi_pipeline(char ***matrix, char **env);
 void		run(char *line, char **env);
+
+void		print_error(void);
+
+int 		check_syntax(char *line);
 
 #endif
