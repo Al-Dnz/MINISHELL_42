@@ -26,11 +26,7 @@ typedef struct	s_split
 	char	**str;
 }				t_split;
 
-typedef struct s_data
-{
-	int		err;
-	char	*token_err;
-} t_data;
+/////////////////////////////////////////////
 
 typedef struct s_redir
 {
@@ -61,6 +57,13 @@ typedef struct s_btree
 	struct s_btree	*left;
 	struct s_btree	*right;
 }				t_btree;
+
+typedef struct s_data
+{
+	int		err;
+	char	*token_err;
+	char	**token_tab;
+} t_data;
 
 t_data	g_data;
 
@@ -99,6 +102,10 @@ int	unquoted_string_size(char *str);
 int	quoted_string_size(char *str, char quote);
 int	operator_size(char *line);
 int	token_size(char *line);
+
+int	count_token(char *line);
+char	**create_token_tab(int size);
+int	get_all_token(char *line);
 
 
 
