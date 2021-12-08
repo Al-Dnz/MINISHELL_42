@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/08 01:46:34 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:18:23 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,16 @@ int	check_syntax(char *line)
 	while (line[i])
 	{
 		if (is_quote(line[i]))
-			i += quoted_string_size(line + i, line[i]);
+		{
+			if (quoted_string_size(line + i, line[i]) != -1)
+				i += quoted_string_size(line + i, line[i]);
+			else
+			{
+				g_data.token_err = &line[i];
+				g_data.err = 258;
+				return (0);
+			}
+		}
 		else
 		{
 			if (is_operator(line[i]) && !check_operator(line, i))

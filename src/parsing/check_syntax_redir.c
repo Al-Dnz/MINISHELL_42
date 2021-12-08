@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 01:18:52 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/08 04:45:45 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:11:41 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	check_end(char *line, int i)
 		{
 			g_data.token_err = "<>";
 			return (0);
-		}
+		}/// LOSANGE MAGIQUE
 		else if (!check_next(line, i))
 			return (0);
 	}
