@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 00:07:10 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/01 17:55:09 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:45:14 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void				free_matrix(char ***matrix_tab);
 
 void				ft_print_tab(char **tab);
 void				ft_print_tab2(char **tab);
+void				ft_retro_free_tab(char **tab);
 
 #endif
