@@ -64,7 +64,8 @@ SRCS         = ft_memset.c \
 			  ft_lst_sort.c \
 			  ft_matrix.c \
 			  ft_strequ.c \
-			  ft_print_tab.c
+			  ft_print_tab.c \
+              ft_retro_free_tab.c \
 
 OBJS = 			${SRCS:.c=.o}
 

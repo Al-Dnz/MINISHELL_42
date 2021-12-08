@@ -9,7 +9,8 @@ SRC	= src/main.c \
 	  src/parsing/ft_special_split.c \
 	  src/parsing/ft_special_split_util.c \
 	  src/parsing/right_char.c \
-	  src/parsing/len_util.c \
+	  src/parsing/size_util.c \
+	  src/parsing/get_token.c \
 	  src/architecture/arg_util.c \
 	  src/architecture/redir_util.c \
 	  src/architecture/btree_util.c \
