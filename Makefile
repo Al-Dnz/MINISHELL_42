@@ -29,6 +29,11 @@ vpath %.c $(foreach dir, $(SRC_FOLDERS), $(dir))
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
+all:
+	@mkdir -p $(OBJ_DIR)
+	@(make -C $(LIBFT))
+	@$(MAKE) -s $(NAME)
+
 $(NAME): $(OBJ)
 	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAGS) 
 	@echo "\033[0;32m----------------------------------\033[0m"
@@ -50,9 +55,6 @@ fclean:	clean
 
 re: fclean all
 
-all:
-	@mkdir -p $(OBJ_DIR)
-	@(make -C $(LIBFT))
-	@$(MAKE) -s $(NAME)
+
 
 .PHONY: all, clean, fclean, re
