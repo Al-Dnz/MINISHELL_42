@@ -18,11 +18,21 @@ SRC	= main.c \
 INC = inc
 OBJ_DIR = obj
 SRC_DIR = src
-CC = clang
 LIB = ./libft/libft.a
 LIBFT = ./libft
 CFLAGS = -Wall -Werror -Wextra
-LIBFLAGS = -lreadline -ltermcap
+UNAME = $(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+	CC = clang
+	LIBFLAG = -lreadline -L/usr/lib/x86-64-linux-gnu -ltermcap
+	INCFLAG = -I/usr/include
+endif
+ifeq ($(UNAME), Darwin)
+	CC = cc
+	LIBFLAG = -lreadline -L/usr/local/opt/readline/lib -ltermcap
+	INCFLAG = -I/usr/local/opt/readline/include
+endif
 
 SRC_FOLDERS = $(shell find src -type d)
 vpath %.c $(foreach dir, $(SRC_FOLDERS), $(dir))
@@ -35,7 +45,7 @@ all:
 	@$(MAKE) -s $(NAME)
 
 $(NAME): $(OBJ)
-	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAGS) 
+	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAG) $(INCFLAG) 
 	@echo "\033[0;32m----------------------------------\033[0m"
 	@echo "\033[0;32m| => $(NAME) well created ! <= |\033[0m"
 	@echo "\033[0;32m----------------------------------\033[0m"
