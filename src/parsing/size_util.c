@@ -42,7 +42,7 @@ int	operator_size(char *line)
 }
 
 /* 
-	Get len of one token
+	Get size of one token
 */
 int	token_size(char *line)
 {

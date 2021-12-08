@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:48:18 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/01 17:53:42 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:40:21 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_tab(char **tab)
 
 	i = 0;
 	ft_putstr_fd("[", 1);
-	while (tab[i])
+	while (tab != NULL && tab[i])
 	{
 		ft_putstr_fd(tab[i], 1);
 		ft_putstr_fd(", ", 1);
@@ -34,7 +34,7 @@ void	ft_print_tab2(char **tab)
 
 	i = 0;
 	ft_putstr_fd("[\n", 1);
-	while (tab[i])
+	while (tab != NULL && tab[i])
 	{
 		ft_putstr_fd("	", 1);
 		ft_putstr_fd(tab[i], 1);
