@@ -55,19 +55,22 @@ int	get_all_token(char *line)
 	{
 		if (token_size(line + i) > 0)
 		{
-			(g_data.token_tab[j]) = ft_substr(line + i, 0, token_size(line + i));
+			(g_data.token_tab[j]) = ft_substr(line, i, token_size(line + i));
 			if (g_data.token_tab[j] == NULL)
-				return (1);
+			{
+				ft_retro_free_tab(g_data.token_tab);
+				return (0);
+			}
 			j++;
 			i += token_size(line + i);
 		}
 		else
 		{
-			ft_free_tab(g_data.token_tab);
-			return (1);
+			ft_retro_free_tab(g_data.token_tab);
+			return (0);
 		}
 		while (line[i] == ' ')
 			i++;
 	}
-	return (0);
+	return (1);
 }
