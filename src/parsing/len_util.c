@@ -50,14 +50,14 @@ int	token_size(char *line)
 
 	i = 0;
 	if (is_operator(line[i]))
-		return (i + len_operator(line + i));
+		return (i + operator_size(line + i));
 	while (line[i] && line[i] != '\n' && line[i] != ' '
 		&& !is_operator(line[i]))
 	{
 		if (is_quote(line[i]))
 		{
-			if (len_string_quoted(line + i, line[i]) > 0)
-				i += len_string_quoted(line + i, line[i]);
+			if (quoted_string_size(line + i, line[i]) > 0)
+				i += quoted_string_size(line + i, line[i]);
 			else
 				return (0);
 		}

@@ -72,7 +72,9 @@ void		run(char *line, char **env);
 
 void		print_error(void);
 
+int			check_syntax_redir(char *line, int i);
 int 		check_syntax(char *line);
+
 void			ft_free_begin_tab(char **str, int index);
 int				protection(char const *s, int i, char c, t_split *split);
 void			ft_write_words_util(char const *s, t_split *sp);
