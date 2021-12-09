@@ -48,7 +48,7 @@ int	get_all_token(char *line)
 	j = 0;
 	g_data.token_tab = create_token_tab(count_token(line));
 	if (g_data.token_tab == NULL)
-		return (1);
+		return (0);
 	while (line[i] == ' ')
 		i++;
 	while (line[i] && line[i] != '\n')

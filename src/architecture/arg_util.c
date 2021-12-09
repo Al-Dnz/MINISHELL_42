@@ -36,3 +36,21 @@ void	arg_clr(t_arg **arg)
 	*arg = tmp;
 	arg_clr(&(*arg));
 }
+
+int arg_add_back(t_arg **arg, char *str)
+{
+	t_arg *element;
+
+	element = new_arg(str);
+	if (element == NULL)
+		return (0);
+	if ((*arg) == NULL)
+	{
+		(*arg) = element;
+		return (0);
+	}
+	while ((*arg)->next != NULL)
+		(*arg) = (*arg)->next;
+	(*arg)->next = element;
+	return (1);
+}

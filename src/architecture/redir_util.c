@@ -41,3 +41,21 @@ void	redir_clr(t_redir **redir)
 	*redir = tmp;
 	redir_clr(&(*redir));
 }
+
+int redir_add_back(t_redir **redir, char *str)
+{
+	t_redir *element;
+
+	element = new_redir(str);
+	if (element == NULL)
+		return (0);
+	if ((*redir) == NULL)
+	{
+		(*redir) = element;
+		return (0);
+	}
+	while ((*redir)->next != NULL)
+		(*redir) = (*redir)->next;
+	(*redir)->next = element;
+	return (1);
+}
