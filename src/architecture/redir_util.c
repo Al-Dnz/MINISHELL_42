@@ -52,7 +52,7 @@ int redir_add_back(t_redir **redir, char *str)
 	if ((*redir) == NULL)
 	{
 		(*redir) = element;
-		return (0);
+		return (1);
 	}
 	while ((*redir)->next != NULL)
 		(*redir) = (*redir)->next;

@@ -60,13 +60,30 @@ void	run_multipipe(char *line, char **env)
 void	run(char *line, char **env)
 {
 	(void)env;
-	//t_btree	*node;
+
+	
 
 	ft_putnbr_fd(count_token(line), 1);
 	if (get_all_token(line) == 0)
 		return ;
-	// ft_print_tab2(g_data.token_tab);
-	// write(1, "\n", 1);
+	//ft_print_tab2(g_data.token_tab);
+	
 
+	// t_btree *tree;
+	// tree = NULL;
+	// tree = create_node(NULL, NULL);
+	// set_node(tree);
+	// display_tree(tree);
+	// ft_free_tab(g_data.token_tab);
+
+	ft_print_tab2(g_data.token_tab);
+	write(1, "\n", 1);
+	t_arg	*arg = NULL;
+	int i;
+	for (i = 0; g_data.token_tab[i]; i++)
+		arg_add_back(&arg, g_data.token_tab[i]);
+	display_arg(arg);
 	ft_free_tab(g_data.token_tab);
+
+	//ft_retro_free_tab(g_data.token_tab);
 }

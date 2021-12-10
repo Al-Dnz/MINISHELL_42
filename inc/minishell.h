@@ -125,6 +125,10 @@ int	save_node_redir(t_btree *node, char *str);
 int save_node_redir_file(t_btree *node, char *str);
 int	set_node(t_btree *node);
 
+void	display_arg(t_arg *arg);
+void	display_redir(t_redir *redir);
+void 	display_tree(t_btree *node);
+
 
 
 #endif
