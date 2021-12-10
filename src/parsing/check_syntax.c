@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/08 13:18:23 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/08 23:34:35 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,32 @@ static int	check_operator(char *line, int i)
 		return (0);
 	if ((line[i] == '<' || line[i] == '>') && !check_syntax_redir(line, i))
 		return (0);
+	if (line[i] == '\\')
+	{
+		g_data.token_err = "\\";
+		return (0);
+	}
+	if (line[i] == ';')
+	{
+		g_data.token_err = ";";
+		return (0);
+	}
+	if (line[i] == '&' && line[i + 1] && line[i + 1] == '&')
+	{
+		g_data.token_err = "&&";
+		return (0);
+	}
+	return (1);
+}
+
+static int	check_good_char(char *line, int i)
+{
+	if ((is_operator(line[i]) || line[i] == '\\' || line[i] == ';'
+			|| line[i] == '&') && !check_operator(line, i))
+	{
+		g_data.err = 258;
+		return (0);
+	}
 	return (1);
 }
 
@@ -89,11 +115,8 @@ int	check_syntax(char *line)
 		}
 		else
 		{
-			if (is_operator(line[i]) && !check_operator(line, i))
-			{
-				g_data.err = 258;
+			if (!check_good_char(line, i))
 				return (0);
-			}
 			i++;
 		}
 	}
