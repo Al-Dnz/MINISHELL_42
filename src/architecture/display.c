@@ -13,12 +13,12 @@ void	display_arg(t_arg *arg)
 
 void	display_redir(t_redir *redir)
 {
-	static char *sym_arr[4] = {"<", ">", "<<", ">>"};
+	static char *sym_arr[6] = {"-1", "<", ">", "<<", ">>", 0};
 
 	printf("redir: ");
 	while (redir)
 	{
-		printf("[%s|%s]->",sym_arr[redir->kind - 1], redir->file);
+		printf("[%s|%s]->",sym_arr[redir->kind], redir->file);
 		redir = redir->next;
 	}
 	printf("NULL\n");

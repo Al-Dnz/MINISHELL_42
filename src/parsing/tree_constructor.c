@@ -48,16 +48,16 @@ int	set_node(t_btree *node)
 			save_node_cmd(node, g_data.token_tab[i]);// == 0)
 				//return (0);
 		}
-		else if (is_redir_op(g_data.token_tab[i]) == 1)
-		{
-			// maybe a loop could be better here ??
-			if (g_data.token_tab[i] && is_redir_op(g_data.token_tab[i]))
-				if (save_node_redir(node, g_data.token_tab[i++]) == 0)
-					return (0);
-			if (g_data.token_tab[i] && is_word(g_data.token_tab[i]))
-				if(save_node_redir_file(node, g_data.token_tab[i]) == 0)
-					return (0);	
-		}
+		// else if (is_redir_op(g_data.token_tab[i]) == 1)
+		// {
+		// 	// maybe a loop could be better here ??
+		// 	if (g_data.token_tab[i] && is_redir_op(g_data.token_tab[i]))
+		// 		if (save_node_redir(*node, g_data.token_tab[i++]) == 0)
+		// 			return (0);
+		// 	if (g_data.token_tab[i] && is_word(g_data.token_tab[i]))
+		// 		if(save_node_redir_file(*node, g_data.token_tab[i]) == 0)
+		// 			return (0);	
+		// }
 		// if (g_data.token_tab[i] && !ft_strequ(g_data.token_tab[i], "|")
 		// 	&& !is_redir_op(g_data.token_tab[i]))
 		i++;

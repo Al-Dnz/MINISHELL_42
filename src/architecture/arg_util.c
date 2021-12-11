@@ -40,9 +40,19 @@ void	arg_clr(t_arg **arg)
 	arg_clr(&(*arg));
 }
 
+t_arg	*ft_arglast(t_arg *arg)
+{
+	if (arg == NULL)
+		return (NULL);
+	while (arg->next != NULL)
+		arg = arg->next;
+	return (arg);
+}
+
 int arg_add_back(t_arg **arg, char *str)
 {
 	t_arg *element = NULL;
+	t_arg *tmp;
 
 	element = new_arg(str);
 	if (element == NULL)
@@ -54,9 +64,8 @@ int arg_add_back(t_arg **arg, char *str)
 	}
 	else
 	{
-		while (*arg && (*arg)->next != NULL)
-			(*arg) = (*arg)->next;
-		(*arg)->next = element;
+		tmp = ft_arglast(*arg);
+		tmp->next = element;
 	}
 	return (1);
 }

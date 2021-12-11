@@ -69,21 +69,22 @@ void	run(char *line, char **env)
 	//ft_print_tab2(g_data.token_tab);
 	
 
-	// t_btree *tree;
-	// tree = NULL;
-	// tree = create_node(NULL, NULL);
-	// set_node(tree);
-	// display_tree(tree);
-	// ft_free_tab(g_data.token_tab);
+	t_btree *tree;
+	tree = NULL;
+	tree = create_node(NULL, NULL);
+	set_node(tree);
+	display_tree(tree);
+	
+	//ft_free_tab(g_data.token_tab);
 
-	ft_print_tab2(g_data.token_tab);
-	write(1, "\n", 1);
-	t_arg	*arg = NULL;
-	int i;
-	for (i = 0; g_data.token_tab[i]; i++)
-		arg_add_back(&arg, g_data.token_tab[i]);
-	display_arg(arg);
-	ft_free_tab(g_data.token_tab);
+	// ft_print_tab2(g_data.token_tab);
+	//write(1, "\n", 1);
+	// t_redir	*redir = NULL;
+	// int i;
+	// for (i = 0; g_data.token_tab[i]; i++)
+	// 	redir_add_back(&redir, g_data.token_tab[i]);
+	// display_redir(redir);
+	//ft_free_tab(g_data.token_tab);
 
 	//ft_retro_free_tab(g_data.token_tab);
 }
