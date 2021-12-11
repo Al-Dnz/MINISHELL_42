@@ -17,6 +17,7 @@ int main_loop(char **env)
 	{
 		if (line)
 			ft_strclr(&line);
+		signal_manager();
 		line = readline(input_message);
 		if (line == NULL)
 			break ;

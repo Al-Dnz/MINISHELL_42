@@ -4,6 +4,7 @@ SRC	= main.c \
       path_manager.c \
 	  run_manager.c \
 	  print_error.c \
+	  signal_manager.c \
 	  check_syntax.c \
 	  check_syntax_redir.c \
 	  ft_special_split.c \

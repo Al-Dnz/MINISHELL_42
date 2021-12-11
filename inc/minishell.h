@@ -73,6 +73,8 @@ char		*find_path(char *cmd);
 static inline void		multi_pipeline(char ***matrix, char **env);
 void		run(char *line, char **env);
 
+void		signal_manager(void);
+
 void		print_error(void);
 
 int			check_syntax_redir(char *line, int i);
