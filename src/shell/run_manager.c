@@ -60,11 +60,16 @@ void	run_multipipe(char *line, char **env)
 void	run(char *line, char **env)
 {
 	(void)env;
+	g_data.displayer = 0;
 
-	ft_putnbr_fd(count_token(line), 1);
 	if (get_all_token(line) == 0)
-		return ;;
-	ft_print_tab2(g_data.token_tab);
-	write(1, "\n", 1);
+		return ;
+	ft_print_tab(g_data.token_tab);
+	ft_putstr_fd("\n", 1);
+
+	tree_constructor();
+	display_tree(g_data.tree);
 	ft_free_tab(g_data.token_tab);
+	free_btree(g_data.tree, 0);
+
 }

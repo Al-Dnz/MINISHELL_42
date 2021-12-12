@@ -15,6 +15,10 @@
 
 # include "../libft/libft.h"
 
+# define REDIR_OP 1
+# define FILE 2
+# define CMD 3
+
 typedef struct	s_split
 {
 	int		k;
@@ -60,9 +64,13 @@ typedef struct s_btree
 
 typedef struct s_data
 {
+	int		displayer;
 	int		err;
 	char	*token_err;
 	char	**token_tab;
+	int		index;
+
+	t_btree	*tree;
 } t_data;
 
 t_data	g_data;
@@ -90,15 +98,24 @@ int	is_quote(char c);
 int	is_operator(char c);
 int	is_pipe_op(char c);
 int	is_redir_op(char *str);
+int	is_word(char *str);
 
+
+t_btree	*create_node(t_btree *left, t_btree *right);
+int		free_btree(t_btree *node, int ret);
 
 t_redir	*new_redir(char *str);
 void	del_redir(t_redir *redir);
 void	redir_clr(t_redir **redir);
+int 	redir_add_back(t_redir **redir, char *str);
+t_redir	*ft_redirlast(t_redir *redir);
 
 t_arg	*new_arg(char *str);
 void	del_arg(t_arg *arg);
 void	arg_clr(t_arg **arg);
+int 	arg_add_back(t_arg **arg, char *str);
+t_arg	*ft_arglast(t_arg *arg);
+
 
 int	unquoted_string_size(char *str);
 int	quoted_string_size(char *str, char quote);
@@ -108,6 +125,16 @@ int	token_size(char *line);
 int	count_token(char *line);
 char	**create_token_tab(int size);
 int	get_all_token(char *line);
+
+int	save_node_cmd(t_btree **node, char *str);
+int	save_node_redir(t_btree **node, char *str);
+int save_node_redir_file(t_btree **node, char *str);
+int	set_node(t_btree **node);
+int	tree_constructor(void);
+
+void	display_arg(t_arg *arg);
+void	display_redir(t_redir *redir);
+void 	display_tree(t_btree *node);
 
 
 

@@ -9,7 +9,10 @@ t_arg	*new_arg(char *str)
 		return (NULL);
 	element->word = ft_strdup(str);
 	if (element->word == NULL)
+	{
+		free(element);
 		return (NULL);
+	}
 	element->next = NULL;
 	return (element);
 }
@@ -35,4 +38,34 @@ void	arg_clr(t_arg **arg)
 	free(*arg);
 	*arg = tmp;
 	arg_clr(&(*arg));
+}
+
+t_arg	*ft_arglast(t_arg *arg)
+{
+	if (arg == NULL)
+		return (NULL);
+	while (arg->next != NULL)
+		arg = arg->next;
+	return (arg);
+}
+
+int arg_add_back(t_arg **arg, char *str)
+{
+	t_arg *element = NULL;
+	t_arg *tmp;
+
+	element = new_arg(str);
+	if (element == NULL)
+		return (0);
+	if (*arg == NULL)
+	{
+		*arg = element;
+		return (1);
+	}
+	else
+	{
+		tmp = ft_arglast(*arg);
+		tmp->next = element;
+	}
+	return (1);
 }
