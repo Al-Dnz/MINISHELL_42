@@ -81,7 +81,8 @@ int	set_node(t_btree **node)
 	if (*node == NULL)
 		return (0);
 	i = g_data.index;
-	while (g_data.token_tab[i] && ft_strequ(g_data.token_tab[i], "|") == 0)
+	// printf("=>begin{%d}\n", g_data.index);
+	while (g_data.index <  ft_tabsize(g_data.token_tab) && g_data.token_tab[i] && ft_strequ(g_data.token_tab[i], "|") == 0)
 	{
 		if (is_word(g_data.token_tab[i]) == 1)
 		{
@@ -107,7 +108,8 @@ int	set_node(t_btree **node)
 			&& !is_redir_op(g_data.token_tab[i]))
 			i++;
 	}
-	g_data.index += i;
+	g_data.index = i;
+	// printf("=>end{%d}\n", g_data.index);
 	return (i);
 }
 
@@ -128,12 +130,12 @@ int	tree_constructor(void)
 		g_data.index++;
 		node = create_node(NULL, NULL);
 		set_node(&node);
-		// if (node->arg == NULL && node->redir == NULL)
-		// {
-		// 	free_btree(node, 0);
-		// 	//insert a error solution here
-		// 	return (0);
-		// }
+		if (node->arg == NULL && node->redir == NULL)
+		{
+			free_btree(node, 0);
+			//insert a error solution here
+			return (0);
+		}
 		tmp = create_node(g_data.tree, node);
 		if (tmp == NULL)
 			return (0);

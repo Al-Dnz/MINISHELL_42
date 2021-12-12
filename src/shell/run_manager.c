@@ -62,39 +62,14 @@ void	run(char *line, char **env)
 	(void)env;
 	g_data.displayer = 0;
 
-	//ft_putnbr_fd(count_token(line), 1);
 	if (get_all_token(line) == 0)
 		return ;
 	ft_print_tab(g_data.token_tab);
+	ft_putstr_fd("\n", 1);
+
 	tree_constructor();
 	display_tree(g_data.tree);
 	ft_free_tab(g_data.token_tab);
 	free_btree(g_data.tree, 0);
 
-	// t_btree *tree;
-	// tree = NULL;
-	// tree = create_node(NULL, NULL);
-
-	// int i;
-	// for (i = 0; g_data.token_tab[i]; i++)
-	// {
-	// 	save_node_cmd(&tree, g_data.token_tab[i]);
-	// 	//display_arg(tree->arg);
-	// }
-		
-
-	// set_node(&tree);
-	
-
-	//
-	// ft_print_tab2(g_data.token_tab);
-	//write(1, "\n", 1);
-	// t_redir	*redir = NULL;
-	// int i;
-	// for (i = 0; g_data.token_tab[i]; i++)
-	// 	redir_add_back(&redir, g_data.token_tab[i]);
-	// display_redir(redir);
-	//ft_free_tab(g_data.token_tab);
-
-	//ft_retro_free_tab(g_data.token_tab);
 }

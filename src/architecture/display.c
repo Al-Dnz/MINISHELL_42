@@ -36,6 +36,7 @@ void display_tree(t_btree *node)
 	}
 	display_redir(node->redir);
 	display_arg(node->arg);
-	display_tree(node->left);
+	
 	display_tree(node->right);
+	display_tree(node->left);
 }
