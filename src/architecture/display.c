@@ -18,7 +18,7 @@ void	display_redir(t_redir *redir)
 	printf("redir: ");
 	while (redir)
 	{
-		printf("[%s|%s]->",sym_arr[redir->kind], redir->file);
+		printf("[%s|%s]->", sym_arr[redir->kind], redir->file);
 		redir = redir->next;
 	}
 	printf("NULL\n");
