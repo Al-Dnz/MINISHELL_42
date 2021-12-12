@@ -57,7 +57,7 @@ char	*ft_replace_str(char *str)
 			tmp = ft_substr(str, 0, i);
 			str += i;
 		}
-		dest = ft_strjoin_special(&dest, &tmp, 2);
+		dest = ft_strjoin_special_2(&dest, &tmp, 2);
 	}
 	return (dest);
 }
@@ -142,7 +142,7 @@ char	*ft_replace_token(char *str)
 			tmp = store_dollar(&str);
 		else
 			tmp = store_exp_unq(&str, 0);
-		dest = ft_strjoin_special(&dest, &tmp, 2);
+		dest = ft_strjoin_special_2(&dest, &tmp, 2);
 		if (dest == NULL)
 			return (NULL);
 	}

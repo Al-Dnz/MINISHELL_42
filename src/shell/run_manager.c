@@ -64,16 +64,18 @@ void	run(char *line, char **env)
 
 	if (get_all_token(line) == 0)
 		return ;
+	//affichage tableau
 	ft_print_tab(g_data.token_tab);
 	ft_putstr_fd("\n", 1);
 
+	//AST
 	// tree_constructor();
 	// display_tree(g_data.tree);
 	// ft_free_tab(g_data.token_tab);
 	// free_btree(g_data.tree, 0);
 
+	//token cleaner
 	char *str;
-
 	str = ft_replace_token(g_data.token_tab[0]);
 	printf("[%s]=>[%s]\n",g_data.token_tab[0], str);
 }
