@@ -136,6 +136,20 @@ void	display_arg(t_arg *arg);
 void	display_redir(t_redir *redir);
 void 	display_tree(t_btree *node);
 
+//----------------------------------------------------------------
+char	*ft_strjoin_special(char *s1, char *s2, int mode);
+char	*revert_null_str(char *dest, char *src);
+void	ft_free_null(char **to_free1, char **to_free2, int nb);
+char	*ft_strjoin_special_2(char **s1, char **s2, int mode);
+
+char	*get_exp(char **str);
+char	*ft_replace_str(char *str);
+char	*store_exp_unq(char **str, char type);
+char	*store_dollar(char **str);
+char	*ft_replace_token(char *str);
+//----------------------------------------------------------------
+
+
 
 
 #endif
