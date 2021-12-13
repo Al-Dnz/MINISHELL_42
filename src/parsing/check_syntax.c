@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/08 23:34:35 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/13 19:47:31 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int	check_good_char(char *line, int i)
 
 int	check_syntax(char *line)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (line[i])
@@ -108,7 +108,7 @@ int	check_syntax(char *line)
 				i += quoted_string_size(line + i, line[i]);
 			else
 			{
-				g_data.token_err = &line[i];
+				g_data.token_err = ft_substr(line, i, 1);//LEAKS
 				g_data.err = 258;
 				return (0);
 			}
