@@ -69,13 +69,22 @@ void	run(char *line, char **env)
 	ft_putstr_fd("\n", 1);
 
 	//AST
-	// tree_constructor();
-	// display_tree(g_data.tree);
-	// ft_free_tab(g_data.token_tab);
-	// free_btree(g_data.tree, 0);
+	tree_constructor();
+
+	//builtins
+	if (g_data.tree && g_data.tree->arg[0].word)
+	{
+		if (!ft_strcmp(g_data.tree->arg[0].word, "echo"))
+		//	printf("/////echo\n");
+			echo(g_data.tree->arg);
+	}
+
+//	display_tree(g_data.tree);
+	ft_free_tab(g_data.token_tab);
+	free_btree(g_data.tree, 0);
 
 	//token cleaner
-	char *str;
+/* 	char *str;
 	str = ft_replace_token(g_data.token_tab[0]);
-	printf("[%s]=>[%s]\n",g_data.token_tab[0], str);
+	printf("[%s]=>[%s]\n",g_data.token_tab[0], str); */
 }

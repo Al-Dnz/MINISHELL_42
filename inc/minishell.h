@@ -149,7 +149,7 @@ char	*store_dollar(char **str);
 char	*ft_replace_token(char *str);
 //----------------------------------------------------------------
 
-
-
+//builtins
+void	echo(t_arg *arg);
 
 #endif

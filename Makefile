@@ -18,6 +18,7 @@ SRC	= main.c \
 	  tree_constructor.c \
 	  token_cleaner.c \
 	  ft_strjoin_special.c \
+	  echo.c \
 
 INC = inc
 OBJ_DIR = obj
