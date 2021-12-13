@@ -19,6 +19,7 @@ SRC	= main.c \
 	  token_cleaner.c \
 	  ft_strjoin_special.c \
 	  echo.c \
+	  pwd.c \
 
 INC = inc
 OBJ_DIR = obj
