@@ -28,6 +28,9 @@ void display_tree(t_btree *node)
 {
 	static int i;
 
+	if (g_data.displayer == 0)
+		i = 0;
+	g_data.displayer = 1;
 	printf("(%d)--------------------------------------------\n", i++);
 	if (node == NULL)
 	{

@@ -2,12 +2,12 @@
 
 int	save_node_cmd(t_btree **node, char *str)
 {
-	// char	*tmp;
+	char	*new_str;
 
-	// tmp = NULL;//token_cleaner(str);
-	// if (tmp == NULL)
-	// 	return (1);
-	if (arg_add_back(&(*node)->arg, str) == 0)
+	new_str = token_cleaner(str);
+	if (new_str == NULL)
+		return (0);
+	if (arg_add_back(&(*node)->arg, new_str) == 0)
 		return (0);
 	return (1);
 }
@@ -21,16 +21,18 @@ int	save_node_redir(t_btree **node, char *str)
 
 int save_node_redir_file(t_btree **node, char *str)
 {
-	t_redir *redir;
-	t_redir *tmp;
+	t_redir	*redir;
+	t_redir	*tmp;
+	char	*new_str;
 
 	redir = (*node)->redir;
 	if (redir == NULL)
 		return (0);
-	// while (redir->next)
-	// 	redir = redir->next;
 	tmp = ft_redirlast(redir);
-	tmp->file = ft_strdup(str);
+	new_str = token_cleaner(str);
+	if (new_str == NULL)
+		return (0);
+	tmp->file = ft_strdup(new_str);
 	if (tmp->file == NULL)
 		return (0);
 	return (1);
@@ -121,12 +123,10 @@ int	tree_constructor(void)
 	g_data.tree = create_node(NULL, NULL);
 	g_data.index = 0;
 	set_node(&g_data.tree);
-	printf("=>1{%d}\n", g_data.index);
 	if (g_data.tree  == NULL)
 		return (0);
 	while (g_data.token_tab[g_data.index] && ft_strequ(g_data.token_tab[g_data.index], "|"))
 	{
-		printf("=>begin{%d}\n", g_data.index);
 		g_data.index++;
 		node = create_node(NULL, NULL);
 		set_node(&node);
@@ -141,7 +141,6 @@ int	tree_constructor(void)
 			return (0);
 		arg_add_back(&(tmp->arg), "|");
 		g_data.tree = tmp;
-		printf("=>end{%d}\n", g_data.index);
 	}
 	
 	return (1);
