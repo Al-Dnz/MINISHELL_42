@@ -18,6 +18,15 @@
 13. echo message 1 >> file message 2
 
 
+# FORBIDDEN SPECIAL PARAMETERS 
+
+$#
+$$
+$*
+$-
+$@
+$0
+$!
 
 # RETRO INGENEERING
 

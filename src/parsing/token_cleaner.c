@@ -25,12 +25,8 @@ char	*get_exp(char **str)
 		len++;
 	var_name = ft_substr(*str, 0, len);
 	*str += len;
-
 	dest = ft_strdup(getenv(var_name));
-
 	ft_strclr(&var_name);
-	// free(env);
-	
 	return (dest);
 }
 
@@ -124,7 +120,7 @@ char	*store_dollar(char **str)
 /*
 	Return the token entirely unquoted and expanded
 */
-char	*ft_replace_token(char *str)
+char	*token_cleaner(char *str)
 {
 	char	*tmp;
 	char	*dest;

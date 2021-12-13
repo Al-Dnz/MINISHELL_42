@@ -76,6 +76,6 @@ void	run(char *line, char **env)
 
 	//token cleaner
 	char *str;
-	str = ft_replace_token(g_data.token_tab[0]);
+	str = token_cleaner(g_data.token_tab[0]);
 	printf("[%s]=>[%s]\n",g_data.token_tab[0], str);
 }

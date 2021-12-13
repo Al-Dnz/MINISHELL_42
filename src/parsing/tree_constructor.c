@@ -4,7 +4,7 @@ int	save_node_cmd(t_btree **node, char *str)
 {
 	// char	*tmp;
 
-	// tmp = NULL;//ft_replace_token(str);
+	// tmp = NULL;//token_cleaner(str);
 	// if (tmp == NULL)
 	// 	return (1);
 	if (arg_add_back(&(*node)->arg, str) == 0)
