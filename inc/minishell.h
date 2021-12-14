@@ -69,6 +69,7 @@ typedef struct s_data
 	char	*token_err;
 	char	**token_tab;
 	int		index;
+	char	**env;
 
 	t_btree	*tree;
 } t_data;
@@ -152,5 +153,11 @@ char	*ft_replace_token(char *str);
 //builtins
 void	echo(t_arg *arg);
 void	pwd(void);
+void	cd(t_arg *arg);
+
+//utils
+char	**change_var(char **tab, char *name, char *new);
+char	*getvar_val(char *name, char **tab);
+char	**dup_env(char **tab);
 
 #endif

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 00:39:07 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/14 18:39:54 by ivloisy          ###   ########.fr       */
+/*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
+/*   Updated: 2021/12/14 19:43:33 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(void)
+void	cd(t_arg *arg)
 {
-	if (g_data.err == 258)
-		write(2, "minishell: syntax error near unexpected token `", 47);
-		write(2, g_data.token_err, ft_strlen(g_data.token_err));
-		write(2, "'\n", 2);
-/* 		 `%s'\n",
-			g_data.token_err); */
+/* 	char	*pwd;
+	
+	pwd = NULL;
+	pwd = getcwd(pwd, 0); */
+	(void)arg;
+	ft_putnbr_fd(chdir("/Users/ivloisy"), 1);
+	ft_putchar_fd('\n', 1);
 }
