@@ -28,6 +28,9 @@ $@
 $0
 $!
 
+echo $varbar
+echo ${var}bar
+
 # RETRO INGENEERING
 
 1. A quoi sert sg()->stop;

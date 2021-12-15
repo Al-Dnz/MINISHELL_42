@@ -132,7 +132,7 @@ int	tree_constructor(void)
 		set_node(&node);
 		if (node->arg == NULL && node->redir == NULL)
 		{
-			free_btree(node, 0);
+			free_btree(node);
 			//insert a error solution here
 			return (0);
 		}
@@ -142,6 +142,5 @@ int	tree_constructor(void)
 		arg_add_back(&(tmp->arg), "|");
 		g_data.tree = tmp;
 	}
-	
 	return (1);
 }

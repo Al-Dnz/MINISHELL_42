@@ -1,7 +1,6 @@
 NAME	= minishell
 
 SRC	= main.c \
-      path_manager.c \
 	  run_manager.c \
 	  print_error.c \
 	  check_syntax.c \
@@ -18,6 +17,11 @@ SRC	= main.c \
 	  tree_constructor.c \
 	  token_cleaner.c \
 	  ft_strjoin_special.c \
+	  arglist_to_tab.c \
+	  path_manager.c \
+	  free_prog.c \
+	  cmd_execution.c \
+	  tree_execution.c \
 
 INC = inc
 OBJ_DIR = obj
@@ -34,7 +38,8 @@ ifeq ($(UNAME), Linux)
 endif
 ifeq ($(UNAME), Darwin)
 	CC = cc
-	LIBFLAG = -lreadline -L/usr/local/opt/readline/lib -ltermcap 
+	LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib -ltermcap 
+	#LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib  -L .brew/opt/readline/lib -I .brew/opt/readline/include -ltermcap 
 	INCFLAG = -I/usr/local/opt/readline/include
 endif
 

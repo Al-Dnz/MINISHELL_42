@@ -58,19 +58,26 @@ typedef struct s_btree
 	t_arg			*arg;
 	t_redir			*redir;
 	t_hdoc			*hdoc;
+	char			**arr;
 	struct s_btree	*left;
 	struct s_btree	*right;
 }				t_btree;
 
 typedef struct s_data
 {
+	int		chd_status;
+	int		exit_status;
 	int		displayer;
 	int		err;
 	char	*token_err;
 	char	**token_tab;
 	int		index;
+	char 	**env;
 
 	t_btree	*tree;
+	pid_t	child_pid;
+	int		status;
+	int		quit;
 } t_data;
 
 t_data	g_data;
@@ -102,7 +109,7 @@ int	is_word(char *str);
 
 
 t_btree	*create_node(t_btree *left, t_btree *right);
-int		free_btree(t_btree *node, int ret);
+int		free_btree(t_btree *node);
 
 t_redir	*new_redir(char *str);
 void	del_redir(t_redir *redir);
@@ -149,7 +156,21 @@ char	*store_dollar(char **str);
 char	*token_cleaner(char *str);
 //----------------------------------------------------------------
 
+void	set_arg_tab(t_btree **tree);
+char	**arglist_to_tab(t_arg *arg);
 
+//--------------------------EXECUTION-------------------------------------
+void	ft_execve(char **arg, char **envp);
+void	child_status(int status);
+void	fork_execve(t_btree *node);
+
+int		launch_command(t_btree *node, char *cmd);
+void	launch_pipe(t_btree *node);
+int		launch_tree(t_btree *tree);
+
+void	error_message(char *str, int fd, int status);
+void	clean_program(void);
+void	clean_exit(int status, int error);
 
 
 #endif

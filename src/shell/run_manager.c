@@ -68,12 +68,59 @@ void	run(char *line, char **env)
 	ft_print_tab(g_data.token_tab);
 	ft_putstr_fd("\n", 1);
 
+	/*
+	** on duplique les stdin et stdout pour eviter de quiter la boucle
+	*/
+
+	int	std_out;
+	int	std_in;
+	std_out = dup(1);
+	std_in = dup(0);
+
 	//AST test
 	tree_constructor();
+	set_arg_tab(&g_data.tree);
 	g_data.displayer = 0;
-	display_tree(g_data.tree);
+	//display_tree(g_data.tree);
+
+	g_data.env = env;
+
+	launch_tree(g_data.tree);
+	free_btree(g_data.tree);
 	ft_free_tab(g_data.token_tab);
-	free_btree(g_data.tree, 0);
+	dup2(std_out, 1);
+	dup2(std_in, 0);
+
+	
+
+	
+
+	// char *s1 = find_path("ls");
+	// printf("{%s}\n", s1);
+
+	//ft_print_tab(g_data.env);
+	// char *envp;
+	// char **env_tab;
+	// envp = getenv("PATH");
+	// env_tab = ft_split(envp, ":");
+	//formalize_env_path(env_tab);
+	// write(1, "\n---\n", 5);
+	// ft_print_tab2(env_tab);
+
+	//printf("{%s}\n", find_path(line));
+
+
+
+	
+	
+
+	
+
+
+
+	//ft_print_tab(g_data.env);
+	// rl_on_new_line();
+	// rl_replace_line("", 0);
 
 	//token cleaner test
 	// char *str;

@@ -39,7 +39,9 @@ void display_tree(t_btree *node)
 	}
 	display_redir(node->redir);
 	display_arg(node->arg);
-	
+	ft_putstr_fd("arr: ", 1);
+	ft_print_tab(node->arr);
+	ft_putstr_fd("\n", 1);
 	display_tree(node->right);
 	display_tree(node->left);
 }
