@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/14 21:11:07 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/15 16:19:18 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	**change_var(char **tab, char *name, char *new)
 
 	i = 0;
 
-	printf("[[[[[[[[[[[[[%s\n", new);
 	while (tab[i] && ft_strncmp(name, tab[i], ft_strlen(name))
 			&& i < ft_tabsize(tab))
 		i++;
@@ -29,7 +28,6 @@ char	**change_var(char **tab, char *name, char *new)
 	}
 	else if (!ft_strncmp(name, tab[i], ft_strlen(name)))
 	{
-	//	free (tab[i]);
 		tab[i] = ft_strjoin(name, new);
 		if (!tab[i])
 		{
@@ -37,7 +35,6 @@ char	**change_var(char **tab, char *name, char *new)
 			ft_free_tab(tab);
 			return (NULL);
 		}
-		printf("[[[[[[[[[[[[[%s\n", tab[i]);
 	}
 	return (tab);
 }

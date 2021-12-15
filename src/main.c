@@ -40,9 +40,6 @@ static int	set_env(char **env)
 	g_data.env = dup_env(env);
 	if (!g_data.env)
 		return (0);
-
-	printf("[[[[[[[[[[[[[%s\n", ft_itoa(1));
-	printf("[[[[[[[[[[[[[%s\n", getvar_val("SHLVL", g_data.env));
 	
 	g_data.env = change_var(env, "SHLVL=", ft_itoa(ft_atoi(getvar_val("SHLVL=", g_data.env)) + 1));
 	if (!g_data.env)
@@ -56,10 +53,10 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 //	(void)env;
 
-	t_arg *arg;
+/* 	t_arg *arg;
 	arg = malloc(sizeof(t_arg));
 	arg->word = "coucou";
-	arg->next = NULL;
+	arg->next = NULL; */
 	
 	ft_bzero(&g_data, sizeof(g_data));
 
@@ -67,14 +64,13 @@ int	main(int argc, char **argv, char **env)
 	if (!set_env(env))
 		return (0);
 
-	printf("/////[%s]\n", getvar_val("HOME=", g_data.env));
-	ft_print_tab2(g_data.env);
+//	printf("/////[%s]\n", getvar_val("HOME=", g_data.env));
+//	ft_print_tab2(g_data.env);
  /*
 	cd(arg);
 	ft_print_tab2(env);
  */
 	ft_putstr_fd("hello from minishell\n", 2);
-	ft_putnbr_fd(errno, 1);
 	if (argc > 2 && ft_strequ(argv[1], "-c"))
 	{
 		broken_loop(env);

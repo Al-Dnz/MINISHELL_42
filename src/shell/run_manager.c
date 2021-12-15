@@ -68,6 +68,13 @@ void	run(char *line, char **env)
 /* 	ft_print_tab(g_data.token_tab);
 	ft_putstr_fd("\n", 1); */
 
+	int i = 0;
+	while (g_data.token_tab[i])
+	{
+		g_data.token_tab[i] = ft_replace_token(g_data.token_tab[i]);
+		i++;
+	}
+
 	//AST
 	tree_constructor();
 
@@ -77,7 +84,9 @@ void	run(char *line, char **env)
 		if (!ft_strcmp(g_data.tree->arg[0].word, "echo"))
 			echo(g_data.tree->arg);
 		if (!ft_strcmp(g_data.tree->arg[0].word, "pwd"))
-			pwd();
+			pwd(1);
+		if (!ft_strcmp(g_data.tree->arg[0].word, "cd"))
+			cd(g_data.tree->arg);
 	}
 
 //	display_tree(g_data.tree);

@@ -152,7 +152,7 @@ char	*ft_replace_token(char *str);
 
 //builtins
 void	echo(t_arg *arg);
-void	pwd(void);
+void	pwd(int print);
 void	cd(t_arg *arg);
 
 //utils
