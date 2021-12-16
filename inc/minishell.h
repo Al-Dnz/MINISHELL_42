@@ -154,10 +154,14 @@ char	*ft_replace_token(char *str);
 void	echo(t_arg *arg);
 void	pwd(int print);
 void	cd(t_arg *arg);
+void	cmd_env(t_arg *arg);
+void	print_env(char **tab);
+void	export(t_arg *arg);
 
 //utils
 char	**change_var(char **tab, char *name, char *new);
 char	*getvar_val(char *name, char **tab);
 char	**dup_env(char **tab);
+int	exist(char **tab, char *name);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 00:39:07 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/15 19:18:52 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:28:10 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	print_error(void)
 {
+	if (g_data.err == 127)
+	{
+		write(2, g_data.token_err, ft_strlen(g_data.token_err));
+		write(2, ": No such file or directory\n", 28);
+	}
 	if (g_data.err == 258)
 	{
 		write(2, "minishell: syntax error near unexpected token `", 47);

@@ -87,6 +87,12 @@ void	run(char *line, char **env)
 			pwd(1);
 		if (!ft_strcmp(g_data.tree->arg[0].word, "cd"))
 			cd(g_data.tree->arg);
+		if (!ft_strcmp(g_data.tree->arg[0].word, "env"))
+			cmd_env(g_data.tree->arg);
+		if (!ft_strcmp(g_data.tree->arg[0].word, "env"))
+			cmd_env(g_data.tree->arg);
+		if (!ft_strcmp(g_data.tree->arg[0].word, "export"))
+			export(g_data.tree->arg);
 	}
 
 //	display_tree(g_data.tree);

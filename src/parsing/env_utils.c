@@ -6,11 +6,25 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/15 16:19:18 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/16 20:04:24 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	exist(char **tab, char *name)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if(!strncmp(tab[i], name, ft_strlen(name)))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 char	**change_var(char **tab, char *name, char *new)
 {
@@ -48,7 +62,7 @@ char	*getvar_val(char *name, char **tab)
 	while (tab[i] && ft_strncmp(name, tab[i], ft_strlen(name))
 			&& i < ft_tabsize(tab))
 		i++;
-	if (!ft_strncmp(name, tab[i], ft_strlen(name)))
+	if (tab[i] && !ft_strncmp(name, tab[i], ft_strlen(name)))
 		return (val = tab[i] + ft_strlen(name));
 	return (NULL);
 }
