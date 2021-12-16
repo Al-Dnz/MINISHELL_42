@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+t_data	g_data;
+
 int	broken_loop(char **env)
 {
 	(void)env;

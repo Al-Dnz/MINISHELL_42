@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:20:56 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/09 16:16:39 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/16 13:06:08 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/* 
 static t_list	*sorted_merge(t_list *a, t_list *b)
 {
 	t_list	*result;
@@ -54,11 +54,11 @@ static void	front_backsplit(t_list *source,
 	*front_ref = source;
 	*back_ref = slow->next;
 	slow->next = NULL;
-}
+} */
 
 void	ft_lst_sort(t_list **head_ref)
 {
-	t_list	*head;
+/* 	t_list	*head;
 	t_list	*a;
 	t_list	*b;
 
@@ -68,5 +68,6 @@ void	ft_lst_sort(t_list **head_ref)
 	front_backsplit(head, &a, &b);
 	ft_lst_sort(&a);
 	ft_lst_sort(&b);
-	*head_ref = sorted_merge(a, b);
+	*head_ref = sorted_merge(a, b); */
+	(void)head_ref;
 }

@@ -74,7 +74,7 @@ typedef struct s_data
 	t_btree	*tree;
 } t_data;
 
-t_data	g_data;
+extern t_data	g_data;
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
