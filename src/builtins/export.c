@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/16 20:58:59 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/17 16:19:51 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	export(t_arg *arg)
 	tmp = arg;
 	if (!tmp->next)
 		print_env(g_data.env);
-	g_data.err = 0;
 	while (tmp->next)
 	{
 		tmp = tmp->next;

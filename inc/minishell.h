@@ -157,6 +157,7 @@ void	cd(t_arg *arg);
 void	cmd_env(t_arg *arg);
 void	print_env(char **tab);
 void	export(t_arg *arg);
+void	unset(t_arg *arg);
 
 //utils
 char	**change_var(char **tab, char *name, char *new);

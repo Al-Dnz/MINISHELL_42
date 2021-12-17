@@ -24,6 +24,7 @@ SRC	= main.c \
 	  cd.c \
 	  env.c \
 	  export.c \
+	  unset.c \
 
 INC = inc
 OBJ_DIR = obj

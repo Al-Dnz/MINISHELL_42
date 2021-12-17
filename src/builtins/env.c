@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:30:19 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/16 17:10:05 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/17 14:50:07 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_env(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab != NULL && tab[i])
+	while (tab[i])
 	{
 		ft_putstr_fd(tab[i], 1);
 		ft_putstr_fd("\n", 1);
