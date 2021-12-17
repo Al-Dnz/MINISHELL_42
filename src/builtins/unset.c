@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:51 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/17 19:31:31 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/17 19:57:26 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	exec_unset(char *name)
 	int		i;
 	int		j;
 
-	tmp = (char **)malloc(sizeof(char *) * (ft_tabsize(g_data.env) + 1));
+	tmp = (char **)malloc(sizeof(char *) * ft_tabsize(g_data.env));
 	if (!tmp)
 	{
 		g_data.err = 1;
