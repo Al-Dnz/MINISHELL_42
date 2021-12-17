@@ -17,10 +17,12 @@ SRC	= main.c \
 	  tree_constructor.c \
 	  token_cleaner.c \
 	  ft_strjoin_special.c \
-	  arglist_to_tab.c \
+	  set_node_arr.c \
+	  set_node_hdoc.c \
 	  path_manager.c \
 	  free_prog.c \
 	  cmd_execution.c \
+	  redir_execution.c \
 	  tree_execution.c \
 
 INC = inc
