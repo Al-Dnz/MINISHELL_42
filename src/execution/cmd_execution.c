@@ -2,11 +2,11 @@
 #include <sys/stat.h>
 
 
-void	ft_execve(char **arr, char **envp)
+void	ft_execve(char **arr, char **envp, t_arg *arg)
 {
 	char *cmd_path;
 
-		if (ft_strequ(arr[0], "cd"))
+/* 		if (ft_strequ(arr[0], "cd"))
 			printf("CD_COMMAND\n");//
 		else if (ft_strequ(arr[0], "export"))
 			printf("EXPORT_COMMAND\n");//
@@ -19,7 +19,19 @@ void	ft_execve(char **arr, char **envp)
 		else if (ft_strequ(arr[0], "echo"))
 			printf("ECHO_COMMAND\n");//
 		else if (ft_strequ(arr[0], "env"))
-			printf("ENV_COMMAND\n");//
+			printf("ENV_COMMAND\n");// */
+		if (!ft_strcmp(arg[0].word, "echo"))
+			echo(arg);
+		else if (!ft_strcmp(arg[0].word, "pwd"))
+			pwd(1);
+		else if (!ft_strcmp(arg[0].word, "cd"))
+			cd(arg);
+		else if (!ft_strcmp(arg[0].word, "env"))
+			cmd_env(arg);
+		else if (!ft_strcmp(arg[0].word, "export"))
+			export(arg);
+		else if (!ft_strcmp(arg[0].word, "unset"))
+			unset(arg);
 		else
 		{
 			cmd_path = find_path(arr[0]);
@@ -97,5 +109,5 @@ void	fork_execve(t_btree *node)
 		child_status(status);
 	}
 	else if (pid == 0)
-		ft_execve(node->arr, g_data.env);
+		ft_execve(node->arr, g_data.env, node->arg);
 }

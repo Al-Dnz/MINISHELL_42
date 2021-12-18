@@ -22,6 +22,13 @@ SRC	= main.c \
 	  free_prog.c \
 	  cmd_execution.c \
 	  tree_execution.c \
+	  env_utils.c \
+	  echo.c \
+	  pwd.c \
+	  cd.c \
+	  env.c \
+	  export.c \
+	  unset.c \
 
 INC = inc
 OBJ_DIR = obj
