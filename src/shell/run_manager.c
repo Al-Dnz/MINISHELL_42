@@ -82,18 +82,18 @@ void	run(char *line, char **env)
 	set_arg_tab(&g_data.tree);
 	set_tree_hdoc(&g_data.tree);
 	g_data.displayer = 0;
-	display_tree(g_data.tree);
+	// display_tree(g_data.tree);
 
-	// g_data.env = env;
+	g_data.env = env;
 
-	// if (valid_redir(g_data.tree) == 0)
-	// 	return ;
-	// //SECURE CODE
-	// launch_tree(g_data.tree);
-	// free_btree(g_data.tree);
-	// ft_free_tab(g_data.token_tab);
-	// dup2(std_out, STDOUT_FILENO);
-	// dup2(std_in, STDIN_FILENO);
+	if (valid_redir(g_data.tree) == 0)
+		return ;
+	//SECURE CODE
+	launch_tree(g_data.tree);
+	free_btree(g_data.tree);
+	ft_free_tab(g_data.token_tab);
+	dup2(std_out, STDOUT_FILENO);
+	dup2(std_in, STDIN_FILENO);
 
 	
 

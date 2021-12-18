@@ -210,5 +210,12 @@ int	set_tree_hdoc(t_btree **tree);
 int	set_node_hdoc(t_btree **node);
 
 
+int	read_hdoc(char *str);
+char	*rdl_hdoc(t_hdoc *hdoc);
+void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc);
+int	fork_par_rdl_hdoc(int *pfd, pid_t pid, t_btree *node);
+int	fork_rdl_hdoc(t_btree *node);
+
+
 
 #endif

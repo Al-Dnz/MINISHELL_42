@@ -66,11 +66,11 @@ int	launch_tree(t_btree *tree)
 {	
 	if (tree->left == NULL && tree->right == NULL)
 	{
-		// if (tree->redir != NULL)
-		// {
-		// 	if (launch_redir(tree->redir) == -1)
-		// 		return (-1);
-		// }
+		if (tree->redir != NULL)
+		{
+			if (launch_redir(tree->redir) == -1)
+				return (-1);
+		}
 		if (tree->arr == NULL
 			|| launch_command(tree, tree->arr[0]) == -1)
 			return (-1);

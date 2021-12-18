@@ -54,6 +54,6 @@ int	set_node_hdoc(t_btree **node)
 		}
 		tmp = tmp->next;
 	}
-	// return (fork_rdl_hdoc(node));
-	return (1);
+	return (fork_rdl_hdoc(*node));
+	// return (1);
 }

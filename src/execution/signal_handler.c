@@ -28,7 +28,7 @@ void	handler_sigint(int sig)
 		else if (g_data.in_hdoc == 1)
 		{
 			write(1, "\n", 1);
-			free_exit(130, 0);
+			clean_exit(130, 0);
 		}
 	}
 }

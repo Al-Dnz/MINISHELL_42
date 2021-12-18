@@ -1,0 +1,11 @@
+salut les chatons ca roule ??
+total 360
+-rw-r--r--    1 alex  staff    1926 18 déc 17:35 Makefile
+-rw-r--r--    1 alex  staff     988 18 déc 16:19 README.md
+-rw-r--r--    1 alex  staff      15 18 déc 16:19 authors
+-rwxr-xr-x    1 alex  staff      30 18 déc 17:50 file
+drwxr-xr-x    3 alex  staff      96 18 déc 16:20 inc
+drwxr-xr-x  133 alex  staff    4256 18 déc 17:35 libft
+-rwxr-xr-x    1 alex  staff  164128 18 déc 17:36 minishell
+drwxr-xr-x   29 alex  staff     928 18 déc 17:36 obj
+drwxr-xr-x    8 alex  staff     256 18 déc 16:19 src

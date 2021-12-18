@@ -1,11 +1,25 @@
 #include "minishell.h"
 
+char	*free_rdl_str(void)
+{
+	free(g_data.str);
+	g_data.str = NULL;
+	return (NULL);
+}
+
+char	*str_error2(char *s, char *ret, int status)
+{
+	ft_putendl_fd(s, 2);
+	g_data.status = status;
+	return (ret);
+}
+
 int	read_hdoc(char *str)
 {
 	int	pfd[2];
 
 	if (pipe(pfd) == -1)
-		free_exit(0, 3);
+		clean_exit(0, 3);
 	write(pfd[1], str, ft_strlen(str));
 	close(pfd[1]);
 	return (pfd[0]);
@@ -24,8 +38,8 @@ char	*rdl_hdoc(t_hdoc *hdoc)
 		if (g_data.str == NULL)
 			g_data.str = ft_strdup(line);
 		else
-			(g_data.str) = ft_strjoinfree(g_data.str, line, 0);
-		(g_data.str) = ft_strjoinfree(g_data.str, "\n", 0);
+			(g_data.str) = ft_strjoin_special(g_data.str, line, 0);
+		(g_data.str) = ft_strjoin_special(g_data.str, "\n", 0);
 		free(line);
 		line = readline("> ");
 		if (line == NULL)
@@ -65,7 +79,38 @@ void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc)
 		}
 		tmp = tmp->next;
 	}
-	free_exit(0, 0);
+	clean_exit(0, 0);
+}
+
+int	is_last_hdoc(t_redir *redir)
+{
+	if (redir == NULL)
+		return (1);
+	redir = redir->next;
+	while (redir != NULL)
+	{
+		if (redir->kind == 3)
+			return (0);
+		redir = redir->next;
+	}
+	return (1);
+}
+
+int	add_fd_redir(t_btree *node, int fd)
+{
+	t_redir	*redir;
+
+	redir = node->redir;
+	while (redir != NULL)
+	{
+		if (redir->kind == 3 && is_last_hdoc(redir) == 1)
+		{
+			redir->hdoc_fd = fd;
+			return (0);
+		}
+		redir = redir->next;
+	}
+	return (1);
 }
 
 int	fork_par_rdl_hdoc(int *pfd, pid_t pid, t_btree *node)
@@ -89,7 +134,7 @@ int	fork_rdl_hdoc(t_btree *node)
 	int		status;
 
 	status = 0;
-	if (sg()->stop == 1 || node->hdoc == NULL || pipe(pfd) == 1)
+	if (g_data.stop == 1 || node->hdoc == NULL || pipe(pfd) == 1)
 		return (0);
 	pid = fork();
 	if (pid < 0)
