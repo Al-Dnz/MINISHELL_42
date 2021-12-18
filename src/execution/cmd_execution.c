@@ -15,7 +15,7 @@ void	ft_execve(char **arr, char **envp)
 		else if (ft_strequ(arr[0], "pwd"))
 			printf("PWD_COMMAND\n");//;
 		else if (ft_strequ(arr[0], "echo"))
-			printf("ECHO_COMMAND\n");//
+			write(1,"ECHO_COMMoul\n", 13);//
 		else if (ft_strequ(arr[0], "env"))
 			printf("ENV_COMMAND\n");//
 		else

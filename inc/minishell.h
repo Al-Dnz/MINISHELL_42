@@ -211,10 +211,17 @@ int	set_node_hdoc(t_btree **node);
 
 
 int	read_hdoc(char *str);
-char	*rdl_hdoc(t_hdoc *hdoc);
-void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc);
-int	fork_par_rdl_hdoc(int *pfd, pid_t pid, t_btree *node);
-int	fork_rdl_hdoc(t_btree *node);
+char	*hdoc_readline(t_hdoc *hdoc);
+void	hdoc_child_process(int *pfd, t_hdoc *hdoc);
+int	hdoc_parent_process(int *pfd, pid_t pid, t_btree *node);
+int	hdoc_pipe(t_btree *node);
+
+char	*free_rdl_str(void);
+char	*str_error2(char *s, char *ret, int status);
+int	is_last_hdoc(t_redir *redir);
+int	set_fd_redir(t_btree *node, int fd);
+
+int	launch_pipe_hdoc(t_btree *tree);
 
 
 

@@ -12,6 +12,7 @@ void	clean_program(void)
 	//rl_clear_history();
 	ft_free_tab(g_data.token_tab);
 	free_btree(g_data.tree);
+	ft_strclr(&g_data.str);
 
 	// if (sg()->str != NULL)
 	// 	free(sg()->str);

@@ -1,19 +1,5 @@
 #include "minishell.h"
 
-char	*free_rdl_str(void)
-{
-	free(g_data.str);
-	g_data.str = NULL;
-	return (NULL);
-}
-
-char	*str_error2(char *s, char *ret, int status)
-{
-	ft_putendl_fd(s, 2);
-	g_data.status = status;
-	return (ret);
-}
-
 int	read_hdoc(char *str)
 {
 	int	pfd[2];
@@ -25,7 +11,7 @@ int	read_hdoc(char *str)
 	return (pfd[0]);
 }
 
-char	*rdl_hdoc(t_hdoc *hdoc)
+char	*hdoc_readline(t_hdoc *hdoc)
 {
 	char	*line;
 
@@ -53,7 +39,7 @@ char	*rdl_hdoc(t_hdoc *hdoc)
 	return (free_rdl_str());
 }
 
-void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc)
+void	hdoc_child_process(int *pfd, t_hdoc *hdoc)
 {
 	int		hdoc_fd;
 	char	*buf;
@@ -63,7 +49,7 @@ void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc)
 	tmp = hdoc;
 	while (tmp != NULL)
 	{
-		hdoc_inp = rdl_hdoc(tmp);
+		hdoc_inp = hdoc_readline(tmp);
 		if (hdoc_inp != NULL)
 		{
 			close(pfd[0]);
@@ -82,21 +68,9 @@ void	fork_chd_rdl_hdoc(int *pfd, t_hdoc *hdoc)
 	clean_exit(0, 0);
 }
 
-int	is_last_hdoc(t_redir *redir)
-{
-	if (redir == NULL)
-		return (1);
-	redir = redir->next;
-	while (redir != NULL)
-	{
-		if (redir->kind == 3)
-			return (0);
-		redir = redir->next;
-	}
-	return (1);
-}
 
-int	add_fd_redir(t_btree *node, int fd)
+
+int	set_redir_fd(t_btree *node, int fd)
 {
 	t_redir	*redir;
 
@@ -113,7 +87,7 @@ int	add_fd_redir(t_btree *node, int fd)
 	return (1);
 }
 
-int	fork_par_rdl_hdoc(int *pfd, pid_t pid, t_btree *node)
+int	hdoc_parent_process(int *pfd, pid_t pid, t_btree *node)
 {
 	int		status;
 
@@ -123,11 +97,11 @@ int	fork_par_rdl_hdoc(int *pfd, pid_t pid, t_btree *node)
 	if (WIFEXITED(status))
 		if (WEXITSTATUS(status) == 130)
 			return (1);
-	add_fd_redir(node, pfd[0]);
+	set_redir_fd(node, pfd[0]);
 	return (0);
 }
 
-int	fork_rdl_hdoc(t_btree *node)
+int	hdoc_pipe(t_btree *node)
 {
 	int		pfd[2];
 	pid_t	pid;
@@ -139,17 +113,17 @@ int	fork_rdl_hdoc(t_btree *node)
 	pid = fork();
 	if (pid < 0)
 		return (0);
-	if (pid > 0)
+	if (pid == 0)
+	{
+		signal(SIGINT, &handler_sigint);
+		hdoc_child_process(pfd, node->hdoc);
+	}
+	else if (pid > 0)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);
-		if (fork_par_rdl_hdoc(pfd, pid, node) == 1)
+		if (hdoc_parent_process(pfd, pid, node) == 1)
 			return (1);
-	}
-	else if (pid == 0)
-	{
-		signal(SIGINT, &handler_sigint);
-		fork_chd_rdl_hdoc(pfd, node->hdoc);
 	}
 	return (0);
 }

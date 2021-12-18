@@ -26,7 +26,10 @@ SRC	= main.c \
 	  redir_execution.c \
 	  tree_execution.c \
 	  pipe_hdoc.c \
+	  pipe_hdoc_util.c \
+	  launch_pipe_hdoc.c \
 	  signal_handler.c \
+
 
 INC = inc
 OBJ_DIR = obj
