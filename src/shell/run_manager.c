@@ -65,8 +65,8 @@ void	run(char *line, char **env)
 	if (get_all_token(line) == 0)
 		return ;
 	//affichage tableau
-	ft_print_tab(g_data.token_tab);
-	ft_putstr_fd("\n", 1);
+	// ft_print_tab(g_data.token_tab);
+	// ft_putstr_fd("\n", 1);
 
 	/*
 	** on duplique les stdin et stdout pour eviter de quiter la boucle
