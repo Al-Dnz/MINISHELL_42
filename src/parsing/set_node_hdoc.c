@@ -15,12 +15,12 @@ t_hdoc	*set_hdoc_case_3(t_redir *redir)
 }
 */
 
-int	set_tree_hdoc(t_btree *tree)
+int	set_tree_hdoc(t_btree **tree)
 {
-	if (tree->left != NULL)
-		set_tree_hdoc(tree->left);
-	if (tree->right != NULL)
-		set_tree_hdoc(tree->right);
+	if ((*tree)->left != NULL)
+		set_tree_hdoc(&(*tree)->left);
+	if ((*tree)->right != NULL)
+		set_tree_hdoc(&(*tree)->right);
 	if (tree != NULL)
 	{
 		//if fork_rdl_hdoc == 1
@@ -30,18 +30,18 @@ int	set_tree_hdoc(t_btree *tree)
 	return (1);
 }
 
-int	set_node_hdoc(t_btree *node)
+int	set_node_hdoc(t_btree **node)
 {
 	t_redir	*tmp;
 	//t_hdoc	*current;
 
-	tmp = node->redir;
+	tmp = (*node)->redir;
 	while (tmp != NULL)
 	{
 		if (tmp->kind == 3)
 		{
 
-			hdoc_add_back(&(node->hdoc), tmp->file);
+			hdoc_add_back(&((*node)->hdoc), tmp->file);
 			// if (node->hdoc == NULL)
 			// 	node->hdoc = set_hdoc_case_3(tmp);
 			// else
@@ -54,5 +54,6 @@ int	set_node_hdoc(t_btree *node)
 		}
 		tmp = tmp->next;
 	}
-	return (fork_rdl_hdoc(node));
+	// return (fork_rdl_hdoc(node));
+	return (1);
 }

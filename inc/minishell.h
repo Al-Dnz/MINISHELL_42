@@ -156,6 +156,7 @@ int	tree_constructor(void);
 
 void	display_arg(t_arg *arg);
 void	display_redir(t_redir *redir);
+void	display_hdoc(t_hdoc *hdoc);
 void 	display_tree(t_btree *node);
 
 //----------------------------------------------------------------
@@ -205,8 +206,8 @@ t_hdoc	*ft_hdoclast(t_hdoc *hdoc);
 int 	hdoc_add_back(t_hdoc **hdoc, char *str);
 
 
-int	set_tree_hdoc(t_btree *tree);
-int	set_node_hdoc(t_btree *node);
+int	set_tree_hdoc(t_btree **tree);
+int	set_node_hdoc(t_btree **node);
 
 
 

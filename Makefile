@@ -12,6 +12,7 @@ SRC	= main.c \
 	  get_token.c \
 	  arg_util.c \
 	  redir_util.c \
+	  hdoc_util.c \
 	  btree_util.c \
 	  display.c \
 	  tree_constructor.c \
