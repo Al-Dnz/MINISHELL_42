@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 18:00:54 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/13 18:00:56 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/18 22:11:49 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 void	ft_strclr(char **s)
 {
+	if (s == NULL)
+		return ;
 	if (*s)
 	{
 		free(*s);

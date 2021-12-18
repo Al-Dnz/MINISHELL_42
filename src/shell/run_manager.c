@@ -59,9 +59,7 @@ void	run_multipipe(char *line, char **env)
 
 void	run(char *line, char **env)
 {
-	(void)env;
-	g_data.displayer = 0;
-
+	//printf("=>[%lu][%lu}\n", sizeof(char), sizeof(char *));
 	if (get_all_token(line) == 0)
 		return ;
 	//affichage tableau
@@ -74,24 +72,25 @@ void	run(char *line, char **env)
 
 	int	std_out;
 	int	std_in;
-	std_out = dup(1);
-	std_in = dup(0);
+	std_out = dup(STDOUT_FILENO);
+	std_in = dup(STDIN_FILENO);
 
 	//AST test
 	tree_constructor();
 	set_arg_tab(&g_data.tree);
+	set_tree_hdoc(&g_data.tree);
+	if (valid_redir(g_data.tree) == 0)
+		return ;
+	// launch_pipe_hdoc(g_data.tree);
 	g_data.displayer = 0;
-	//display_tree(g_data.tree);
+	// display_tree(g_data.tree);
 
 	g_data.env = env;
-
 	launch_tree(g_data.tree);
 	free_btree(g_data.tree);
 	ft_free_tab(g_data.token_tab);
-	dup2(std_out, 1);
-	dup2(std_in, 0);
-
-	
+	dup2(std_out, STDOUT_FILENO);
+	dup2(std_in, STDIN_FILENO);
 
 	
 

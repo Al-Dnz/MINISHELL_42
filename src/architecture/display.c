@@ -24,6 +24,17 @@ void	display_redir(t_redir *redir)
 	printf("NULL\n");
 }
 
+void	display_hdoc(t_hdoc *hdoc)
+{
+	printf("hdoc: ");
+	while (hdoc != NULL)
+	{
+		printf("[%d|%s]->", hdoc->fd, hdoc->end_word);
+		hdoc = hdoc->next;
+	}
+	printf("NULL\n");
+}
+
 void display_tree(t_btree *node)
 {
 	static int i;
@@ -38,6 +49,7 @@ void display_tree(t_btree *node)
 		return ;
 	}
 	display_redir(node->redir);
+	display_hdoc(node->hdoc);
 	display_arg(node->arg);
 	ft_putstr_fd("arr: ", 1);
 	ft_print_tab(node->arr);

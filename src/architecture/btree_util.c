@@ -27,10 +27,8 @@ int	free_btree(t_btree *node)
 		
 		arg_clr(&(node->arg));
 		redir_clr(&(node->redir));
+		hdoc_clr(&(node->hdoc));
 		ft_free_tab(node->arr);
-		// if (node->hdoc != NULL)
-		// 	free_hdoc_node(node->hdoc);
-		// 
 		free(node);
 	}
 	return (1);

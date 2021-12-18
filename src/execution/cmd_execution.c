@@ -1,6 +1,4 @@
 #include "minishell.h"
-#include <sys/stat.h>
-
 
 void	ft_execve(char **arr, char **envp)
 {
@@ -17,7 +15,7 @@ void	ft_execve(char **arr, char **envp)
 		else if (ft_strequ(arr[0], "pwd"))
 			printf("PWD_COMMAND\n");//;
 		else if (ft_strequ(arr[0], "echo"))
-			printf("ECHO_COMMAND\n");//
+			write(1,"ECHO_COMMoul\n", 13);//
 		else if (ft_strequ(arr[0], "env"))
 			printf("ENV_COMMAND\n");//
 		else
@@ -36,22 +34,7 @@ void	ft_execve(char **arr, char **envp)
 }
 
 /*
-	Return value of the signal in child process
-*/
-void	child_status(int status)
-{
-	if (status == 2)
-	{
-		write(1, "\n", 1);
-		g_data.status = 130;
-	}
-	else if (status == 131 || g_data.quit == 1)
-		g_data.status = 131;
-	else if (status == 0)
-		g_data.status = 0;
-}
-
-/*
+**	Return value of the signal in child process
 **
 **	WUNTRACED
 **		revenir si un fils est bloqué (mais non suivi par ptrace(2)). 
@@ -73,6 +56,24 @@ void	child_status(int status)
 **		Cette macro ne peut être évaluée que si WIFEXITED a renvoyé vrai. 
 */
 
+void	child_status(int status)
+{
+
+	if (WIFSIGNALED(status))
+		g_data.status = WTERMSIG(status);
+	else if (WIFEXITED(status))
+		g_data.status = WEXITSTATUS(status);
+	if (status == 2)
+	{
+		write(1, "\n", 1);
+		g_data.status = 130;
+	}
+	else if (status == 131 || g_data.quit == 1)
+		g_data.status = 131;
+	else if (status == 0)
+		g_data.status = 0;
+}
+
 void	fork_execve(t_btree *node)
 {
 	pid_t	pid;
@@ -90,10 +91,7 @@ void	fork_execve(t_btree *node)
 		pid = waitpid(pid, &status, WUNTRACED);
 		if (pid == -1)
 			return ;
-		if (WIFSIGNALED(status))
-			g_data.status = WTERMSIG(status);
-		else if (WIFEXITED(status))
-			g_data.status = WEXITSTATUS(status);
+		// SECURE CODE
 		child_status(status);
 	}
 	else if (pid == 0)

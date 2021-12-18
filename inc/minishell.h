@@ -5,6 +5,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+ #include <fcntl.h>
 
 # include <sys/wait.h>
 # include <errno.h>
@@ -32,6 +33,16 @@ typedef struct	s_split
 
 /////////////////////////////////////////////
 
+/*
+** 	REDIR KIND
+**	
+**	<	1
+**	>	2
+**	<<	3
+**	>>	4
+*/
+
+
 typedef struct s_redir
 {
 	int				kind;
@@ -43,7 +54,7 @@ typedef struct s_redir
 typedef struct s_hdoc
 {
 	int				fd;
-	char			*end;
+	char			*end_word;
 	struct s_hdoc	*next;
 }		t_hdoc;
 
@@ -78,6 +89,10 @@ typedef struct s_data
 	pid_t	child_pid;
 	int		status;
 	int		quit;
+
+	char	*str;
+	int 	in_hdoc;
+	int		stop;
 } t_data;
 
 t_data	g_data;
@@ -141,6 +156,7 @@ int	tree_constructor(void);
 
 void	display_arg(t_arg *arg);
 void	display_redir(t_redir *redir);
+void	display_hdoc(t_hdoc *hdoc);
 void 	display_tree(t_btree *node);
 
 //----------------------------------------------------------------
@@ -171,6 +187,42 @@ int		launch_tree(t_btree *tree);
 void	error_message(char *str, int fd, int status);
 void	clean_program(void);
 void	clean_exit(int status, int error);
+
+int	valid_redir(t_btree *node);
+int	launch_redir(t_redir *redir);
+
+//---------------SIGNAL------------------------------------------------
+
+void	handler_sigchild(int sig);
+void	handler_sigint(int sig);
+void	handler_sigquit(int sig);
+void	ctrl_d(void);
+
+//-------------HEREDOC----------------------------------------
+
+void	del_hdoc(t_hdoc *hdoc);
+void	hdoc_clr(t_hdoc **hdoc);
+t_hdoc	*ft_hdoclast(t_hdoc *hdoc);
+int 	hdoc_add_back(t_hdoc **hdoc, char *str);
+
+
+int	set_tree_hdoc(t_btree **tree);
+int	set_node_hdoc(t_btree **node);
+
+
+int	read_hdoc(char *str);
+char	*hdoc_readline(t_hdoc *hdoc);
+void	hdoc_child_process(int *pfd, t_hdoc *hdoc);
+int	hdoc_parent_process(int *pfd, pid_t pid, t_btree *node);
+int	hdoc_pipe(t_btree *node);
+
+char	*free_rdl_str(void);
+char	*str_error2(char *s, char *ret, int status);
+int	is_last_hdoc(t_redir *redir);
+int	set_fd_redir(t_btree *node, int fd);
+
+int	launch_pipe_hdoc(t_btree *tree);
+
 
 
 #endif

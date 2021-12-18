@@ -12,16 +12,24 @@ SRC	= main.c \
 	  get_token.c \
 	  arg_util.c \
 	  redir_util.c \
+	  hdoc_util.c \
 	  btree_util.c \
 	  display.c \
 	  tree_constructor.c \
 	  token_cleaner.c \
 	  ft_strjoin_special.c \
-	  arglist_to_tab.c \
+	  set_node_arr.c \
+	  set_node_hdoc.c \
 	  path_manager.c \
 	  free_prog.c \
 	  cmd_execution.c \
+	  redir_execution.c \
 	  tree_execution.c \
+	  pipe_hdoc.c \
+	  pipe_hdoc_util.c \
+	  launch_pipe_hdoc.c \
+	  signal_handler.c \
+
 
 INC = inc
 OBJ_DIR = obj
