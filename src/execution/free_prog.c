@@ -19,11 +19,12 @@ void	clean_program(void)
 {
 	//rl_clear_history();
 	ft_free_tab(g_data.token_tab);
+	g_data.token_tab = NULL;
 	free_btree(g_data.tree);
+	g_data.tree = NULL;
 	ft_strclr(&g_data.str);
-
-	// free_envp(sg()->env);
-	// free(sg());
+	g_data.str = NULL;
+	
 }
 
 void	clean_exit(int status, int error)

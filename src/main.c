@@ -27,7 +27,7 @@ int main_loop(char **env)
 		{
 			add_history(line);
 			if (!check_syntax(line))
-				print_error();//////
+				print_error();
 			else
 				run(line, env);
 		}

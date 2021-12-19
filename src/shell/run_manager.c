@@ -94,6 +94,6 @@ void	run(char *line, char **env)
 	dup2(std_in, STDIN_FILENO);
 
 	clean_program();
-	// free_btree(g_data.tree);
-	// ft_free_tab(g_data.token_tab);
+	free_btree(g_data.tree);
+	ft_free_tab(g_data.token_tab);
 }

@@ -6,23 +6,21 @@ int	launch_command(t_btree *node, char *cmd)
 {
 	if (node && cmd != 0)
 	{
-		// if ((ft_strcmp(cmd, "cd")) == 0)
-		// {
-		// 	cd(node->arg, &sg()->env);
-		// }
-		// else if ((ft_strcmp(cmd, "export")) == 0)
-		// 	launch_export(node->arg, &sg()->env);
-		// else if ((ft_strcmp(cmd, "unset")) == 0)
-		// 	launch_unset(node->arg, &sg()->env);
-		// else if ((ft_strcmp(cmd, "exit")) == 0)
-		// 	ft_exit(node);
-		// else if ((ft_strcmp(cmd, "pwd")) == 0)
-		// 	pwd();
-		// else if ((ft_strcmp(cmd, "echo")) == 0)
-		// 	echo(node->arg);
-		// else if ((ft_strcmp(cmd, "env")) == 0)
-		// 	env(sg()->env);
-		// else
+		if (ft_strequ(node->arr[0], "cd"))
+			printf("CD_COMMAND\n");//
+		else if (ft_strequ(node->arr[0], "export"))
+			printf("EXPORT_COMMAND\n");//
+		// else if (ft_strequ(node->arr[0], "unset"))
+		// 	printf("UNSET_COMMAND\n");//
+		else if (ft_strequ(node->arr[0], "exit"))
+			printf("EXIT_COMMAND\n");//
+		else if (ft_strequ(node->arr[0], "pwd"))
+			printf("PWD_COMMAND\n");//;
+		else if (ft_strequ(node->arr[0], "echo"))
+			write(1,"ECHO_COMMoul\n", 13);//
+		else if (ft_strequ(node->arr[0], "env"))
+			printf("ENV_COMMAND\n");//
+		else
 			fork_execve(node);
 	}
 	return (0);

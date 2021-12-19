@@ -42,7 +42,7 @@ char *find_path(char *cmd)
 	env_tab = ft_split(env, ":");
 	formalize_env_path(env_tab);
 	//ft_print_tab2(env_tab);
-	path = cmd;
+	path = ft_strdup(cmd);
 	i = 0;
 	while (access(path, F_OK|R_OK|X_OK) != 0 && env_tab[i])
 	{
