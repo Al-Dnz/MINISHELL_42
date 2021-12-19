@@ -10,8 +10,8 @@ int	launch_command(t_btree *node, char *cmd)
 			printf("CD_COMMAND\n");//
 		else if (ft_strequ(node->arr[0], "export"))
 			printf("EXPORT_COMMAND\n");//
-		// else if (ft_strequ(node->arr[0], "unset"))
-		// 	printf("UNSET_COMMAND\n");//
+		else if (ft_strequ(node->arr[0], "unset"))
+			printf("UNSET_COMMAND\n");//
 		else if (ft_strequ(node->arr[0], "exit"))
 			printf("EXIT_COMMAND\n");//
 		else if (ft_strequ(node->arr[0], "pwd"))
