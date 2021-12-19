@@ -1,5 +1,13 @@
 #include "minishell.h"	
 
+void	ft_signal(void)
+{
+	signal(SIGINT, &handler_sigint);
+	signal(SIGQUIT, &handler_sigquit);
+	signal(SIGCHLD, &handler_sigchild);
+	g_data.quit = 0;
+}
+
 void	handler_sigchild(int sig)
 {
 	pid_t	pid;

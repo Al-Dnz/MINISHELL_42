@@ -184,6 +184,7 @@ int		launch_command(t_btree *node, char *cmd);
 void	launch_pipe(t_btree *node);
 int		launch_tree(t_btree *tree);
 
+void	error_cmd(char *cmd, int fd, int status);
 void	error_message(char *str, int fd, int status);
 void	clean_program(void);
 void	clean_exit(int status, int error);
@@ -193,6 +194,7 @@ int	launch_redir(t_redir *redir);
 
 //---------------SIGNAL------------------------------------------------
 
+void	ft_signal(void);
 void	handler_sigchild(int sig);
 void	handler_sigint(int sig);
 void	handler_sigquit(int sig);

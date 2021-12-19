@@ -113,6 +113,7 @@ int	hdoc_pipe(t_btree *node)
 	pid = fork();
 	if (pid < 0)
 		return (0);
+		// fils
 	if (pid == 0)
 	{
 		signal(SIGINT, &handler_sigint);

@@ -13,6 +13,7 @@ int main_loop(char **env)
 	char *line;
 
 	line  = NULL;
+	ft_signal();
 	while (1)
 	{
 		if (line)

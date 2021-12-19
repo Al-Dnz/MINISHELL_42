@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void	error_cmd(char *cmd, int fd, int status)
+{
+	ft_putstr_fd("minishell: ", fd);
+	ft_putstr_fd(cmd, fd);
+	ft_putstr_fd(": ", fd);
+	error_message("command not found", fd, status);
+}
+
 void	error_message(char *str, int fd, int status)
 {
 	ft_putstr_fd(str, fd);

@@ -24,7 +24,9 @@ void	ft_execve(char **arr, char **envp)
 			if (cmd_path == NULL)
 			{
 				//SECURE CODE
-				clean_exit(127, 1);
+				error_cmd(arr[0], 2, 127);
+				clean_program();
+				exit(127);
 				return ;
 			}
 			execve(cmd_path, arr, envp);
@@ -82,7 +84,7 @@ void	fork_execve(t_btree *node)
 	pid = fork();
 	g_data.child_pid = pid;
 	if (pid < 0)
-		return ;;
+		return ;
 	// SECURE CODE
 	if (pid > 0)
 	{

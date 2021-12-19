@@ -42,6 +42,12 @@ void display_tree(t_btree *node)
 	if (g_data.displayer == 0)
 		i = 0;
 	g_data.displayer = 1;
+	if (i == 0)
+		printf("[ROOT]");
+	else if (i % 2)
+		printf("[R]");
+	else
+		printf("[L]");
 	printf("(%d)--------------------------------------------\n", i++);
 	if (node == NULL)
 	{

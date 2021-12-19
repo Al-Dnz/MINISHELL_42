@@ -82,15 +82,19 @@ void	run(char *line, char **env)
 	if (valid_redir(g_data.tree) == 0)
 		return ;
 	// launch_pipe_hdoc(g_data.tree);
+
 	g_data.displayer = 0;
-	// display_tree(g_data.tree);
+	display_tree(g_data.tree);
 
 	g_data.env = env;
 	launch_tree(g_data.tree);
-	free_btree(g_data.tree);
-	ft_free_tab(g_data.token_tab);
 	dup2(std_out, STDOUT_FILENO);
 	dup2(std_in, STDIN_FILENO);
+
+	clean_program();
+	// free_btree(g_data.tree);
+	// ft_free_tab(g_data.token_tab);
+	
 
 	
 
