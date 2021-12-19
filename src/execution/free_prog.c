@@ -14,8 +14,6 @@ void	clean_program(void)
 	free_btree(g_data.tree);
 	ft_strclr(&g_data.str);
 
-	// if (sg()->str != NULL)
-	// 	free(sg()->str);
 	// free_envp(sg()->env);
 	// free(sg());
 }
