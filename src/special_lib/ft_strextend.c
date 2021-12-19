@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*ft_strjoin_special(char *s1, char *s2, int mode)
+char	*ft_strextend(char *s1, char *s2, int mode)
 {
 	char	*str;
 	char	*freeable_1;
@@ -24,7 +24,7 @@ char	*ft_strjoin_special(char *s1, char *s2, int mode)
 	return (str);
 }
 
-char	*ft_strjoin_special_2(char **s1, char **s2, int mode)
+char	*ft_strextend_2(char **s1, char **s2, int mode)
 {
 	char	*str;
 	char	**freeable_1;

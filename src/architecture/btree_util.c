@@ -24,12 +24,28 @@ int	free_btree(t_btree *node)
 			free_btree(node->left);
 		if (node->right != NULL)
 			free_btree(node->right);
-		
-		arg_clr(&(node->arg));
-		redir_clr(&(node->redir));
-		hdoc_clr(&(node->hdoc));
-		ft_free_tab(node->arr);
+		if (node->arg != NULL)
+		{
+			arg_clr(&(node->arg));
+			node->arg = NULL;
+		}
+		if (node->redir != NULL)
+		{
+			redir_clr(&(node->redir));
+			node->redir = NULL;
+		}
+		if (node->hdoc != NULL)
+		{
+			hdoc_clr(&(node->hdoc));
+			node->hdoc = NULL;
+		}
+		if (node->arr != NULL)
+		{
+			ft_free_tab(node->arr);
+			node->arr = NULL;
+		}
 		free(node);
+		node = NULL;
 	}
 	return (1);
 }

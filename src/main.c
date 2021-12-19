@@ -8,12 +8,14 @@ int	broken_loop(char **env)
 
 int main_loop(char **env)
 {
-	(void)env;
 	char *input_message = "minishell-1.0$ ";
 	char *line;
 
-	line  = NULL;
+	
+	if (isatty(0) == 0)
+		return 0;
 	ft_signal();
+	line  = NULL;	
 	while (1)
 	{
 		if (line)
@@ -29,7 +31,6 @@ int main_loop(char **env)
 			else
 				run(line, env);
 		}
-		// printf("[%s]\n", line);
 		if (line)
 			ft_strclr(&line);
 	}

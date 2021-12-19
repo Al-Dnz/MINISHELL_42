@@ -24,8 +24,8 @@ char	*hdoc_readline(t_hdoc *hdoc)
 		if (g_data.str == NULL)
 			g_data.str = ft_strdup(line);
 		else
-			(g_data.str) = ft_strjoin_special(g_data.str, line, 0);
-		(g_data.str) = ft_strjoin_special(g_data.str, "\n", 0);
+			(g_data.str) = ft_strextend(g_data.str, line, 0);
+		(g_data.str) = ft_strextend(g_data.str, "\n", 0);
 		free(line);
 		line = readline("> ");
 		if (line == NULL)
@@ -43,17 +43,17 @@ void	hdoc_child_process(int *pfd, t_hdoc *hdoc)
 {
 	int		hdoc_fd;
 	char	*buf;
-	char	*hdoc_inp;
+	char	*input;
 	t_hdoc	*tmp;
 
 	tmp = hdoc;
 	while (tmp != NULL)
 	{
-		hdoc_inp = hdoc_readline(tmp);
-		if (hdoc_inp != NULL)
+		input = hdoc_readline(tmp);
+		if (input != NULL)
 		{
 			close(pfd[0]);
-			hdoc_fd = read_hdoc(hdoc_inp);
+			hdoc_fd = read_hdoc(input);
 			buf = ft_calloc(2, sizeof(char *));
 			if (buf == NULL)
 				return ;
@@ -67,8 +67,6 @@ void	hdoc_child_process(int *pfd, t_hdoc *hdoc)
 	}
 	clean_exit(0, 0);
 }
-
-
 
 int	set_redir_fd(t_btree *node, int fd)
 {
@@ -87,9 +85,10 @@ int	set_redir_fd(t_btree *node, int fd)
 	return (1);
 }
 
-int	hdoc_parent_process(int *pfd, pid_t pid, t_btree *node)
+int	hdoc_parent_process(int *pfd, t_btree *node)
 {
 	int		status;
+	pid_t pid;
 
 	status = 0;
 	pid = wait(&status);
@@ -123,7 +122,7 @@ int	hdoc_pipe(t_btree *node)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);
-		if (hdoc_parent_process(pfd, pid, node) == 1)
+		if (hdoc_parent_process(pfd, node) == 1)
 			return (1);
 	}
 	return (0);

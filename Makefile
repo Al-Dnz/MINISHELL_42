@@ -17,7 +17,7 @@ SRC	= main.c \
 	  display.c \
 	  tree_constructor.c \
 	  token_cleaner.c \
-	  ft_strjoin_special.c \
+	  ft_strextend.c \
 	  set_node_arr.c \
 	  set_node_hdoc.c \
 	  path_manager.c \

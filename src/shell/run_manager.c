@@ -75,16 +75,18 @@ void	run(char *line, char **env)
 	std_out = dup(STDOUT_FILENO);
 	std_in = dup(STDIN_FILENO);
 
+
 	//AST test
+
 	tree_constructor();
 	set_arg_tab(&g_data.tree);
 	set_tree_hdoc(&g_data.tree);
 	if (valid_redir(g_data.tree) == 0)
 		return ;
-	// launch_pipe_hdoc(g_data.tree);
 
-	g_data.displayer = 0;
-	display_tree(g_data.tree);
+
+	// g_data.displayer = 0;
+	// display_tree(g_data.tree);
 
 	g_data.env = env;
 	launch_tree(g_data.tree);
@@ -94,39 +96,4 @@ void	run(char *line, char **env)
 	clean_program();
 	// free_btree(g_data.tree);
 	// ft_free_tab(g_data.token_tab);
-	
-
-	
-
-	// char *s1 = find_path("ls");
-	// printf("{%s}\n", s1);
-
-	//ft_print_tab(g_data.env);
-	// char *envp;
-	// char **env_tab;
-	// envp = getenv("PATH");
-	// env_tab = ft_split(envp, ":");
-	//formalize_env_path(env_tab);
-	// write(1, "\n---\n", 5);
-	// ft_print_tab2(env_tab);
-
-	//printf("{%s}\n", find_path(line));
-
-
-
-	
-	
-
-	
-
-
-
-	//ft_print_tab(g_data.env);
-	// rl_on_new_line();
-	// rl_replace_line("", 0);
-
-	//token cleaner test
-	// char *str;
-	// str = token_cleaner(g_data.token_tab[0]);
-	// printf("[%s]=>[%s]\n",g_data.token_tab[0], str);
 }

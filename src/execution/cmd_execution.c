@@ -4,35 +4,36 @@ void	ft_execve(char **arr, char **envp)
 {
 	char *cmd_path;
 
-		if (ft_strequ(arr[0], "cd"))
-			printf("CD_COMMAND\n");//
-		else if (ft_strequ(arr[0], "export"))
-			printf("EXPORT_COMMAND\n");//
-		else if (ft_strequ(arr[0], "unset"))
-			printf("UNSET_COMMAND\n");//
-		else if (ft_strequ(arr[0], "exit"))
-			printf("EXIT_COMMAND\n");//
-		else if (ft_strequ(arr[0], "pwd"))
-			printf("PWD_COMMAND\n");//;
-		else if (ft_strequ(arr[0], "echo"))
-			write(1,"ECHO_COMMoul\n", 13);//
-		else if (ft_strequ(arr[0], "env"))
-			printf("ENV_COMMAND\n");//
-		else
+	if (ft_strequ(arr[0], "cd"))
+		printf("CD_COMMAND\n");//
+	else if (ft_strequ(arr[0], "export"))
+		printf("EXPORT_COMMAND\n");//
+	else if (ft_strequ(arr[0], "unset"))
+		printf("UNSET_COMMAND\n");//
+	else if (ft_strequ(arr[0], "exit"))
+		printf("EXIT_COMMAND\n");//
+	else if (ft_strequ(arr[0], "pwd"))
+		printf("PWD_COMMAND\n");//;
+	else if (ft_strequ(arr[0], "echo"))
+		write(1,"ECHO_COMMoul\n", 13);//
+	else if (ft_strequ(arr[0], "env"))
+		printf("ENV_COMMAND\n");//
+	else
+	{
+		cmd_path = find_path(arr[0]);
+		// (void)envp;
+		// printf("[%s]\n", cmd_path);
+		// printf("=>[%d]<=\n", execve(cmd_path, arr, envp));
+		if (cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
 		{
-			cmd_path = find_path(arr[0]);
-			if (cmd_path == NULL)
-			{
-				//SECURE CODE
-				error_cmd(arr[0], 2, 127);
-				clean_program();
-				exit(127);
-				return ;
-			}
-			execve(cmd_path, arr, envp);
-			ft_strclr(&cmd_path);
-			//SECURE CODE	
-		}
+			//SECURE CODE
+			error_cmd(arr[0], 2, 127);
+			clean_program();
+			exit(127);
+			return ;
+		}		
+		//SECURE CODE	
+	}
 }
 
 /*

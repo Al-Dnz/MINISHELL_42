@@ -1,0 +1,11 @@
+ECHO_COMMoul
+total 368
+-rw-r--r--    1 alex  staff    1967 19 déc 20:25 Makefile
+-rw-r--r--    1 alex  staff     988 18 déc 16:19 README.md
+-rw-r--r--    1 alex  staff      15 18 déc 16:19 authors
+-rwxr-xr-x    1 alex  staff      13 19 déc 21:37 file
+drwxr-xr-x    3 alex  staff      96 19 déc 19:16 inc
+drwxr-xr-x  133 alex  staff    4256 19 déc 22:00 libft
+-rwxr-xr-x    1 alex  staff  170328 19 déc 22:11 minishell
+drwxr-xr-x   31 alex  staff     992 19 déc 22:11 obj
+drwxr-xr-x    8 alex  staff     256 19 déc 19:16 src

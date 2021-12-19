@@ -160,8 +160,8 @@ void	display_hdoc(t_hdoc *hdoc);
 void 	display_tree(t_btree *node);
 
 //----------------------------------------------------------------
-char	*ft_strjoin_special(char *s1, char *s2, int nb);
-char	*ft_strjoin_special_2(char **s1, char **s2, int nb);
+char	*ft_strextend(char *s1, char *s2, int nb);
+char	*ft_strextend_2(char **s1, char **s2, int nb);
 char	*revert_null_str(char *dest, char *src);
 void	free_mode(char **str1, char **str2, int mode);
 
@@ -215,7 +215,7 @@ int	set_node_hdoc(t_btree **node);
 int	read_hdoc(char *str);
 char	*hdoc_readline(t_hdoc *hdoc);
 void	hdoc_child_process(int *pfd, t_hdoc *hdoc);
-int	hdoc_parent_process(int *pfd, pid_t pid, t_btree *node);
+int	hdoc_parent_process(int *pfd, t_btree *node);
 int	hdoc_pipe(t_btree *node);
 
 char	*free_rdl_str(void);

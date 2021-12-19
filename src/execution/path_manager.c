@@ -44,7 +44,7 @@ char *find_path(char *cmd)
 	//ft_print_tab2(env_tab);
 	path = cmd;
 	i = 0;
-	while (access(path, F_OK) != 0 && env_tab[i])
+	while (access(path, F_OK|R_OK|X_OK) != 0 && env_tab[i])
 	{
 		if (ft_strcmp(path, cmd) != 0)
 			ft_strclr(&path);
@@ -55,7 +55,7 @@ char *find_path(char *cmd)
 		i++;
 	}
 	ft_free_tab(env_tab);
-	if (access(path, F_OK) != 0)
+	if (access(path, F_OK|R_OK|X_OK) != 0)
 		return (NULL);
 		// SECURE CODE
 	//printf("\n=>[%s]<=\n", path);
