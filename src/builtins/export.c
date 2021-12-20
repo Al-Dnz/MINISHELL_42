@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/17 16:19:51 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/20 11:31:57 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static int	check_arg(t_arg *arg)
 	if (arg->word)
 	{
 		eq = check_valid(arg->word);
+		printf("/////////////%i\n", eq);
 		if (eq == -1)
 			return (1);
 		else if (eq > 0)

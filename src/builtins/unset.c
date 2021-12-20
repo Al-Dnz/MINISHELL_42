@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:51 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/17 19:57:26 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/20 11:51:00 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,25 @@ static int	ft_str_isalnum_eq(char *s)
 
 	if (!s)
 		return (-1);
-	i = 0;
-	while (s[i] != '\0')
+	if (s[0] == '_' || ft_isalpha(s[0]))
 	{
-		if (!ft_isalpha(s[i]) && s[i] != '_')
-			return (0);
-		i++;
+		i = 1;
+		while (s[i])
+		{
+			if (s[i] != '_' && !ft_isalnum(s[i]))
+				return (0);
+			i++;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (s[i])
+		{
+			if (!ft_isalpha(s[i]) && s[i] != '_')
+				return (0);
+			i++;
+		}
 	}
 	return (1);
 }

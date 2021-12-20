@@ -83,7 +83,7 @@ void	run(char *line, char **env)
 	g_data.displayer = 0;
 	//display_tree(g_data.tree);
 
-	g_data.env = env;
+//	g_data.env = env;
 
 	launch_tree(g_data.tree);
 	free_btree(g_data.tree);
