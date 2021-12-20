@@ -15,7 +15,7 @@ void	init_g_data(void)
 	g_data.str = NULL;
 	g_data.token_tab = NULL;
 	g_data.tree = NULL;
-	g_data.env = NULL;
+//	g_data.env = NULL;
 }
 
 void	reinit_g_data(void)

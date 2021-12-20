@@ -21,7 +21,7 @@ int	launch_command(t_btree *node, char *cmd)
 		else if (ft_strequ(node->arr[0], "env"))
 			printf("ENV_COMMAND\n");// */
 
-				if (!ft_strcmp(cmd, "echo"))
+		if (!ft_strcmp(cmd, "echo"))
 			echo(node->arg);
 		else if (!ft_strcmp(cmd, "pwd"))
 			pwd(1);
