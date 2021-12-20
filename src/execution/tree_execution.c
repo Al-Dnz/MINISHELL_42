@@ -6,7 +6,7 @@ int	launch_command(t_btree *node, char *cmd)
 {
 	if (node && cmd != 0)
 	{
-		if (ft_strequ(node->arr[0], "cd"))
+/* 		if (ft_strequ(node->arr[0], "cd"))
 			printf("CD_COMMAND\n");//
 		else if (ft_strequ(node->arr[0], "export"))
 			printf("EXPORT_COMMAND\n");//
@@ -19,7 +19,22 @@ int	launch_command(t_btree *node, char *cmd)
 		else if (ft_strequ(node->arr[0], "echo"))
 			write(1,"ECHO_COMMoul\n", 13);//
 		else if (ft_strequ(node->arr[0], "env"))
-			printf("ENV_COMMAND\n");//
+			printf("ENV_COMMAND\n");// */
+
+				if (!ft_strcmp(cmd, "echo"))
+			echo(node->arg);
+		else if (!ft_strcmp(cmd, "pwd"))
+			pwd(1);
+		else if (!ft_strcmp(cmd, "cd"))
+			cd(node->arg);
+		else if (!ft_strcmp(cmd, "env"))
+			cmd_env(node->arg);
+		else if (!ft_strcmp(cmd, "export"))
+			export(node->arg);
+		else if (!ft_strcmp(cmd, "unset"))
+			unset(node->arg);
+		else if (!ft_strcmp(cmd, "exit"))
+			cmd_exit(node->arg);
 		else
 			fork_execve(node);
 	}

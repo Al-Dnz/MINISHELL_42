@@ -29,7 +29,14 @@ SRC	= main.c \
 	  pipe_hdoc_util.c \
 	  launch_pipe_hdoc.c \
 	  signal_handler.c \
-
+	  env_utils.c \
+	  echo.c \
+	  pwd.c \
+	  cd.c \
+	  env.c \
+	  export.c \
+	  unset.c \
+	  exit.c \
 
 INC = inc
 OBJ_DIR = obj

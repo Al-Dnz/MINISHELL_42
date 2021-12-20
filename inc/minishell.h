@@ -179,7 +179,7 @@ void	set_arg_tab(t_btree **tree);
 char	**arglist_to_tab(t_arg *arg);
 
 //--------------------------EXECUTION-------------------------------------
-void	ft_execve(char **arg, char **envp);
+void	ft_execve(char **arr, char **envp);
 void	child_status(int status);
 void	fork_execve(t_btree *node);
 
@@ -229,5 +229,20 @@ int	set_fd_redir(t_btree *node, int fd);
 int	launch_pipe_hdoc(t_btree *tree);
 
 
+//builtins
+void	echo(t_arg *arg);
+void	pwd(int print);
+void	cd(t_arg *arg);
+void	cmd_env(t_arg *arg);
+void	print_env(char **tab);
+void	export(t_arg *arg);
+void	unset(t_arg *arg);
+void	cmd_exit(t_arg *arg);
+
+//utils
+char	**change_var(char **tab, char *name, char *new);
+char	*getvar_val(char *name, char **tab);
+char	**dup_env(char **tab);
+int		exist(char **tab, char *name);
 
 #endif

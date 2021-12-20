@@ -72,6 +72,7 @@ int main_loop(char **env)
 
 void	run(char *line, char **env)
 {
+	(void)env;
 	//printf("=>[%lu][%lu}\n", sizeof(char), sizeof(char *));
 	if (get_all_token(line) == 0)
 		return ;
@@ -101,7 +102,8 @@ void	run(char *line, char **env)
 	// g_data.displayer = 0;
 	// display_tree(g_data.tree);
 
-	g_data.env = env;
+	
+//	g_data.env = env;
 	launch_tree(g_data.tree);
 	dup2(std_out, STDOUT_FILENO);
 	dup2(std_in, STDIN_FILENO);
