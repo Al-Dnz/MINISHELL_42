@@ -1,61 +1,74 @@
 #include "minishell.h"
 
-static inline void multi_pipeline(char ***matrix, char **env)
+void	init_g_data(void)
 {
-	int fd[2];
-	pid_t pid;
-	int fdd = 0; //backup
-	int i = 0;
-	char *cmd_path = NULL;
+	g_data.chd_status = 0;
+	g_data.child_pid = 0;
+	g_data.status = 0;
+	g_data.quit = 0;
+	g_data.index = 0;
+	g_data.in_hdoc = 0;
+	g_data.displayer = 0;
 
-	while (matrix[i] != NULL)
-	{
-		pipe(fd);
-		pid = fork();
-		ft_strclr(&cmd_path);
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(1);
-		}
-		else if (pid == 0)
-		{
-			dup2(fdd, 0);
-			if (matrix[i + 1] != NULL)
-				dup2(fd[1], 1);
-			close(fd[0]);
-			cmd_path = find_path(matrix[i][0]);
-			execve(cmd_path, matrix[i], env);
-			exit(1);
-		}
-		else
-		{
-			wait(NULL);
-			close(fd[1]);
-			fdd = fd[0];
-			i++;
-		}
-	}
+	g_data.err = 0;
+	
+	g_data.str = NULL;
+	g_data.token_tab = NULL;
+	g_data.tree = NULL;
+	g_data.env = NULL;
 }
 
-void	run_multipipe(char *line, char **env)
+void	reinit_g_data(void)
 {
-	char ***matrix;
-	char **table;
-	int index;
+	g_data.chd_status = 0;
+	g_data.child_pid = 0;
+	g_data.quit = 0;
+	g_data.index = 0;
+	g_data.in_hdoc = 0;
+	g_data.displayer = 0;
 
-	table = ft_split(line, "|");
-	matrix = matrix_gen(ft_tabsize(table));
-	index = 0;
-	while (index < ft_tabsize(table))
-	{
-		matrix[index] = ft_split(table[index], "	 ");
-		index++;
-	}
-	multi_pipeline(matrix, env);
-	ft_free_tab(table);
-	free_matrix(matrix);
+	ft_free_tab(g_data.token_tab);
+	g_data.token_tab = NULL;
+	free_btree(g_data.tree);
+	g_data.tree = NULL;
+	ft_strclr(&g_data.str);
+	g_data.str = NULL;
+
 }
+
+int main_loop(char **env)
+{
+	char *input_message = "minishell-1.0$ ";
+	char *line;
+
+
+	if (isatty(0) == 0)
+		return 0;
+	ft_signal();
+	line  = NULL;
+	init_g_data();	
+	while (1)
+	{
+		if (line)
+			ft_strclr(&line);
+		line = readline(input_message);
+		if (line == NULL)
+			break ;
+		if (line && *line)
+		{
+			add_history(line);
+			if (!check_syntax(line))
+				print_error();
+			else
+				run(line, env);
+		}
+		if (line)
+			ft_strclr(&line);
+	}
+	return (0);
+}
+
+
 
 void	run(char *line, char **env)
 {
@@ -93,7 +106,5 @@ void	run(char *line, char **env)
 	dup2(std_out, STDOUT_FILENO);
 	dup2(std_in, STDIN_FILENO);
 
-	clean_program();
-	free_btree(g_data.tree);
-	ft_free_tab(g_data.token_tab);
+	reinit_g_data();
 }
