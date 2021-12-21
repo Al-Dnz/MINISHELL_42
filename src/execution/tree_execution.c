@@ -1,26 +1,9 @@
 #include "minishell.h"
 
-
-
 int	launch_command(t_btree *node, char *cmd)
 {
 	if (node && cmd != 0)
 	{
-/* 		if (ft_strequ(node->arr[0], "cd"))
-			printf("CD_COMMAND\n");//
-		else if (ft_strequ(node->arr[0], "export"))
-			printf("EXPORT_COMMAND\n");//
-		else if (ft_strequ(node->arr[0], "unset"))
-			printf("UNSET_COMMAND\n");//
-		else if (ft_strequ(node->arr[0], "exit"))
-			printf("EXIT_COMMAND\n");//
-		else if (ft_strequ(node->arr[0], "pwd"))
-			printf("PWD_COMMAND\n");//;
-		else if (ft_strequ(node->arr[0], "echo"))
-			write(1,"ECHO_COMMoul\n", 13);//
-		else if (ft_strequ(node->arr[0], "env"))
-			printf("ENV_COMMAND\n");// */
-
 		if (!ft_strcmp(cmd, "echo"))
 			echo(node->arg);
 		else if (!ft_strcmp(cmd, "pwd"))

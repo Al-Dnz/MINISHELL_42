@@ -68,27 +68,10 @@ void	hdoc_child_process(int *pfd, t_hdoc *hdoc)
 	clean_exit(0, 0);
 }
 
-int	set_redir_fd(t_btree *node, int fd)
-{
-	t_redir	*redir;
-
-	redir = node->redir;
-	while (redir != NULL)
-	{
-		if (redir->kind == 3 && is_last_hdoc(redir) == 1)
-		{
-			redir->hdoc_fd = fd;
-			return (0);
-		}
-		redir = redir->next;
-	}
-	return (1);
-}
-
 int	hdoc_parent_process(int *pfd, t_btree *node)
 {
 	int		status;
-	pid_t pid;
+	pid_t	pid;
 
 	status = 0;
 	pid = wait(&status);
@@ -96,7 +79,7 @@ int	hdoc_parent_process(int *pfd, t_btree *node)
 	if (WIFEXITED(status))
 		if (WEXITSTATUS(status) == 130)
 			return (1);
-	set_redir_fd(node, pfd[0]);
+	set_fd_redir(node, pfd[0]);
 	return (0);
 }
 
@@ -112,7 +95,6 @@ int	hdoc_pipe(t_btree *node)
 	pid = fork();
 	if (pid < 0)
 		return (0);
-		// fils
 	if (pid == 0)
 	{
 		signal(SIGINT, &handler_sigint);

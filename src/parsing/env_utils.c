@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/16 20:04:24 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 01:03:06 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exist(char **tab, char *name)
 	i = 0;
 	while (tab[i])
 	{
-		if(!strncmp(tab[i], name, ft_strlen(name)))
+		if (!strncmp(tab[i], name, ft_strlen(name)))
 			return (i);
 		i++;
 	}
@@ -31,9 +31,8 @@ char	**change_var(char **tab, char *name, char *new)
 	int		i;
 
 	i = 0;
-
 	while (tab[i] && ft_strncmp(name, tab[i], ft_strlen(name))
-			&& i < ft_tabsize(tab))
+		&& i < ft_tabsize(tab))
 		i++;
 	if (!tab[i])
 	{
@@ -60,7 +59,7 @@ char	*getvar_val(char *name, char **tab)
 
 	i = 0;
 	while (tab[i] && ft_strncmp(name, tab[i], ft_strlen(name))
-			&& i < ft_tabsize(tab))
+		&& i < ft_tabsize(tab))
 		i++;
 	if (tab[i] && !ft_strncmp(name, tab[i], ft_strlen(name)))
 		return (val = tab[i] + ft_strlen(name));
