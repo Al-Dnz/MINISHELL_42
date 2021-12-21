@@ -2,8 +2,8 @@
 
 t_redir	*new_redir(char *str)
 {
-	t_redir	*element;
-	static char *sym_arr[5] = {"<", ">", "<<", ">>", 0};
+	t_redir		*element;
+	static char	*sym_arr[5] = {"<", ">", "<<", ">>", 0};
 
 	element = malloc(sizeof(t_redir));
 	if (element == NULL)
@@ -51,10 +51,10 @@ t_redir	*ft_redirlast(t_redir *redir)
 	return (redir);
 }
 
-int redir_add_back(t_redir **redir, char *str)
+int	redir_add_back(t_redir **redir, char *str)
 {
-	t_redir *element;
-	t_redir *tmp;
+	t_redir	*element;
+	t_redir	*tmp;
 
 	element = new_redir(str);
 	if (element == NULL)

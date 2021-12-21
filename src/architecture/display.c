@@ -13,7 +13,7 @@ void	display_arg(t_arg *arg)
 
 void	display_redir(t_redir *redir)
 {
-	static char *sym_arr[6] = {"-1", "<", ">", "<<", ">>", 0};
+	static char	*sym_arr[6] = {"-1", "<", ">", "<<", ">>", 0};
 
 	printf("redir: ");
 	while (redir)
@@ -35,9 +35,9 @@ void	display_hdoc(t_hdoc *hdoc)
 	printf("NULL\n");
 }
 
-void display_tree(t_btree *node)
+void	display_tree(t_btree *node)
 {
-	static int i;
+	static int	i;
 
 	if (g_data.displayer == 0)
 		i = 0;

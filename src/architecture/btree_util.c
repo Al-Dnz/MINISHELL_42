@@ -18,34 +18,29 @@ t_btree	*create_node(t_btree *left, t_btree *right)
 
 int	free_btree(t_btree *node)
 {
-	if (node != NULL)
+	if (node == NULL)
+		return (1);
+	if (node->left != NULL)
+		free_btree(node->left);
+	if (node->right != NULL)
+		free_btree(node->right);
+	if (node->arg != NULL)
 	{
-		if (node->left != NULL)
-			free_btree(node->left);
-		if (node->right != NULL)
-			free_btree(node->right);
-		if (node->arg != NULL)
-		{
-			arg_clr(&(node->arg));
-			node->arg = NULL;
-		}
-		if (node->redir != NULL)
-		{
-			redir_clr(&(node->redir));
-			node->redir = NULL;
-		}
-		if (node->hdoc != NULL)
-		{
-			hdoc_clr(&(node->hdoc));
-			node->hdoc = NULL;
-		}
-		if (node->arr != NULL)
-		{
-			ft_free_tab(node->arr);
-			node->arr = NULL;
-		}
-		free(node);
-		node = NULL;
+		arg_clr(&(node->arg));
+		node->arg = NULL;
 	}
+	if (node->redir != NULL)
+	{
+		redir_clr(&(node->redir));
+		node->redir = NULL;
+	}
+	if (node->hdoc != NULL)
+	{
+		hdoc_clr(&(node->hdoc));
+		node->hdoc = NULL;
+	}
+	ft_free_tab(node->arr);
+	free(node);
+	node = NULL;
 	return (1);
 }
