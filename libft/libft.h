@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 00:07:10 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/12 16:27:27 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/21 18:45:47 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,7 @@ void				free_matrix(char ***matrix_tab);
 void				ft_print_tab(char **tab);
 void				ft_print_tab2(char **tab);
 void				ft_retro_free_tab(char **tab);
+
+char				*ft_lltoa(long long number);
 
 #endif

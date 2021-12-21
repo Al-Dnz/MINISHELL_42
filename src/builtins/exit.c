@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 17:20:17 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 18:55:45 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,27 @@ static void	err_num(char *str)
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(g_data.token_err, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
-	clean_program();
-	exit(g_data.err);
+	if (isatty(0))
+	{
+		clean_program();
+		exit(g_data.err);
+	}
 }
 
 static int	ft_can_int_convert(char *str)
 {
-	int		atoi_res;
-	char	*itoa_res;
+	long long	atoll_res;
+	char		*lltoa_res;
 
-	atoi_res = ft_atoi(str);
-	itoa_res = ft_itoa(atoi_res);
-	if (ft_strcmp(itoa_res, str) == 0 || (ft_strcmp(itoa_res, str + 1) == 0
+	atoll_res = ft_atolong(str);
+	lltoa_res = ft_lltoa(atoll_res);
+	if (ft_strcmp(lltoa_res, str) == 0 || (ft_strcmp(lltoa_res, str + 1) == 0
 			&& str[0] == '+'))
 	{
-		free(itoa_res);
+		free(lltoa_res);
 		return (1);
 	}
-	free(itoa_res);
+	free(lltoa_res);
 	return (0);
 }
 
@@ -58,7 +61,8 @@ static void	check_exit(t_arg *arg, int i)
 {
 	if (i > 1)
 	{
-		if ((i > 2 && str_is_num(arg->next->word)) || str_is_num(arg->next->word))
+		if ((i > 2 && str_is_num(arg->next->word))
+			|| str_is_num(arg->next->word))
 			err_num(arg->next->word);
 		else if (i > 2 && !str_is_num(arg->next->word))
 		{
@@ -69,7 +73,7 @@ static void	check_exit(t_arg *arg, int i)
 		{
 			if (ft_can_int_convert(arg->next->word))
 			{
-				g_data.err = (unsigned char)ft_atoi(arg->next->word);
+				g_data.err = (unsigned char)ft_atolong(arg->next->word);
 				clean_exit(g_data.err, 0);
 			}
 			else
@@ -80,7 +84,7 @@ static void	check_exit(t_arg *arg, int i)
 		clean_exit(g_data.err, 0);
 }
 
-void    cmd_exit(t_arg *arg)
+void	cmd_exit(t_arg *arg)
 {
 	int		i;
 	t_arg	*tmp;

@@ -6,23 +6,12 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/15 22:28:02 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:13:19 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/* 
-static int	check_nb(t_arg *arg)
-{
-	if (arg->next && arg->next->next)
-	{
-		g_data.err = 1;
-		write(2, "minishell: cd: too many arguments\n", 34);
-		return(0);
-	}
-	return (1);
-}
- */
+
 static char	*set_path(t_arg *arg)
 {
 	char	*path;
@@ -74,7 +63,7 @@ static void	exec_cd(char *path)
 	err = chdir(path);
 	if (err == -1)
 	{
-		g_data.token_err = ft_strjoin("minishell: cd: ", path);//LEAKS
+		g_data.token_err = ft_strjoin("minishell: cd: ", path);
 		g_data.err = 1;
 		print_error();
 	}
@@ -87,8 +76,6 @@ void	cd(t_arg *arg)
 {
 	char	*path;
 
-/* 	if (!check_nb(arg))
-		return ; */
 	if (arg->next && arg->next->next)
 	{
 		g_data.err = 1;
@@ -97,25 +84,6 @@ void	cd(t_arg *arg)
 	}
 	path = set_path(arg);
 	if (path)
-/* 	{
-		if (path[0] == '-' && ft_strlen(path) > 1)
-		{
-			print_opt_error(path);
-			g_data.err = 1;
-			ft_strclr(&path);
-			return ;
-		}
-		err = chdir(path);
-		if (err == -1)
-		{
-			g_data.token_err = ft_strjoin("minishell: cd: ", path);//LEAKS
-			g_data.err = 1;
-			print_error();
-		}
-		else
-			update_pwd();
-		ft_strclr(&path);
-	} */
 		exec_cd(path);
 	else
 	{
