@@ -18,7 +18,7 @@ char	*get_exp(char **str)
 	else if (**str == '?')
 	{
 		(*str)++;
-		return (ft_itoa(g_data.err));
+		return (ft_itoa(g_data.status));
 	}
 	while ((*str)[len] && (*str)[len] != ' ' && !is_quote((*str)[len])
 		&& (*str)[len] != '$')

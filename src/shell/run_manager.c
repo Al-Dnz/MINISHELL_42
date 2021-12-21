@@ -9,7 +9,6 @@ void	init_g_data(void)
 	g_data.index = 0;
 	g_data.in_hdoc = 0;
 	g_data.displayer = 0;
-	g_data.err = 0;
 	g_data.str = NULL;
 	g_data.token_tab = NULL;
 	g_data.tree = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/13 19:47:31 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:30:07 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	check_good_char(char *line, int i)
 	if ((is_operator(line[i]) || line[i] == '\\' || line[i] == ';'
 			|| line[i] == '&') && !check_operator(line, i))
 	{
-		g_data.err = 258;
+		g_data.status = 258;
 		return (0);
 	}
 	return (1);
@@ -109,7 +109,7 @@ int	check_syntax(char *line)
 			else
 			{
 				g_data.token_err = ft_substr(line, i, 1);//LEAKS
-				g_data.err = 258;
+				g_data.status = 258;
 				return (0);
 			}
 		}
