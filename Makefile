@@ -16,6 +16,7 @@ SRC	= main.c \
 	  btree_util.c \
 	  display.c \
 	  tree_constructor.c \
+	  tree_constructor_util.c \
 	  token_cleaner.c \
 	  ft_strextend.c \
 	  set_node_arr.c \

@@ -33,12 +33,14 @@ int	launch_redir(t_redir *redir)
 	if (redir->kind == 1)
 		fd = open(redir->file, O_RDONLY);
 	else if (redir->kind == 2)
-		fd = open(redir->file, O_CREAT|O_RDWR|O_TRUNC, S_IRWXU|S_IRWXG|S_IRWXO);
+		fd = open(redir->file, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU
+				| S_IRWXG | S_IRWXO);
 	else if (redir->kind == 3 && redir->hdoc_fd != -1)
 		fd = redir->hdoc_fd;
 	else if (redir->kind == 4)
-		fd = open(redir->file, O_CREAT|O_RDWR|O_APPEND, S_IRWXU|S_IRWXG|S_IRWXO);
-	dup2(fd, (redir->kind + 1) % 2);
+		fd = open(redir->file, O_CREAT | O_RDWR | O_APPEND, S_IRWXU
+				| S_IRWXG | S_IRWXO);
+	dup2(fd, (redir->kind + 1) % 2);//0 1 0 1
 	if (redir->next != NULL && redir->next->file != NULL)
 	{
 		close(fd);

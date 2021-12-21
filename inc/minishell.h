@@ -98,7 +98,7 @@ typedef struct s_data
 t_data	g_data;
 
 int	broken_loop(char **env);
-int main_loop(char **env);
+void main_loop(char **env);
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);

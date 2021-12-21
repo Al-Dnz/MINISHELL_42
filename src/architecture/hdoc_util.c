@@ -45,10 +45,10 @@ t_hdoc	*ft_hdoclast(t_hdoc *hdoc)
 	return (hdoc);
 }
 
-int hdoc_add_back(t_hdoc **hdoc, char *str)
+int	hdoc_add_back(t_hdoc **hdoc, char *str)
 {
-	t_hdoc *element;
-	t_hdoc *tmp;
+	t_hdoc	*element;
+	t_hdoc	*tmp;
 
 	element = new_hdoc(str);
 	if (element == NULL)

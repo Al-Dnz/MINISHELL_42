@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 15:28:14 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:30:07 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	add_var(t_arg *arg)
 	tmp = (char **)malloc(sizeof(char *) * (ft_tabsize(g_data.env) + 2));
 	if (!tmp)
 	{
-		g_data.err = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	i = 0;
@@ -54,7 +54,7 @@ static int	add_var(t_arg *arg)
 	g_data.env = dup_env(tmp);
 	if (!g_data.env)
 	{
-		g_data.err = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	ft_free_tab(tmp);
@@ -73,7 +73,7 @@ static int	update_env(t_arg *arg, int eq)
 		g_data.env = change_var(g_data.env, name, val);
 		if (!g_data.env)
 		{
-			g_data.err = 1;
+			g_data.status = 1;
 			return (0);
 		}
 	}
@@ -109,7 +109,7 @@ static int	check_arg(t_arg *arg)
 			g_data.token_err = ft_strjoin("minishell: export: `", arg->word);
 			write (2, g_data.token_err, ft_strlen(g_data.token_err));
 			write (2, "': not a valid identifier\n", 26);
-			g_data.err = 1;
+			g_data.status = 1;
 			return (0);
 		}
 	}
@@ -129,5 +129,5 @@ void	export(t_arg *arg)
 		if (!check_arg(tmp))
 			return ;
 	}
-	g_data.err = 0;
+	g_data.status = 0;
 }

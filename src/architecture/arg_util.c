@@ -49,10 +49,10 @@ t_arg	*ft_arglast(t_arg *arg)
 	return (arg);
 }
 
-int arg_add_back(t_arg **arg, char *str)
+int	arg_add_back(t_arg **arg, char *str)
 {
-	t_arg *element = NULL;
-	t_arg *tmp;
+	t_arg	*element;
+	t_arg	*tmp;
 
 	element = new_arg(str);
 	if (element == NULL)

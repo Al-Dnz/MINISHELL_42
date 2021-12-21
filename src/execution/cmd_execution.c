@@ -2,37 +2,20 @@
 
 void	ft_execve(char **arr, char **envp)
 {
-	char *cmd_path;
+	char	*cmd_path;
 
-	// if (ft_strequ(arr[0], "cd"))
-	// 	printf("CD_COMMAND\n");//
-	// else if (ft_strequ(arr[0], "export"))
-	// 	printf("EXPORT_COMMAND\n");//
-	// else if (ft_strequ(arr[0], "unset"))
-	// 	printf("UNSET_COMMAND\n");//
-	// else if (ft_strequ(arr[0], "exit"))
-	// 	printf("EXIT_COMMAND\n");//
-	// else if (ft_strequ(arr[0], "pwd"))
-	// 	printf("PWD_COMMAND\n");//;
-	// else if (ft_strequ(arr[0], "echo"))
-	// 	write(1,"ECHO_COMMoul\n", 13);//
-	// else if (ft_strequ(arr[0], "env"))
-	// 	printf("ENV_COMMAND\n");//
-	// else
-	// {
-		cmd_path = find_path(arr[0]);
-		if (cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
-		{
-			//SECURE CODE
-			ft_strclr(&cmd_path);
-			error_cmd(arr[0], 2, 127);
-			clean_program();
-			exit(127);
-			return ;
-		}
-		ft_strclr(&cmd_path);		
+	cmd_path = find_path(arr[0]);
+	if (cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
+	{
 		//SECURE CODE
-	// }
+		ft_strclr(&cmd_path);
+		error_cmd(arr[0], 2, 127);
+		clean_program();
+		exit(127);
+		return ;
+	}
+	ft_strclr(&cmd_path);
+	//SECURE CODE
 }
 
 /*
@@ -60,7 +43,6 @@ void	ft_execve(char **arr, char **envp)
 
 void	child_status(int status)
 {
-
 	if (WIFSIGNALED(status))
 		g_data.status = WTERMSIG(status);
 	else if (WIFEXITED(status))

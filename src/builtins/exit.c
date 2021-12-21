@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 18:55:45 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 23:08:51 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static void	err_num(char *str)
 {
 	g_data.token_err = ft_strdup(str);
-	g_data.err = 255;
+	g_data.status = 255;
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(g_data.token_err, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
 	if (isatty(0))
 	{
 		clean_program();
-		exit(g_data.err);
+		exit(g_data.status);
 	}
 }
 
@@ -67,21 +67,21 @@ static void	check_exit(t_arg *arg, int i)
 		else if (i > 2 && !str_is_num(arg->next->word))
 		{
 			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-			g_data.err = 1;
+			g_data.status = 1;
 		}
 		else if (i == 2 && !str_is_num(arg->next->word))
 		{
 			if (ft_can_int_convert(arg->next->word))
 			{
-				g_data.err = (unsigned char)ft_atolong(arg->next->word);
-				clean_exit(g_data.err, 0);
+				g_data.status = (unsigned char)ft_atolong(arg->next->word);
+				clean_exit(g_data.status, 0);
 			}
 			else
 				err_num(arg->next->word);
 		}
 	}
 	else
-		clean_exit(g_data.err, 0);
+		clean_exit(g_data.status, 0);
 }
 
 void	cmd_exit(t_arg *arg)

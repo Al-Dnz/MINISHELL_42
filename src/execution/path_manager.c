@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-void formalize_env_path(char **env_tab)
+void	formalize_env_path(char **env_tab)
 {
-	int i;
-	int j;
-	char *temp;
+	int		i;
+	int		j;
+	char	*temp;
 
 	i = 0;
 	while (env_tab[i])
@@ -27,12 +27,12 @@ void formalize_env_path(char **env_tab)
 	}
 }
 
-char *find_path(char *cmd)
+char	*find_path(char *cmd)
 {
-	char *path;
-	char *env;
-	char **env_tab;
-	int i;
+	char	*path;
+	char	*env;
+	char	**env_tab;
+	int		i;
 
 	path = NULL;
 	env = getenv("PATH");
@@ -41,10 +41,9 @@ char *find_path(char *cmd)
 	// SECURE CODE
 	env_tab = ft_split(env, ":");
 	formalize_env_path(env_tab);
-	//ft_print_tab2(env_tab);
 	path = ft_strdup(cmd);
 	i = 0;
-	while (access(path, F_OK|R_OK|X_OK) != 0 && env_tab[i])
+	while (access(path, F_OK | R_OK | X_OK) != 0 && env_tab[i])
 	{
 		if (ft_strcmp(path, cmd) != 0)
 			ft_strclr(&path);
@@ -55,9 +54,8 @@ char *find_path(char *cmd)
 		i++;
 	}
 	ft_free_tab(env_tab);
-	if (access(path, F_OK|R_OK|X_OK) != 0)
+	if (access(path, F_OK | R_OK | X_OK) != 0)
 		return (NULL);
 		// SECURE CODE
-	//printf("\n=>[%s]<=\n", path);
 	return (path);
 }

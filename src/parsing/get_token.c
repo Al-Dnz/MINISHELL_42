@@ -28,14 +28,14 @@ int	count_token(char *line)
 
 char	**create_token_tab(int size)
 {
-	char **tab;
+	char	**tab;
 
 	if (size == -1)
 		return (NULL);
 	tab = malloc(sizeof(char *) * (size + 1));
 	if (tab == NULL)
 		return (NULL);
-	tab[size] = NULL;		 
+	tab[size] = NULL;
 	return (tab);
 }
 

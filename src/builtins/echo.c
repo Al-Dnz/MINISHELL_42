@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:07:10 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/13 21:08:47 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:30:07 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	echo(t_arg *arg)
 	}
 	if (n == 0)
 		write(1, "\n", 1);
-	g_data.err = 0;
+	g_data.status = 0;
 }

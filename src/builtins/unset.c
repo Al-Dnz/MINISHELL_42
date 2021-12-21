@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:51 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/20 11:51:00 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:30:07 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static	int	twist_tab(char **tmp)
 	g_data.env = dup_env(tmp);
 	if (!g_data.env)
 	{
-		g_data.err = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
@@ -62,7 +62,7 @@ static int	exec_unset(char *name)
 	tmp = (char **)malloc(sizeof(char *) * ft_tabsize(g_data.env));
 	if (!tmp)
 	{
-		g_data.err = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
@@ -91,13 +91,13 @@ static int	check_argu(t_arg *arg)
 		g_data.token_err = ft_strjoin("minishell: unset: `", arg->word);
 		write (2, g_data.token_err, ft_strlen(g_data.token_err));
 		write (2, "': not a valid identifier\n", 26);
-		g_data.err = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	name = ft_strjoin(arg->word, "=");
 	if (!name)
 	{
-		g_data.err = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
@@ -123,7 +123,7 @@ void	unset(t_arg *arg)
 				ft_substr(tmp->next->word, 0, 2));
 		write (2, g_data.token_err, ft_strlen(g_data.token_err));
 		write (2, ": invalid option\n", 17);
-		g_data.err = 2;
+		g_data.status = 2;
 		return ;
 	}
 	while (tmp->next)
@@ -137,5 +137,5 @@ void	unset(t_arg *arg)
 				return ;
 		}
 	}
-	g_data.err = 0;
+	g_data.status = 0;
 }
