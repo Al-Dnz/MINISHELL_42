@@ -54,8 +54,8 @@ ifeq ($(UNAME), Linux)
 endif
 ifeq ($(UNAME), Darwin)
 	CC = cc
-	LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib -ltermcap 
-	#LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib  -L .brew/opt/readline/lib -I .brew/opt/readline/include -ltermcap 
+#	LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib -ltermcap 
+	LIBFLAG = -lreadline -ltermcap 
 	INCFLAG = -I/usr/local/opt/readline/include
 endif
 
