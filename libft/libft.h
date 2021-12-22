@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 00:07:10 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/21 18:45:47 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:17:33 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void				ft_strclr(char **s);
 int					ft_str_index(char *str, char **tab);
 int					ft_tabsize(char **tab);
 void				ft_free_tab(char **tab);
-int					ft_is_sort(int *tab, int length, int (*f)(int, int));
 int					ft_is_supequal(int a, int b);
 
 int					ft_find_index(char *str, char c);
