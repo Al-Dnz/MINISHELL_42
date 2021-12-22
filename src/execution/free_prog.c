@@ -15,7 +15,7 @@ void	error_message(char *str, int fd, int status)
 	g_data.exit_status = status;
 }
 
-#ifdef LINUX
+#ifdef __linux__
 
 void	clean_program(void)
 {

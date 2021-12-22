@@ -8,7 +8,11 @@ int	save_node_cmd(t_btree **node, char *str)
 	if (new_str == NULL)
 		return (0);
 	if (arg_add_back(&(*node)->arg, new_str) == 0)
+	{
+		ft_strclr(&new_str);
 		return (0);
+	}
+	ft_strclr(&new_str);	
 	return (1);
 }
 
