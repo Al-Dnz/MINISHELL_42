@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 22:51:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/21 01:07:47 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 00:51:23 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	handler_sigchild(int sig)
 		return ;
 }
 
-#ifdef LINUX
+#ifdef __linux__
 
 void	handler_sigint(int sig)
 {
@@ -94,11 +94,11 @@ void	handler_sigquit(int sig)
 	g_data.status = 131;
 }
 
-void	ctrl_d(void)
+void	exit_by_signal(void)
 {
 	int	status;
 
-	write(1, "exit\n", 5);
+	write(1, "\nexit\n", 6);
 	status = g_data.status;
 	clean_program();
 	exit(status);

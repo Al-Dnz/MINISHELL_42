@@ -201,7 +201,7 @@ void	ft_signal(void);
 void	handler_sigchild(int sig);
 void	handler_sigint(int sig);
 void	handler_sigquit(int sig);
-void	ctrl_d(void);
+void	exit_by_signal(void);
 
 //-------------HEREDOC----------------------------------------
 

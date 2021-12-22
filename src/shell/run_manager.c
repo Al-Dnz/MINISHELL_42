@@ -46,7 +46,7 @@ void	main_loop(char **env)
 			ft_strclr(&line);
 		line = readline(input_message);
 		if (line == NULL)
-			break ;
+			exit_by_signal();
 		if (line && *line)
 		{
 			add_history(line);
