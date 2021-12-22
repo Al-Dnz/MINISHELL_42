@@ -15,13 +15,16 @@ void	error_message(char *str, int fd, int status)
 	g_data.exit_status = status;
 }
 
-#ifdef LINUX
+#ifdef __linux__
 
 void	clean_program(void)
 {
+	write(1, "linux\n", 6);
 	rl_clear_history();
 	ft_free_tab(g_data.token_tab);
 	g_data.token_tab = NULL;
+/* 	ft_free_tab(g_data.env);
+	g_data.env = NULL; */
 	free_btree(g_data.tree);
 	g_data.tree = NULL;
 	ft_strclr(&g_data.str);
@@ -32,8 +35,11 @@ void	clean_program(void)
 
 void	clean_program(void)
 {
+	write(1, "macos\n", 6);
 	ft_free_tab(g_data.token_tab);
 	g_data.token_tab = NULL;
+/* 	ft_free_tab(g_data.env);
+	g_data.env = NULL; */
 	free_btree(g_data.tree);
 	g_data.tree = NULL;
 	ft_strclr(&g_data.str);

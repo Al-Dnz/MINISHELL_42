@@ -51,12 +51,14 @@ ifeq ($(UNAME), Linux)
 	CC = clang
 	LIBFLAG = -lreadline -L/usr/lib/x86-64-linux-gnu -ltermcap 
 	INCFLAG = -I/usr/include
+	OS_NAME = LINUX
 endif
 ifeq ($(UNAME), Darwin)
 	CC = cc
 #	LIBFLAG = -lreadline  -L/usr/local/opt/readline/lib -ltermcap 
 	LIBFLAG = -lreadline -ltermcap 
 	INCFLAG = -I/usr/local/opt/readline/include
+	OS_NAME = MACOS
 endif
 
 SRC_FOLDERS = $(shell find $(SRC_DIR) -type d)
