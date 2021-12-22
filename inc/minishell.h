@@ -95,7 +95,7 @@ typedef struct s_data
 	int		stop;
 } t_data;
 
-t_data	g_data;
+extern t_data	g_data;
 
 int	broken_loop(char **env);
 void main_loop(char **env);

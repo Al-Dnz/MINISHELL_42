@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+t_data	g_data;
 
 static int	set_env(char **env)
 {
