@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 01:03:06 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 23:21:42 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ char	**change_var(char **tab, char *name, char *new)
 	}
 	else if (!ft_strncmp(name, tab[i], ft_strlen(name)))
 	{
+		free (tab[i]);
 		tab[i] = ft_strjoin(name, new);
-		if (!tab[i])
+		if (tab[i] == NULL)
 		{
 			tab[i] = ft_strdup("");
 			ft_free_tab(tab);

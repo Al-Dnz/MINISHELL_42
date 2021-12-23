@@ -46,7 +46,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 LIB = ./libft/libft.a
 LIBFT = ./libft
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra# -g -fsanitize=address
 UNAME = $(shell uname -s)
 
 ifeq ($(UNAME), Linux)

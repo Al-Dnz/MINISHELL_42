@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 23:31:35 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ static int	add_var(t_arg *arg)
 	}
 	tmp[i] = ft_strdup(arg->word);
 	tmp[i + 1] = NULL;
-	data()->env = dup_env(tmp);
+	data()->env = tmp;
 	if (!data()->env)
 	{
 		g_status = 1;
 		return (0);
 	}
 	ft_free_tab(tmp);
+/* 	free (tmp);
+	tmp = NULL; */
 	return (1);
 }
 
