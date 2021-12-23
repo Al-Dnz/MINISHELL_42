@@ -1,5 +1,24 @@
 #include "minishell.h"
 
+int	is_unset(char *str)
+{
+	int		i;
+	char	**tab;
+
+	tab = g_data.env;
+	i = 0;
+	if (tab == NULL)
+		return (0);
+	while (tab[i])
+	{
+		if (!ft_strncmp(tab[i], str, ft_strlen(str))
+			&& tab[i][ft_strlen(str)] == '=')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	formalize_env_path(char **env_tab)
 {
 	int		i;
@@ -34,15 +53,14 @@ char	*find_path(char *cmd)
 	char	**env_tab;
 	int		i;
 
-	path = NULL;
 	env = getenv("PATH");
-	if (env == NULL)
+	if (env == NULL || is_unset("PATH") == 1)
 		return (NULL);
 	// SECURE CODE
 	env_tab = ft_split(env, ":");
 	formalize_env_path(env_tab);
-	path = ft_strdup(cmd);
 	i = 0;
+	path = ft_strdup(cmd);
 	while (access(path, F_OK | R_OK | X_OK) != 0 && env_tab[i])
 	{
 		ft_strclr(&path);
