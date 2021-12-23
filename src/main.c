@@ -23,8 +23,6 @@ int	main(int argc, char **argv, char **env)
 
 	if (!set_env(env))
 		return (0);
-
-	ft_putstr_fd("hello from minishell\n", 2);
 	if (argc > 2 && ft_strequ(argv[1], "-c"))
 	{
 		return (EXIT_SUCCESS);

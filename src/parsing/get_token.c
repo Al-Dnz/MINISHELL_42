@@ -39,13 +39,8 @@ char	**create_token_tab(int size)
 	return (tab);
 }
 
-int	get_all_token(char *line)
+int	get_all_token(char *line, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	data()->token_tab = create_token_tab(count_token(line));
 	if (data()->token_tab == NULL)
 		return (0);

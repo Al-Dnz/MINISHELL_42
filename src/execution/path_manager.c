@@ -31,7 +31,6 @@ void	formalize_env_path(char **env_tab)
 		temp = malloc(sizeof(char) * (ft_strlen(env_tab[i]) + 2));
 		if (temp == NULL)
 			return ;
-		// SECURE CODE
 		j = 0;
 		while (env_tab[i][j])
 		{
@@ -56,7 +55,6 @@ char	*find_path(char *cmd)
 	env = getenv("PATH");
 	if (env == NULL || is_unset("PATH") == 1)
 		return (NULL);
-	// SECURE CODE
 	env_tab = ft_split(env, ":");
 	formalize_env_path(env_tab);
 	i = 0;
@@ -67,12 +65,10 @@ char	*find_path(char *cmd)
 		path = ft_strjoin(env_tab[i], cmd);
 		if (path == NULL)
 			return (NULL);
-		// SECURE CODE
 		i++;
 	}
 	ft_free_tab(env_tab);
 	if (access(path, F_OK | R_OK | X_OK) != 0)
 		ft_strclr(&path);
-		// SECURE CODE
 	return (path);
 }

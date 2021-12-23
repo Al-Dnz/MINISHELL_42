@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 22:51:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 21:24:41 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,4 @@ void	handler_sigquit(int sig)
 	rl_redisplay();
 	data()->quit = 1;
 	g_status = 131;
-}
-
-void	exit_by_signal(void)
-{
-	int	status;
-
-	write(1, "\nexit\n", 6);
-	status = g_status;
-	clean_program();
-	exit(status);
 }

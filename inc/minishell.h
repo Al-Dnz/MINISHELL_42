@@ -153,7 +153,7 @@ int	token_size(char *line);
 
 int	count_token(char *line);
 char	**create_token_tab(int size);
-int	get_all_token(char *line);
+int	get_all_token(char *line, int i, int j);
 
 int	save_node_cmd(t_btree **node, char *str);
 int	save_node_redir(t_btree **node, char *str);

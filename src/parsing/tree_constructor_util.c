@@ -12,7 +12,7 @@ int	save_node_cmd(t_btree **node, char *str)
 		ft_strclr(&new_str);
 		return (0);
 	}
-	ft_strclr(&new_str);	
+	ft_strclr(&new_str);
 	return (1);
 }
 

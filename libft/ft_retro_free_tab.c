@@ -2,8 +2,8 @@
 
 void	ft_retro_free_tab(char **tab)
 {
-	int i;
-	
+	int	i;
+
 	if (tab == NULL)
 		return ;
 	i = 0;

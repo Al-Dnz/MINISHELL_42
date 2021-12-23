@@ -66,7 +66,7 @@ void	run(char *line, char **env)
 	int	std_in;
 
 	(void)env;
-	if (get_all_token(line) == 0)
+	if (get_all_token(line, 0, 0) == 0)
 		return ;
 	std_out = dup(STDOUT_FILENO);
 	std_in = dup(STDIN_FILENO);

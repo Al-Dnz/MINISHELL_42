@@ -7,7 +7,6 @@ void	ft_execve(char **arr, char **envp)
 	cmd_path = find_path(arr[0]);
 	if (cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
 	{
-		//SECURE CODE
 		ft_strclr(&cmd_path);
 		error_cmd(arr[0], 2, 127);
 		clean_program();
@@ -15,7 +14,6 @@ void	ft_execve(char **arr, char **envp)
 		return ;
 	}
 	ft_strclr(&cmd_path);
-	//SECURE CODE
 }
 
 /*
@@ -67,7 +65,6 @@ void	fork_execve(t_btree *node)
 	data()->child_pid = pid;
 	if (pid < 0)
 		return ;
-	// SECURE CODE
 	if (pid > 0)
 	{
 		signal(SIGCHLD, NULL);
@@ -75,7 +72,6 @@ void	fork_execve(t_btree *node)
 		pid = waitpid(pid, &status, WUNTRACED);
 		if (pid == -1)
 			return ;
-		// SECURE CODE
 		child_status(status);
 	}
 	else if (pid == 0)
