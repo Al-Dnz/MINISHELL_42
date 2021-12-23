@@ -97,7 +97,7 @@ typedef struct s_data
 
 //extern t_data	g_data;
 
-unsigned int	g_status;
+extern unsigned int	g_status;
 
 
 void main_loop(char **env);

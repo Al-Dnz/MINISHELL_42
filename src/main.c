@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_data	g_data;
+unsigned int	g_status;
 
 static int	set_env(char **env)
 {
@@ -19,7 +19,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	
-	ft_bzero(&g_data, sizeof(g_data));
+//	ft_bzero(&g_data, sizeof(g_data));
 
 	if (!set_env(env))
 		return (0);
