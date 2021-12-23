@@ -51,7 +51,7 @@ void	launch_pipe(t_btree *node)
 		dup2(pipe_fd[0], 0);
 		launch_tree(node->right);
 		close(pipe_fd[0]);
-		pid = waitpid(0, &g_data.chd_status, 0);
+		pid = waitpid(0, &data()->chd_status, 0);
 	}
 }
 

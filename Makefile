@@ -1,6 +1,7 @@
 NAME	= minishell
 
 SRC	= main.c \
+	  global_data.c \
 	  run_manager.c \
 	  print_error.c \
 	  check_syntax.c \

@@ -9,7 +9,7 @@ int	set_tree_hdoc(t_btree **tree)
 	if (tree != NULL)
 	{
 		if (set_node_hdoc(tree) == 1)
-			g_data.stop = 1;
+			data()->stop = 1;
 	}
 	return (1);
 }

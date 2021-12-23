@@ -9,7 +9,7 @@ int	launch_pipe_hdoc(t_btree *tree)
 	if (tree != NULL)
 	{
 		if (hdoc_pipe(tree) == 1)
-			g_data.stop = 1;
+			data()->stop = 1;
 	}
 	return (1);
 }

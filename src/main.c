@@ -4,12 +4,12 @@ t_data	g_data;
 
 static int	set_env(char **env)
 {
-	g_data.env = dup_env(env);
-	if (!g_data.env)
+	data()->env = dup_env(env);
+	if (!data()->env)
 		return (0);
 	
-	g_data.env = change_var(env, "SHLVL=", ft_itoa(ft_atoi(getvar_val("SHLVL=", g_data.env)) + 1));
-	if (!g_data.env)
+	data()->env = change_var(env, "SHLVL=", ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1));
+	if (!data()->env)
 		return (0);
 	return (1);
 }
@@ -30,6 +30,6 @@ int	main(int argc, char **argv, char **env)
 		return (EXIT_SUCCESS);
 	}
 	main_loop(env);
-	return (g_data.status);
+	return (g_status);
 }
 

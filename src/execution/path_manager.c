@@ -5,7 +5,7 @@ int	is_unset(char *str)
 	int		i;
 	char	**tab;
 
-	tab = g_data.env;
+	tab = data()->env;
 	i = 0;
 	if (tab == NULL)
 		return (0);

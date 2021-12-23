@@ -2,32 +2,32 @@
 
 void	init_g_data(void)
 {
-	g_data.chd_status = 0;
-	g_data.child_pid = 0;
-	g_data.status = 0;
-	g_data.quit = 0;
-	g_data.index = 0;
-	g_data.in_hdoc = 0;
-	g_data.displayer = 0;
-	g_data.str = NULL;
-	g_data.token_tab = NULL;
-	g_data.tree = NULL;
+	data()->chd_status = 0;
+	data()->child_pid = 0;
+	g_status = 0;
+	data()->quit = 0;
+	data()->index = 0;
+	data()->in_hdoc = 0;
+	data()->displayer = 0;
+	data()->str = NULL;
+	data()->token_tab = NULL;
+	data()->tree = NULL;
 }
 
 void	reinit_g_data(void)
 {
-	// g_data.chd_status = 0;
-	// g_data.child_pid = 0;
-	g_data.quit = 0;
-	g_data.index = 0;
-	g_data.in_hdoc = 0;
-	g_data.displayer = 0;
-	ft_free_tab(g_data.token_tab);
-	g_data.token_tab = NULL;
-	free_btree(g_data.tree);
-	g_data.tree = NULL;
-	ft_strclr(&g_data.str);
-	g_data.str = NULL;
+	// data()->chd_status = 0;
+	// data()->child_pid = 0;
+	data()->quit = 0;
+	data()->index = 0;
+	data()->in_hdoc = 0;
+	data()->displayer = 0;
+	ft_free_tab(data()->token_tab);
+	data()->token_tab = NULL;
+	free_btree(data()->tree);
+	data()->tree = NULL;
+	ft_strclr(&data()->str);
+	data()->str = NULL;
 }
 
 void	main_loop(char **env)
@@ -71,11 +71,11 @@ void	run(char *line, char **env)
 	std_out = dup(STDOUT_FILENO);
 	std_in = dup(STDIN_FILENO);
 	tree_constructor();
-	set_arg_tab(&g_data.tree);
-	set_tree_hdoc(&g_data.tree);
-	if (valid_redir(g_data.tree) == 0)
+	set_arg_tab(&data()->tree);
+	set_tree_hdoc(&data()->tree);
+	if (valid_redir(data()->tree) == 0)
 		return ;
-	launch_tree(g_data.tree);
+	launch_tree(data()->tree);
 	dup2(std_out, STDOUT_FILENO);
 	dup2(std_in, STDIN_FILENO);
 	reinit_g_data();

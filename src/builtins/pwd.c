@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 21:31:11 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 22:30:07 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	pwd(int print)
 	buf = getcwd(buf, 0);
 	if (buf == NULL)
 	{
-		g_data.status = 1;
-		g_data.token_err = ft_strdup("minishell: pwd");
+		g_status = 1;
+		data()->token_err = ft_strdup("minishell: pwd");
 		print_error();
 	}
-	g_data.env = change_var(g_data.env, "PWD=", buf);
-	if (!g_data.env)
+	data()->env = change_var(data()->env, "PWD=", buf);
+	if (!data()->env)
 	{
-		g_data.status = 1;
-		g_data.token_err = ft_strdup("minishell");
+		g_status = 1;
+		data()->token_err = ft_strdup("minishell");
 		print_error();
 	}
 	if (print)
@@ -37,5 +37,5 @@ void	pwd(int print)
 		write(1, "\n", 1);
 	}
 	ft_strclr(&buf);
-	g_data.status = 0;
+	g_status = 0;
 }

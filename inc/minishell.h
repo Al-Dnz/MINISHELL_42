@@ -95,10 +95,14 @@ typedef struct s_data
 	int		stop;
 } t_data;
 
-extern t_data	g_data;
+//extern t_data	g_data;
 
-int	broken_loop(char **env);
+unsigned int	g_status;
+
+
 void main_loop(char **env);
+
+t_data	*data(void);
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);

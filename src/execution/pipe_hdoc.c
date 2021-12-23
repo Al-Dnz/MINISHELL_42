@@ -15,27 +15,27 @@ char	*hdoc_readline(t_hdoc *hdoc)
 {
 	char	*line;
 
-	g_data.in_hdoc = 1;
+	data()->in_hdoc = 1;
 	line = readline("> ");
 	if (line == NULL)
 		return (str_error2("minishell: warning: << here-document >>", NULL, 0));
 	while (ft_strcmp(line, hdoc->end_word))
 	{
-		if (g_data.str == NULL)
-			g_data.str = ft_strdup(line);
+		if (data()->str == NULL)
+			data()->str = ft_strdup(line);
 		else
-			(g_data.str) = ft_strextend(g_data.str, line, 0);
-		(g_data.str) = ft_strextend(g_data.str, "\n", 0);
+			(data()->str) = ft_strextend(data()->str, line, 0);
+		(data()->str) = ft_strextend(data()->str, "\n", 0);
 		free(line);
 		line = readline("> ");
 		if (line == NULL)
 			return (str_error2("minishell: warning: << here-document >>",
-					g_data.str, 0));
+					data()->str, 0));
 	}
-	g_data.in_hdoc = 0;
+	data()->in_hdoc = 0;
 	free(line);
 	if (hdoc->next == NULL)
-		return (g_data.str);
+		return (data()->str);
 	return (free_rdl_str());
 }
 
@@ -90,7 +90,7 @@ int	hdoc_pipe(t_btree *node)
 	int		status;
 
 	status = 0;
-	if (g_data.stop == 1 || node->hdoc == NULL || pipe(pfd) == 1)
+	if (data()->stop == 1 || node->hdoc == NULL || pipe(pfd) == 1)
 		return (0);
 	pid = fork();
 	if (pid < 0)

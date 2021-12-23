@@ -46,8 +46,8 @@ int	get_all_token(char *line)
 
 	i = 0;
 	j = 0;
-	g_data.token_tab = create_token_tab(count_token(line));
-	if (g_data.token_tab == NULL)
+	data()->token_tab = create_token_tab(count_token(line));
+	if (data()->token_tab == NULL)
 		return (0);
 	while (line[i] == ' ')
 		i++;
@@ -55,10 +55,10 @@ int	get_all_token(char *line)
 	{
 		if (token_size(line + i) > 0)
 		{
-			(g_data.token_tab[j]) = ft_substr(line, i, token_size(line + i));
-			if (g_data.token_tab[j] == NULL)
+			(data()->token_tab[j]) = ft_substr(line, i, token_size(line + i));
+			if (data()->token_tab[j] == NULL)
 			{
-				ft_retro_free_tab(g_data.token_tab);
+				ft_retro_free_tab(data()->token_tab);
 				return (0);
 			}
 			j++;
@@ -66,7 +66,7 @@ int	get_all_token(char *line)
 		}
 		else
 		{
-			ft_retro_free_tab(g_data.token_tab);
+			ft_retro_free_tab(data()->token_tab);
 			return (0);
 		}
 		while (line[i] == ' ')
