@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 01:03:06 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/23 21:58:11 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*getvar_val(char *name, char **tab)
 		return (val = tab[i] + ft_strlen(name));
 	return (NULL);
 }
-
+/* 
 char	**dup_env(char **tab)
 {
 	char	**new;
@@ -92,5 +92,38 @@ char	**dup_env(char **tab)
 		return (NULL);
 	}
 	new[i] = NULL;
+	return (new);
+}
+ */
+
+char	**dup_env(char **tab)
+{
+	char	**new;
+	int		i;
+/* 	int		err; */
+
+	if (tab == NULL)
+		return (NULL);
+	new = (char **)malloc(sizeof(char *) * (ft_tabsize(tab) + 1));
+	if (new == NULL)
+		return (NULL);
+/* 	err = 0; */
+	i = 0;
+	while (tab[i] != NULL/*  && !err */)
+	{
+//		new[i] = NULL;
+		new[i] = ft_strdup(tab[i]);
+//		new[i] = tab[i];
+/* 		if (new[i] == NULL)
+			err = 1; */
+		i ++;
+	}
+//	new[i] = ft_strdup("");
+	new[i] = NULL;
+/* 	if (err)
+	{
+		ft_free_tab(new);
+		return (NULL);
+	} */
 	return (new);
 }

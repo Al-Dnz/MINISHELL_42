@@ -22,6 +22,8 @@ void	clean_program(void)
 	rl_clear_history();
 	ft_free_tab(data()->token_tab);
 	data()->token_tab = NULL;
+/* 	ft_free_tab(data()->env);
+	data()->env = NULL; */
 	free_btree(data()->tree);
 	data()->tree = NULL;
 	ft_strclr(&data()->str);
@@ -34,6 +36,8 @@ void	clean_program(void)
 {
 	ft_free_tab(data()->token_tab);
 	data()->token_tab = NULL;
+/* 	ft_free_tab(data()->env);
+	data()->env = NULL; */
 	free_btree(data()->tree);
 	data()->tree = NULL;
 	ft_strclr(&data()->str);
