@@ -19,3 +19,5 @@ echo lol > /dev/full
 exit | exit
 
 yes + ctrl+C
+
+minishell env vs bash env
