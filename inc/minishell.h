@@ -5,8 +5,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
- #include <fcntl.h>
-
+# include <fcntl.h>
 # include <sys/wait.h>
 # include <errno.h>
 # include <readline/readline.h>
@@ -16,22 +15,20 @@
 
 # include "../libft/libft.h"
 
-# define REDIR_OP 1
-# define FILE 2
-# define CMD 3
+// # define REDIR_OP 1
+// # define FILE 2
+// # define CMD 3
 
-typedef struct	s_split
-{
-	int		k;
-	int		i;
-	int		j;
-	int		len;
-	int		count_words;
-	char	c;
-	char	**str;
-}				t_split;
-
-/////////////////////////////////////////////
+// typedef struct	s_split
+// {
+// 	int		k;
+// 	int		i;
+// 	int		j;
+// 	int		len;
+// 	int		count_words;
+// 	char	c;
+// 	char	**str;
+// }				t_split;
 
 /*
 ** 	REDIR KIND
@@ -41,7 +38,6 @@ typedef struct	s_split
 **	<<	3
 **	>>	4
 */
-
 
 typedef struct s_redir
 {
@@ -58,10 +54,10 @@ typedef struct s_hdoc
 	struct s_hdoc	*next;
 }		t_hdoc;
 
-typedef	struct s_arg
+typedef struct s_arg
 {	
-	char *word;
-	struct s_arg *next;
+	char			*word;
+	struct s_arg	*next;
 }		t_arg;
 
 typedef struct s_btree
@@ -83,168 +79,142 @@ typedef struct s_data
 	char	*token_err;
 	char	**token_tab;
 	int		index;
-	char 	**env;
-
+	char	**env;
 	t_btree	*tree;
 	pid_t	child_pid;
 	int		status;
 	int		quit;
-
 	char	*str;
-	int 	in_hdoc;
+	int		in_hdoc;
 	int		stop;
-} t_data;
-
-//extern t_data	g_data;
+}	t_data;
 
 extern unsigned int	g_status;
 
+t_data		*data(void);
 
-void main_loop(char **env);
-
-t_data	*data(void);
+void		main_loop(char **env);
 
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 
-static inline void		multi_pipeline(char ***matrix, char **env);
 void		run(char *line, char **env);
 
 void		print_error(void);
 
 int			check_syntax_redir(char *line, int i);
-int 		check_syntax(char *line);
+int			check_syntax(char *line);
 
-void			ft_free_begin_tab(char **str, int index);
-int				protection(char const *s, int i, char c, t_split *split);
-void			ft_write_words_util(char const *s, t_split *sp);
-void			ft_write_words_minishell(char const *s, int words, t_split *sp);
+int			is_quote(char c);
+int			is_operator(char c);
+int			is_pipe_op(char c);
+int			is_redir_op(char *str);
+int			is_word(char *str);
 
+t_btree		*create_node(t_btree *left, t_btree *right);
+int			free_btree(t_btree *node);
 
-int	is_quote(char c);
-int	is_operator(char c);
-int	is_pipe_op(char c);
-int	is_redir_op(char *str);
-int	is_word(char *str);
+t_redir		*new_redir(char *str);
+void		del_redir(t_redir *redir);
+void		redir_clr(t_redir **redir);
+int			redir_add_back(t_redir **redir, char *str);
+t_redir		*ft_redirlast(t_redir *redir);
 
+t_arg		*new_arg(char *str);
+void		del_arg(t_arg *arg);
+void		arg_clr(t_arg **arg);
+int			arg_add_back(t_arg **arg, char *str);
+t_arg		*ft_arglast(t_arg *arg);
 
-t_btree	*create_node(t_btree *left, t_btree *right);
-int		free_btree(t_btree *node);
+int			unquoted_string_size(char *str);
+int			quoted_string_size(char *str, char quote);
+int			operator_size(char *line);
+int			token_size(char *line);
 
-t_redir	*new_redir(char *str);
-void	del_redir(t_redir *redir);
-void	redir_clr(t_redir **redir);
-int 	redir_add_back(t_redir **redir, char *str);
-t_redir	*ft_redirlast(t_redir *redir);
+int			count_token(char *line);
+char		**create_token_tab(int size);
+int			get_all_token(char *line, int i, int j);
 
-t_arg	*new_arg(char *str);
-void	del_arg(t_arg *arg);
-void	arg_clr(t_arg **arg);
-int 	arg_add_back(t_arg **arg, char *str);
-t_arg	*ft_arglast(t_arg *arg);
+int			save_node_cmd(t_btree **node, char *str);
+int			save_node_redir(t_btree **node, char *str);
+int			save_node_redir_file(t_btree **node, char *str);
+int			set_node(t_btree **node);
+int			tree_constructor(void);
 
+void		display_arg(t_arg *arg);
+void		display_redir(t_redir *redir);
+void		display_hdoc(t_hdoc *hdoc);
+void		display_tree(t_btree *node);
 
-int	unquoted_string_size(char *str);
-int	quoted_string_size(char *str, char quote);
-int	operator_size(char *line);
-int	token_size(char *line);
+char		*ft_strextend(char *s1, char *s2, int nb);
+char		*ft_strextend_2(char **s1, char **s2, int nb);
+char		*revert_null_str(char *dest, char *src);
+void		free_mode(char **str1, char **str2, int mode);
 
-int	count_token(char *line);
-char	**create_token_tab(int size);
-int	get_all_token(char *line, int i, int j);
+char		*get_exp(char **str);
+char		*ft_replace_str(char *str);
+char		*store_exp_unq(char **str, char type);
+char		*store_dollar(char **str);
+char		*token_cleaner(char *str);
 
-int	save_node_cmd(t_btree **node, char *str);
-int	save_node_redir(t_btree **node, char *str);
-int save_node_redir_file(t_btree **node, char *str);
-int	set_node(t_btree **node);
-int	tree_constructor(void);
+void		set_arg_tab(t_btree **tree);
+char		**arglist_to_tab(t_arg *arg);
 
-void	display_arg(t_arg *arg);
-void	display_redir(t_redir *redir);
-void	display_hdoc(t_hdoc *hdoc);
-void 	display_tree(t_btree *node);
+void		ft_execve(char **arr, char **envp);
+void		child_status(int status);
+void		fork_execve(t_btree *node);
 
-//----------------------------------------------------------------
-char	*ft_strextend(char *s1, char *s2, int nb);
-char	*ft_strextend_2(char **s1, char **s2, int nb);
-char	*revert_null_str(char *dest, char *src);
-void	free_mode(char **str1, char **str2, int mode);
+int			launch_command(t_btree *node, char *cmd);
+void		launch_pipe(t_btree *node);
+int			launch_tree(t_btree *tree);
 
-char	*get_exp(char **str);
-char	*ft_replace_str(char *str);
-char	*store_exp_unq(char **str, char type);
-char	*store_dollar(char **str);
-char	*token_cleaner(char *str);
-//----------------------------------------------------------------
+void		error_cmd(char *cmd, int fd, int status);
+void		error_message(char *str, int fd, int status);
+void		clean_program(void);
+void		clean_exit(int status, int error);
 
-void	set_arg_tab(t_btree **tree);
-char	**arglist_to_tab(t_arg *arg);
+int			valid_redir(t_btree *node);
+int			launch_redir(t_redir *redir);
 
-//--------------------------EXECUTION-------------------------------------
-void	ft_execve(char **arr, char **envp);
-void	child_status(int status);
-void	fork_execve(t_btree *node);
+void		signal_handler(void);
+void		sigchild_handler(int sig);
+void		sigint_handler(int sig);
+void		sigquit_handler(int sig);
+void		exit_by_signal(void);
 
-int		launch_command(t_btree *node, char *cmd);
-void	launch_pipe(t_btree *node);
-int		launch_tree(t_btree *tree);
+void		del_hdoc(t_hdoc *hdoc);
+void		hdoc_clr(t_hdoc **hdoc);
+t_hdoc		*ft_hdoclast(t_hdoc *hdoc);
+int			hdoc_add_back(t_hdoc **hdoc, char *str);
 
-void	error_cmd(char *cmd, int fd, int status);
-void	error_message(char *str, int fd, int status);
-void	clean_program(void);
-void	clean_exit(int status, int error);
+int			set_tree_hdoc(t_btree **tree);
+int			set_node_hdoc(t_btree **node);
 
-int	valid_redir(t_btree *node);
-int	launch_redir(t_redir *redir);
+int			read_hdoc(char *str);
+char		*hdoc_readline(t_hdoc *hdoc);
+void		hdoc_child_process(int *pfd, t_hdoc *hdoc);
+int			hdoc_parent_process(int *pfd, t_btree *node);
+int			hdoc_pipe(t_btree *node);
 
-//---------------SIGNAL------------------------------------------------
+char		*free_rdl_str(void);
+char		*str_error2(char *s, char *ret, int status);
+int			is_last_hdoc(t_redir *redir);
+int			set_fd_redir(t_btree *node, int fd);
 
-void	signal_handler(void);
-void	handler_sigchild(int sig);
-void	handler_sigint(int sig);
-void	handler_sigquit(int sig);
-void	exit_by_signal(void);
+int			launch_pipe_hdoc(t_btree *tree);
 
-//-------------HEREDOC----------------------------------------
+void		echo(t_arg *arg);
+void		pwd(int print);
+void		cd(t_arg *arg);
+void		cmd_env(t_arg *arg);
+void		print_env(char **tab);
+void		export(t_arg *arg);
+void		unset(t_arg *arg);
+void		cmd_exit(t_arg *arg);
 
-void	del_hdoc(t_hdoc *hdoc);
-void	hdoc_clr(t_hdoc **hdoc);
-t_hdoc	*ft_hdoclast(t_hdoc *hdoc);
-int 	hdoc_add_back(t_hdoc **hdoc, char *str);
-
-
-int	set_tree_hdoc(t_btree **tree);
-int	set_node_hdoc(t_btree **node);
-
-
-int	read_hdoc(char *str);
-char	*hdoc_readline(t_hdoc *hdoc);
-void	hdoc_child_process(int *pfd, t_hdoc *hdoc);
-int	hdoc_parent_process(int *pfd, t_btree *node);
-int	hdoc_pipe(t_btree *node);
-
-char	*free_rdl_str(void);
-char	*str_error2(char *s, char *ret, int status);
-int	is_last_hdoc(t_redir *redir);
-int	set_fd_redir(t_btree *node, int fd);
-
-int	launch_pipe_hdoc(t_btree *tree);
-
-
-//builtins
-void	echo(t_arg *arg);
-void	pwd(int print);
-void	cd(t_arg *arg);
-void	cmd_env(t_arg *arg);
-void	print_env(char **tab);
-void	export(t_arg *arg);
-void	unset(t_arg *arg);
-void	cmd_exit(t_arg *arg);
-
-//utils
-char	**change_var(char **tab, char *name, char *new);
-char	*getvar_val(char *name, char **tab);
-char	**dup_env(char **tab);
-int		exist(char **tab, char *name);
+char		**change_var(char **tab, char *name, char *new);
+char		*getvar_val(char *name, char **tab);
+char		**dup_env(char **tab);
+int			exist(char **tab, char *name);
 
 #endif

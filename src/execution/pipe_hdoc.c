@@ -97,7 +97,7 @@ int	hdoc_pipe(t_btree *node)
 		return (0);
 	if (pid == 0)
 	{
-		signal(SIGINT, &handler_sigint);
+		signal(SIGINT, &sigint_handler);
 		hdoc_child_process(pfd, node->hdoc);
 	}
 	else if (pid > 0)

@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 22:51:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/24 01:16:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/24 14:13:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	signal_handler(void)
 {
-	signal(SIGINT, &handler_sigint);
-	signal(SIGCHLD, &handler_sigchild);
-	signal(SIGQUIT, &handler_sigquit);
+	signal(SIGINT, &sigint_handler);
+	signal(SIGCHLD, &sigchild_handler);
+	signal(SIGQUIT, &sigquit_handler);
 	data()->quit = 0;
 }
 
-void	handler_sigchild(int sig)
+void	sigchild_handler(int sig)
 {
 	pid_t	pid;
 	int		status;
@@ -33,7 +33,7 @@ void	handler_sigchild(int sig)
 
 #ifdef __linux__
 
-void	handler_sigint(int sig)
+void	sigint_handler(int sig)
 {
 	if (sig == 2)
 	{
@@ -55,29 +55,27 @@ void	handler_sigint(int sig)
 
 #else
 
-void	handler_sigint(int sig)
+void	sigint_handler(int sig)
 {
 	(void)sig;
-	// if (sig == 2)
-	// {
-		g_status = 130;
-		rl_on_new_line();
-		if (data()->in_hdoc == 0)
-		{
-			write(1, "\n", 1);
-			rl_redisplay();
-		}
-		else if (data()->in_hdoc == 1)
-		{
-			write(1, "\n", 1);
-			clean_exit(130, 0);
-		}
-	// }
+	
+	g_status = 130;
+	rl_on_new_line();
+	if (data()->in_hdoc == 0)
+	{
+		write(1, "\n", 1);
+		rl_redisplay();
+	}
+	else if (data()->in_hdoc == 1)
+	{
+		write(1, "\n", 1);
+		clean_exit(130, 0);
+	}
 }
 
 #endif
 
-void	handler_sigquit(int sig)
+void	sigquit_handler(int sig)
 {
 	int	status;
 	int	tmp;

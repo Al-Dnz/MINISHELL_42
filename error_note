@@ -1,3 +1,2 @@
-# ERROR TO CHECK
-
-cmd + ctrl-\
+sig == 2 in sigint_handler
+command + ctrl+\ 

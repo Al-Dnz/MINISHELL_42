@@ -16,17 +16,21 @@ static int	set_env(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	(void)argc;
 	(void)argv;
 	
 //	ft_bzero(&g_data, sizeof(g_data));
-
-	if (!set_env(env))
-		return (0);
-	if (argc > 2 && ft_strequ(argv[1], "-c"))
+	if (isatty(0) == 0)
 	{
+		ft_putstr_fd("open the minishell before execute commands\n", 2);
+		return (EXIT_FAILURE);
+	}
+	if (argc > 1)
+	{
+		ft_putstr_fd("minishell doesn't take arguments\n", 2);
 		return (EXIT_SUCCESS);
 	}
+	if (!set_env(env))
+		return (0);
 	main_loop(env);
 	return (g_status);
 }

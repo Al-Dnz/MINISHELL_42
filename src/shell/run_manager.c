@@ -35,9 +35,6 @@ void	main_loop(char **env)
 	static char	*input_message = "minishell-1.0$ ";
 	char		*line;
 
-	if (isatty(0) == 0)
-		return ;
-	
 	line = NULL;
 	init_g_data();
 	while (1)
