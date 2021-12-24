@@ -1,5 +1,29 @@
 # MINISHELL 42
 
+
+
+# OPERATOR TAKEN AS CHAR
+
+&&
+
+# FORBIDDEN SPECIAL PARAMETERS 
+
+
+||
+;
+\
+$#
+$$
+$*
+$-
+$@
+$0
+$!
+
+
+
+-----------------------------------------------------------
+
 # NOTES
 
 1. les commandes echo, export, etc fonctionnent independement de la case.
@@ -18,24 +42,6 @@
 13. echo message 1 >> file message 2
 
 
-# FORBIDDEN SPECIAL PARAMETERS 
-
-$#
-$$
-$*
-$-
-$@
-$0
-$!
-
-echo $varbar
-echo ${var}bar
-
-# RETRO INGENEERING
-
-1. A quoi sert sg()->stop;
-2. echo yolo |
-
 
 # TO DO
 
@@ -45,8 +51,6 @@ exemples:
 >	echo hello | | wc
 >	cat <
 > 	echo "'hello"'
-
-
 
 # DOC
 

@@ -1,2 +1,21 @@
 sig == 2 in sigint_handler
-command + ctrl+\ 
+
+command + ctrl+\
+
+cat <test.txt >>hello<bonjour
+cat < unexistant_file
+
+echo < njwajkxw
+echo mdrr <>coucou
+
+echo $
+echo "$'PATH'"
+echo $$$$$$$$
+
+echo $varbar
+echo ${var}bar
+
+echo lol > /dev/full
+exit | exit
+
+yes + ctrl+C
