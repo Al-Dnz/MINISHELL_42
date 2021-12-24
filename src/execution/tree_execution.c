@@ -24,9 +24,6 @@ int	launch_command(t_btree *node, char *cmd)
 	return (0);
 }
 
-/*
-	Execute two node command in pipe node
-*/
 void	launch_pipe(t_btree *node)
 {
 	pid_t	pid;
@@ -55,9 +52,6 @@ void	launch_pipe(t_btree *node)
 	}
 }
 
-/*
-	Execute ast recursively
-*/
 int	launch_tree(t_btree *tree)
 {	
 	if (tree->left == NULL && tree->right == NULL)

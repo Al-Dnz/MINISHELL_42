@@ -120,8 +120,6 @@ int				protection(char const *s, int i, char c, t_split *split);
 void			ft_write_words_util(char const *s, t_split *sp);
 void			ft_write_words_minishell(char const *s, int words, t_split *sp);
 
-char		**ft_special_split(char const *s, char c);
-
 
 int	is_quote(char c);
 int	is_operator(char c);
@@ -201,7 +199,7 @@ int	launch_redir(t_redir *redir);
 
 //---------------SIGNAL------------------------------------------------
 
-void	ft_signal(void);
+void	signal_handler(void);
 void	handler_sigchild(int sig);
 void	handler_sigint(int sig);
 void	handler_sigquit(int sig);

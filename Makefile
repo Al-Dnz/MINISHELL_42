@@ -6,8 +6,6 @@ SRC	= main.c \
 	  print_error.c \
 	  check_syntax.c \
 	  check_syntax_redir.c \
-	  ft_special_split.c \
-	  ft_special_split_util.c \
 	  right_char.c \
 	  size_util.c \
 	  get_token.c \

@@ -2,8 +2,8 @@
 
 void	init_g_data(void)
 {
-	data()->chd_status = 0;
-	data()->child_pid = 0;
+	data()->chd_status = -1;
+	data()->child_pid = -1;
 	g_status = 0;
 	data()->quit = 0;
 	data()->index = 0;
@@ -16,8 +16,8 @@ void	init_g_data(void)
 
 void	reinit_g_data(void)
 {
-	// data()->chd_status = 0;
-	// data()->child_pid = 0;
+	data()->chd_status = -1;
+	data()->child_pid = -1;
 	data()->quit = 0;
 	data()->index = 0;
 	data()->in_hdoc = 0;
@@ -37,11 +37,12 @@ void	main_loop(char **env)
 
 	if (isatty(0) == 0)
 		return ;
-	ft_signal();
+	
 	line = NULL;
 	init_g_data();
 	while (1)
 	{
+		signal_handler();
 		if (line)
 			ft_strclr(&line);
 		line = readline(input_message);
@@ -75,7 +76,8 @@ void	run(char *line, char **env)
 	set_tree_hdoc(&data()->tree);
 	if (valid_redir(data()->tree) == 0)
 		return ;
-	launch_tree(data()->tree);
+	if (data()->stop != 1)
+		launch_tree(data()->tree);
 	dup2(std_out, STDOUT_FILENO);
 	dup2(std_in, STDIN_FILENO);
 	reinit_g_data();
