@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/24 19:18:16 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	add_var(t_arg *arg)
 	}
 	tmp[i] = ft_strdup(arg->word);
 	tmp[i + 1] = NULL;
+	ft_free_tab(data()->env);
 	data()->env = dup_env(tmp);
 	if (!data()->env)
 	{
@@ -70,8 +71,7 @@ static int	update_env(t_arg *arg, int eq)
 	val = ft_strdup(arg->word + eq + 1);
 	if (exist(data()->env, name) != -1)
 	{
-		data()->env = change_var(data()->env, name, val);
-		if (!data()->env)
+		if (!change_var(data()->env, name, val))
 		{
 			g_status = 1;
 			return (0);
