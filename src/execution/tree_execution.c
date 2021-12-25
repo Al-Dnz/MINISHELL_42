@@ -6,12 +6,12 @@ int	launch_command(t_btree *node, char *cmd)
 	{
 		if (!ft_strcmp(cmd, "echo"))
 			echo(node->arg);
+		else if (!ft_strcmp(cmd, "env"))
+			cmd_env(node->arg);
 		else if (!ft_strcmp(cmd, "pwd"))
 			pwd(1);
 		else if (!ft_strcmp(cmd, "cd"))
 			cd(node->arg);
-		else if (!ft_strcmp(cmd, "env"))
-			cmd_env(node->arg);
 		else if (!ft_strcmp(cmd, "export"))
 			export(node->arg);
 		else if (!ft_strcmp(cmd, "unset"))

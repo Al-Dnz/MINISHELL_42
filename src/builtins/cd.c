@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/24 18:52:56 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static void	print_opt_error(char *opt)
 
 static void	update_pwd(void)
 {
-	data()->env = change_var(data()->env, "OLDPWD=",
-			getvar_val("PWD=", data()->env));
-	if (!data()->env)
+	if (!change_var(data()->env, "OLDPWD=",
+			getvar_val("PWD=", data()->env)))
 	{
 		g_status = 1;
 		data()->token_err = ft_strdup("minishell");

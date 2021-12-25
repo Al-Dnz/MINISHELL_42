@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/21 01:03:06 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/24 18:31:13 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exist(char **tab, char *name)
 	}
 	return (-1);
 }
-
+/*
 char	**change_var(char **tab, char *name, char *new)
 {
 	int		i;
@@ -50,6 +50,29 @@ char	**change_var(char **tab, char *name, char *new)
 		}
 	}
 	return (tab);
+}
+*/
+
+int	change_var(char **tab, char *name, char *new)
+{
+	int		i;
+	char	*snew;
+	
+	snew = ft_strjoin(name, new);
+	if (snew == NULL)
+		return (0);
+	i = 0;
+	while (tab[i] && i < ft_tabsize(tab))
+	{
+		if (!ft_strncmp(name, tab[i], ft_strlen(name)))
+		{
+			free (tab[i]);
+			tab[i] = ft_strdup(snew);
+		}
+		i++;
+	}
+	ft_strclr(&snew);
+	return (1);
 }
 
 char	*getvar_val(char *name, char **tab)

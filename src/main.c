@@ -4,13 +4,24 @@ unsigned int	g_status;
 
 static int	set_env(char **env)
 {
+	char	*s;
+
+	s = NULL;
 	data()->env = dup_env(env);
 	if (!data()->env)
 		return (0);
-	
-	data()->env = change_var(env, "SHLVL=", ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1));
-	if (!data()->env)
+	s = ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1);
+	if (s == NULL)
 		return (0);
+//	data()->env = change_var(env, "SHLVL=", s);
+	if (!change_var(data()->env, "SHLVL=", s))
+	{
+		ft_free_tab(data()->env);
+		data()->env = NULL;
+		ft_strclr(&s);
+		return (0);
+	}
+	ft_strclr(&s);
 	return (1);
 }
 

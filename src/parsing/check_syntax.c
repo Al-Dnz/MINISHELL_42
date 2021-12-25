@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/24 20:29:21 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	check_pipe(char *line, int i)
 		j++;
 	}
 	if (line[i + 1] && line[i + 1] == '|')
-		data()->token_err = "||";
+		data()->token_err = ft_strdup("||");
 	else
-		data()->token_err = "|";
+		data()->token_err = ft_strdup("|");
 	return (0);
 }
 
@@ -37,7 +37,7 @@ static int	check_pipe2(char *line, int i)
 		i++;
 		if (line[i] == '|')
 		{
-			data()->token_err = "||";
+			data()->token_err = ft_strdup("||");
 			return (0);
 		}
 		while (line[i] && line[i] == ' ')
@@ -45,15 +45,15 @@ static int	check_pipe2(char *line, int i)
 		if (line[i] == '|' || !line[i])
 		{
 			if (line[i + 1] == '|')
-				data()->token_err = "||";
+				data()->token_err = ft_strdup("||");
 			else
-				data()->token_err = "|";
+				data()->token_err = ft_strdup("|");
 			return (0);
 		}
 	}
 	else if (line[i] == '|' && !line[i + 1])
 	{
-		data()->token_err = "|";
+		data()->token_err = ft_strdup("|");
 		return (0);
 	}
 	return (1);
@@ -68,17 +68,17 @@ static int	check_operator(char *line, int i)
 		return (0);
 	if (line[i] == '\\')
 	{
-		data()->token_err = "\\";
+		data()->token_err = ft_strdup("\\");
 		return (0);
 	}
 	if (line[i] == ';')
 	{
-		data()->token_err = ";";
+		data()->token_err = ft_strdup(";");
 		return (0);
 	}
 	if (line[i] == '&' && line[i + 1] && line[i + 1] == '&')
 	{
-		data()->token_err = "&&";
+		data()->token_err = ft_strdup("&&");
 		return (0);
 	}
 	return (1);
@@ -108,7 +108,7 @@ int	check_syntax(char *line)
 				i += quoted_string_size(line + i, line[i]);
 			else
 			{
-				data()->token_err = ft_substr(line, i, 1);//LEAKS
+				data()->token_err = ft_substr(line, i, 1);
 				g_status = 258;
 				return (0);
 			}
