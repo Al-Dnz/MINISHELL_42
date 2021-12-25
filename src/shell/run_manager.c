@@ -31,6 +31,8 @@ void	reinit_g_data(void)
 	ft_strclr(&data()->str);
 	data()->str = NULL;
 	data()->dash = 0;
+	if (data()->token_err)
+		ft_strclr(&data()->token_err);
 }
 
 void	main_loop(char **env)
