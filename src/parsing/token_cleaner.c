@@ -108,9 +108,6 @@ char	*store_dollar(char **str)
 	return (tmp);
 }
 
-/*
-	Return the token entirely unquoted and expanded
-*/
 char	*token_cleaner(char *str)
 {
 	char	*tmp;
