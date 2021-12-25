@@ -87,6 +87,8 @@ typedef struct s_data
 	char	*str;
 	int		in_hdoc;
 	int		stop;
+	int		dd;
+	int		dash;
 }	t_data;
 
 extern unsigned int	g_status;
@@ -212,7 +214,7 @@ void		export(t_arg *arg);
 void		unset(t_arg *arg);
 void		cmd_exit(t_arg *arg);
 
-int			change_var(char **tab, char *name, char *new);
+int			change_var(char **tab, char *name, char *new, int dd);
 char		*getvar_val(char *name, char **tab);
 char		**dup_env(char **tab);
 int			exist(char **tab, char *name);

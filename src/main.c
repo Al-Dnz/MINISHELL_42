@@ -13,8 +13,7 @@ static int	set_env(char **env)
 	s = ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1);
 	if (s == NULL)
 		return (0);
-//	data()->env = change_var(env, "SHLVL=", s);
-	if (!change_var(data()->env, "SHLVL=", s))
+	if (!change_var(data()->env, "SHLVL=", s, 0))
 	{
 		ft_free_tab(data()->env);
 		data()->env = NULL;
@@ -28,8 +27,7 @@ static int	set_env(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-	
-//	ft_bzero(&g_data, sizeof(g_data));
+
 	if (isatty(0) == 0)
 	{
 		ft_putstr_fd("open the minishell before execute commands\n", 2);
