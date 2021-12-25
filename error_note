@@ -20,4 +20,8 @@ exit | exit
 
 yes + ctrl+C
 
+
 export PATH='/bin:/usr/bin'
+
+minishell env vs bash env
+
