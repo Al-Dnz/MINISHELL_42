@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/24 19:18:16 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/25 18:36:32 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	update_env(t_arg *arg, int eq)
 	val = ft_strdup(arg->word + eq + 1);
 	if (exist(data()->env, name) != -1)
 	{
-		if (!change_var(data()->env, name, val))
+		if (!change_var(data()->env, name, val, 0))
 		{
 			g_status = 1;
 			return (0);

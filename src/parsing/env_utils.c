@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:00:38 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/24 18:31:13 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/25 19:57:01 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,28 @@ char	**change_var(char **tab, char *name, char *new)
 }
 */
 
-int	change_var(char **tab, char *name, char *new)
+int	change_var(char **tab, char *name, char *new, int dd)
 {
 	int		i;
 	char	*snew;
-	
-	snew = ft_strjoin(name, new);
+	char	*sd;
+
+	sd = NULL;
+	if (dd == 0)
+		snew = ft_strjoin(name, new);
+	else
+	{
+		sd = ft_strjoin("/", new);
+		if (sd == NULL)
+			return (0);
+		snew = ft_strjoin(name, sd);
+	}
 	if (snew == NULL)
+	{
+		if (sd)
+			ft_strclr(&sd);
 		return (0);
+	}
 	i = 0;
 	while (tab[i] && i < ft_tabsize(tab))
 	{
@@ -71,6 +85,8 @@ int	change_var(char **tab, char *name, char *new)
 		}
 		i++;
 	}
+	if (sd)
+		ft_strclr(&sd);
 	ft_strclr(&snew);
 	return (1);
 }

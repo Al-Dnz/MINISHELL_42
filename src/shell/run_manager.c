@@ -12,6 +12,8 @@ void	init_g_data(void)
 	data()->str = NULL;
 	data()->token_tab = NULL;
 	data()->tree = NULL;
+	data()->dd = 0;
+	data()->dash = 0;
 }
 
 void	reinit_g_data(void)
@@ -28,6 +30,7 @@ void	reinit_g_data(void)
 	data()->tree = NULL;
 	ft_strclr(&data()->str);
 	data()->str = NULL;
+	data()->dash = 0;
 }
 
 void	main_loop(char **env)
