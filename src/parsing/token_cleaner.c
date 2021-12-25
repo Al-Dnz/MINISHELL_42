@@ -1,8 +1,5 @@
 #include "minishell.h"
 
-/*
-	Return str expanded
-*/
 char	*get_exp(char **str)
 {
 	int		len;
@@ -33,9 +30,6 @@ char	*get_exp(char **str)
 	return (dest);
 }
 
-/*
-	Replace str by a str unquoted or/and expanded
-*/
 char	*ft_replace_str(char *str)
 {	
 	char	*dest;
@@ -61,9 +55,6 @@ char	*ft_replace_str(char *str)
 	return (dest);
 }
 
-/*
-	Store each str in this token expanded and unquoted 
-*/
 char	*store_exp_unq(char **str, char type)
 {
 	int		len;
@@ -91,9 +82,6 @@ char	*store_exp_unq(char **str, char type)
 	return (dest);
 }
 
-/*
-	Specific case for $ string
-*/
 char	*store_dollar(char **str)
 {
 	char	*tmp;
