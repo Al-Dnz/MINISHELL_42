@@ -8,6 +8,7 @@ char	*get_exp(char **str)
 	int		len;
 	char	*dest;
 	char	*var_name;
+	char	*var_eq;
 
 	len = 0;
 	(*str)++;
@@ -25,7 +26,9 @@ char	*get_exp(char **str)
 		len++;
 	var_name = ft_substr(*str, 0, len);
 	*str += len;
-	dest = ft_strdup(getenv(var_name));
+	var_eq = ft_strjoin(var_name, "=");
+	dest = ft_strdup(getvar_val(var_eq, data()->env));
+	ft_strclr(&var_eq);
 	ft_strclr(&var_name);
 	return (dest);
 }
