@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strdup_init(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		size;
 	int		i;
@@ -34,7 +34,7 @@ char	*ft_strdup_init(const char *s1)
 	return (new);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup_special(const char *s)
 {
 	int		i;
 	char	*new_s;

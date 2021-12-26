@@ -10,9 +10,9 @@ char	*get_exp(char **str)
 	len = 0;
 	(*str)++;
 	if (**str == 0)
-		return (ft_strdup("$"));
+		return (ft_strdup_special("$"));
 	else if (is_quote(**str))
-		return (ft_strdup(""));
+		return (ft_strdup_special(""));
 	else if (**str == '?')
 	{
 		(*str)++;
@@ -24,7 +24,7 @@ char	*get_exp(char **str)
 	var_name = ft_substr(*str, 0, len);
 	*str += len;
 	var_eq = ft_strjoin(var_name, "=");
-	dest = ft_strdup(getvar_val(var_eq, data()->env));
+	dest = ft_strdup_special(getvar_val(var_eq, data()->env));
 	ft_strclr(&var_eq);
 	ft_strclr(&var_name);
 	return (dest);
@@ -91,17 +91,17 @@ char	*store_dollar(char **str)
 		|| (*str)[1] == '|')
 	{
 		(*str)++;
-		tmp = ft_strdup("$");
+		tmp = ft_strdup_special("$");
 	}
 	else if ((*str)[1] == '$')
 	{
 		(*str) += 2;
-		tmp = ft_strdup("");
+		tmp = ft_strdup_special("");
 	}
 	else if (is_quote((*str)[1]))
 	{
 		(*str)++;
-		tmp = ft_strdup("");
+		tmp = ft_strdup_special("");
 	}
 	else
 		tmp = store_exp_unq(str, 0);
