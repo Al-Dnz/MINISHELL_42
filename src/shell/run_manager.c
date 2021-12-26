@@ -75,7 +75,7 @@ void	run(char *line, char **env)
 	set_arg_tab(&data()->tree);
 	set_tree_hdoc(&data()->tree);
 	if (valid_redir(data()->tree) == 0)
-		return ;
+		data()->stop = 1;
 	if (data()->stop != 1)
 		launch_tree(data()->tree);
 	dup2(std_out, STDOUT_FILENO);

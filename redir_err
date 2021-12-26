@@ -1,0 +1,42 @@
+/dev/full
+access F_OK[-1]
+access F_OK|R_OK[-1]
+access F_OK|R_OK|W_OK[-1]
+open[-1]
+
+/dev/null
+access F_OK[0]
+access F_OK|R_OK[0]
+access F_OK|R_OK|W_OK[0]
+open[3]
+
+dev/null
+access F_OK[-1]
+access F_OK|R_OK[-1]
+access F_OK|R_OK|W_OK[-1]
+open[-1]
+
+yolo.txt
+access F_OK[-1]
+access F_OK|R_OK[-1]
+access F_OK|R_OK|W_OK[-1]
+open[3]
+
+yolo.txt
+access F_OK[0]
+access F_OK|R_OK[0]
+access F_OK|R_OK|W_OK[0]
+open[3]
+
+README.md
+access F_OK[0]
+access F_OK|R_OK[0]
+access F_OK|R_OK|W_OK[0]
+open[3]
+
+inc/README.md
+access F_OK[-1]
+access F_OK|R_OK[-1]
+access F_OK|R_OK|W_OK[-1]
+open[3]
+

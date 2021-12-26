@@ -2,7 +2,7 @@
 
 unsigned int	g_status;
 
-static int	set_env(char **env)
+int	set_env(char **env)
 {
 	char	*s;
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 
+	g_status = 0;
 	if (isatty(0) == 0)
 	{
 		ft_putstr_fd("open the minishell before execute commands\n", 2);
@@ -38,6 +39,13 @@ int	main(int argc, char **argv, char **env)
 		ft_putstr_fd("minishell doesn't take arguments\n", 2);
 		return (EXIT_SUCCESS);
 	}
+	// (void)env;
+	// char *path = argv[1];
+	// printf("%s\n",path);
+	// printf("access F_OK[%d]\n",access(path, F_OK ));
+	// printf("access F_OK|R_OK[%d]\n",access(path, F_OK | R_OK ));
+	// printf("access F_OK|W_OK[%d]\n",access(path, F_OK | W_OK));
+	// printf("access F_OK|X_OK[%d]\n",access(path, F_OK | X_OK));
 	if (!set_env(env))
 		return (0);
 	main_loop(env);
