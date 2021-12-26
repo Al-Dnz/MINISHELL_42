@@ -213,6 +213,8 @@ void		print_env(char **tab);
 void		export(t_arg *arg);
 void		unset(t_arg *arg);
 void		cmd_exit(t_arg *arg);
+char		*del_zero(char *s, int z);
+char		*split_zero(char *s);
 
 int			change_var(char **tab, char *name, char *new, int dd);
 char		*getvar_val(char *name, char **tab);
