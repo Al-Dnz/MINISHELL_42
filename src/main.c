@@ -38,6 +38,8 @@ int	main(int argc, char **argv, char **env)
 		ft_putstr_fd("minishell doesn't take arguments\n", 2);
 		return (EXIT_SUCCESS);
 	}
+	if (env[0] == NULL)
+		return (EXIT_FAILURE);
 	if (!set_env(env))
 		return (0);
 	main_loop(env);
