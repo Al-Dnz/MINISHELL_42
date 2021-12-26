@@ -32,9 +32,10 @@ $!
 
 # TO DO
 
-11. CLEAN EXIT ! + leaks
-12. Bien verifier que le fichhier file existe dans echo < file
-13. echo message 1 >> file message 2
+[ ] Set fd=2 in error messages
+[ ] CLEAN EXIT ! + leaks
+[X] Bien verifier que le fichhier file existe dans echo < file
+[ ] echo message 1 >> file message 2
 
 1. checher les lines incorectes
 exemples:
