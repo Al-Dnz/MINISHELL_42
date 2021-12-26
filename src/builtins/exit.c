@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/26 11:51:41 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	err_num(char *str)
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(data()->token_err, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
-	if (isatty(0))
+	if (isatty(0))///A VOIR SI CA FOUT PAS LA MERDE
 	{
 		clean_program();
 		exit(g_status);
