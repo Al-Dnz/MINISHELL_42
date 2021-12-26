@@ -27,6 +27,7 @@ int	free_btree(t_btree *node)
 	if (node->arg != NULL)
 	{
 		arg_clr(&(node->arg));
+		free(node->arg);
 		node->arg = NULL;
 	}
 	if (node->redir != NULL)

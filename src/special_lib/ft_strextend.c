@@ -9,9 +9,9 @@ char	*ft_strextend(char *s1, char *s2, int mode)
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	else if (s1 == NULL)
-		return (ft_strdup(s1));
+		return (ft_strdup_special(s1));
 	else if (s2 == NULL)
-		return (ft_strdup(s2));
+		return (ft_strdup_special(s2));
 	freeable_1 = s1;
 	freeable_2 = s2;
 	str = ft_strjoin(s1, s2);
@@ -47,7 +47,7 @@ char	*ft_strextend_2(char **s1, char **s2, int mode)
 
 char	*revert_null_str(char *dest, char *src)
 {
-	dest = ft_strdup(src);
+	dest = ft_strdup_special(src);
 	ft_strclr(&src);
 	return (dest);
 }

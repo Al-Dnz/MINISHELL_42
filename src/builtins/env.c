@@ -53,7 +53,7 @@ void	cmd_env(t_arg *arg)
 		}
 		else if (arg->next->word)
 		{
-			data()->token_err = ft_strjoin("env: ", arg->next->word);
+			(data()->token_err) = ft_strjoin("env: ", arg->next->word);
 			g_status = 127;
 			print_error();
 		}

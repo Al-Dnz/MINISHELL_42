@@ -89,7 +89,7 @@ static int	check_argu(t_arg *arg)
 
 	if (!ft_str_isalnum_eq(arg->word) || arg->word[0] == '-')
 	{
-		data()->token_err = ft_strjoin("minishell: unset: `", arg->word);
+		(data()->token_err) = ft_strjoin("minishell: unset: `", arg->word);
 		write (2, data()->token_err, ft_strlen(data()->token_err));
 		write (2, "': not a valid identifier\n", 26);
 		g_status = 1;

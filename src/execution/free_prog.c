@@ -41,6 +41,7 @@ void	clean_program(void)
 	ft_free_tab(data()->env);
 	data()->env = NULL;
 	free_btree(data()->tree);
+	free(data()->tree)
 	data()->tree = NULL;
 	ft_strclr(&data()->str);
 	if (data()->token_err)
@@ -64,7 +65,8 @@ void	clean_exit(int status, int error)
 		status = 2;
 	// if (isatty(0))
 	// {
-		clean_program();
-		exit(status);
+	clean_program();
+	free(data());
+	exit(status);
 	// }
 }
