@@ -219,4 +219,6 @@ char		*getvar_val(char *name, char **tab);
 char		**dup_env(char **tab);
 int			exist(char **tab, char *name);
 
+int			ft_strcmp_special(char *s1, char *s2);
+
 #endif

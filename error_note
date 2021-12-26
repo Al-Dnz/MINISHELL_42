@@ -21,3 +21,5 @@ exit | exit
 yes + ctrl+C
 
 export PATH='/bin:/usr/bin'
+
+exit -0
