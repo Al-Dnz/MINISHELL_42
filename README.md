@@ -24,6 +24,10 @@ $!
 
 -----------------------------------------------------------
 
+# DISABLE VALGRIND READLINE LEAKS
+alias minishell_leaks='valgrind --leak-check=full --track-fds=yes --show-leak-kinds=all --suppressions=.ignore_readline -q ./minishell'
+
+
 # NOTES
 
 1. les commandes echo, export, etc fonctionnent independement de la case.
