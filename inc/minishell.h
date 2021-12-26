@@ -215,6 +215,7 @@ void		unset(t_arg *arg);
 void		cmd_exit(t_arg *arg);
 char		*del_zero(char *s, int z);
 char		*split_zero(char *s);
+int			ft_str_isalnum_eq(char *s);
 
 int			change_var(char **tab, char *name, char *new, int dd);
 char		*getvar_val(char *name, char **tab);

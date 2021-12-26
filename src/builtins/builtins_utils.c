@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 17:23:34 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/26 17:59:46 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/26 18:38:21 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,33 @@ char	*split_zero(char *s)
 	else
 		n = del_zero(s, z);
 	return (n);
+}
+
+int	ft_str_isalnum_eq(char *s)
+{
+	int	i;
+
+	if (!s)
+		return (-1);
+	if (s[0] == '_' || ft_isalpha(s[0]))
+	{
+		i = 1;
+		while (s[i])
+		{
+			if (s[i] != '_' && !ft_isalnum(s[i]))
+				return (0);
+			i++;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (s[i])
+		{
+			if (!ft_isalpha(s[i]) && s[i] != '_')
+				return (0);
+			i++;
+		}
+	}
+	return (1);
 }
