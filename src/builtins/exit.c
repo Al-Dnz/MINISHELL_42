@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/26 11:51:41 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/26 15:49:53 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@ static void	err_num(char *str)
 	}
 }
 
+static char	split_zero(char *s)
+{
+	int	z;
+	int	i;
+	char	*n
+
+	z = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '-' || s[i] == '+')
+			i++;
+		while (s[i] == '0')
+		{
+			z++;
+			i++;
+		}
+		if
+	}
+}
+
 static int	ft_can_int_convert(char *str)
 {
 	long long	atoll_res;
@@ -33,8 +54,9 @@ static int	ft_can_int_convert(char *str)
 
 	atoll_res = ft_atolong(str);
 	lltoa_res = ft_lltoa(atoll_res);
+	printf ("/////%s\n", lltoa_res);
 	if (ft_strcmp(lltoa_res, str) == 0 || (ft_strcmp(lltoa_res, str + 1) == 0
-			&& str[0] == '+'))
+			&& (str[0] == '+' || str[0] == '-')))
 	{
 		free(lltoa_res);
 		return (1);

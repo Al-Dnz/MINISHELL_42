@@ -62,9 +62,6 @@ void	clean_exit(int status, int error)
 		error_message("minishell: parse error", 2, status);
 	if (error == 1 || error == 2)
 		status = 2;
-	// if (isatty(0))
-	// {
-		clean_program();
-		exit(status);
-	// }
+	clean_program();
+	exit(status);
 }

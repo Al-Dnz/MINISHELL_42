@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:51 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/24 19:31:23 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/26 14:23:21 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	check_argu(t_arg *arg)
 
 	if (!ft_str_isalnum_eq(arg->word) || arg->word[0] == '-')
 	{
-		data()->token_err = ft_strjoin("minishell: unset: `", arg->word);
+		(data()->token_err) = ft_strjoin("minishell: unset: `", arg->word);
 		write (2, data()->token_err, ft_strlen(data()->token_err));
 		write (2, "': not a valid identifier\n", 26);
 		g_status = 1;
@@ -115,16 +115,23 @@ static int	check_argu(t_arg *arg)
 void	unset(t_arg *arg)
 {
 	t_arg	*tmp;
+	char	*sub;
+	char	*join;
 
 	tmp = arg;
+	sub = NULL;
+	join = NULL;
 	if (tmp->next && tmp->next->word[0] == '-'
 		&& ft_strlen(tmp->next->word) > 1)
 	{
-		data()->token_err = ft_strjoin("minishell: unset: ",
-				ft_substr(tmp->next->word, 0, 2));
+		sub = ft_substr(tmp->next->word, 0, 2);
+		join = ft_strjoin("minishell: unset: ", sub);
+		data()->token_err = join;
 		write (2, data()->token_err, ft_strlen(data()->token_err));
 		write (2, ": invalid option\n", 17);
 		g_status = 2;
+		ft_strclr(&join);
+		ft_strclr(&join);
 		return ;
 	}
 	while (tmp->next)

@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:12:28 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/25 18:36:32 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/26 14:27:51 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ static int	add_var(t_arg *arg)
 		g_status = 1;
 		return (0);
 	}
-	i = 0;
-	while (data()->env[i])
-	{
+	i = -1;
+	while (data()->env[++i])
 		tmp[i] = ft_strdup(data()->env[i]);
-		i++;
-	}
 	tmp[i] = ft_strdup(arg->word);
 	tmp[i + 1] = NULL;
 	ft_free_tab(data()->env);
@@ -106,7 +103,7 @@ static int	check_arg(t_arg *arg)
 		}
 		else
 		{
-			data()->token_err = ft_strjoin("minishell: export: `", arg->word);
+			(data()->token_err) = ft_strjoin("minishell: export: `", arg->word);
 			write (2, data()->token_err, ft_strlen(data()->token_err));
 			write (2, "': not a valid identifier\n", 26);
 			g_status = 1;

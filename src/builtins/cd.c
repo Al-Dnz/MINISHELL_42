@@ -6,20 +6,21 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/25 23:05:00 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/26 14:26:16 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 static char	*set_path(t_arg *arg)
 {
 	char	*path;
 
 	if (arg->next && !ft_strncmp(arg->next->word, "//", 2)
-			&& (!arg->next->word[2] || arg->next->word[2] != '/'))
+		&& (!arg->next->word[2] || arg->next->word[2] != '/'))
 		data()->dd = 1;
 	if (!arg->next || (arg->next->word[0] == '/' && arg->next->word[1]
-		&& arg->next->word[1] != '/')
+			&& arg->next->word[1] != '/')
 		|| !ft_strncmp(arg->next->word, "///", 3) || arg->next->word[0] == '~')
 		data()->dd = 0;
 	if (!arg->next || !ft_strcmp(arg->next->word, "~"))
@@ -75,7 +76,7 @@ static void	exec_cd(char *path)
 	err = chdir(path);
 	if (err == -1)
 	{
-		data()->token_err = ft_strjoin("minishell: cd: ", path);
+		(data()->token_err) = ft_strjoin("minishell: cd: ", path);
 		g_status = 1;
 		print_error();
 	}
