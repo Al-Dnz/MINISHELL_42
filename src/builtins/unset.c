@@ -6,40 +6,11 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:51 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/24 19:31:23 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:31:17 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	ft_str_isalnum_eq(char *s)
-{
-	int	i;
-
-	if (!s)
-		return (-1);
-	if (s[0] == '_' || ft_isalpha(s[0]))
-	{
-		i = 1;
-		while (s[i])
-		{
-			if (s[i] != '_' && !ft_isalnum(s[i]))
-				return (0);
-			i++;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (s[i])
-		{
-			if (!ft_isalpha(s[i]) && s[i] != '_')
-				return (0);
-			i++;
-		}
-	}
-	return (1);
-}
 
 static	int	twist_tab(char **tmp)
 {
@@ -112,6 +83,23 @@ static int	check_argu(t_arg *arg)
 	return (1);
 }
 
+static void	check_opt(t_arg *tmp)
+{
+	char	*sub;
+	char	*join;
+
+	sub = NULL;
+	join = NULL;
+	sub = ft_substr(tmp->next->word, 0, 2);
+	join = ft_strjoin("minishell: unset: ", sub);
+	g_data.token_err = ft_strdup(join);
+	write (2, g_data.token_err, ft_strlen(g_data.token_err));
+	write (2, ": invalid option\n", 17);
+	g_data.status = 2;
+	ft_strclr(&join);
+	ft_strclr(&sub);
+}
+
 void	unset(t_arg *arg)
 {
 	t_arg	*tmp;
@@ -120,11 +108,7 @@ void	unset(t_arg *arg)
 	if (tmp->next && tmp->next->word[0] == '-'
 		&& ft_strlen(tmp->next->word) > 1)
 	{
-		g_data.token_err = ft_strjoin("minishell: unset: ",
-				ft_substr(tmp->next->word, 0, 2));
-		write (2, g_data.token_err, ft_strlen(g_data.token_err));
-		write (2, ": invalid option\n", 17);
-		g_data.status = 2;
+		check_opt(tmp);
 		return ;
 	}
 	while (tmp->next)

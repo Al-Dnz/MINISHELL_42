@@ -39,6 +39,7 @@ SRC	= main.c \
 	  cd.c \
 	  export.c \
 	  unset.c \
+	  builtins_utils.c \
 
 INC = inc
 OBJ_DIR = obj

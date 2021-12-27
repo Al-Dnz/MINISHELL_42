@@ -20,6 +20,19 @@ exit | exit
 
 yes + ctrl+C
 
+export PATH='/bin:/usr/bin'
+
+exit -0
+
+echo bonjour > "fi le"
+
+minishell-1.0$ unset PWD
+minishell-1.0$ cd
+
+env -i ./minishell
+
+minishell-1.0$ unset OLDPWD
+minishell-1.0$ cd -
 
 export PATH='/bin:/usr/bin'
 

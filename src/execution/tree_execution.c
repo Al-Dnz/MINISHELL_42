@@ -1,22 +1,39 @@
+
 #include "minishell.h"
+
+int	ft_strcmp_special(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (ft_tolower(s1[i]) != s2[i])
+			return (1);
+		i++;
+	}
+	if (s1[i] || s2[i])
+		return (1);
+	return (0);
+}
 
 int	launch_command(t_btree *node, char *cmd)
 {
 	if (node && cmd != 0)
 	{
-		if (!ft_strcmp(cmd, "echo"))
+		if (!ft_strcmp_special(cmd, "echo"))
 			echo(node->arg);
-		else if (!ft_strcmp(cmd, "env"))
+		else if (!ft_strcmp_special(cmd, "env"))
 			cmd_env(node->arg);
-		else if (!ft_strcmp(cmd, "pwd"))
+		else if (!ft_strcmp_special(cmd, "pwd"))
 			pwd(1);
-		else if (!ft_strcmp(cmd, "cd"))
+		else if (!ft_strcmp_special(cmd, "cd"))
 			cd(node->arg);
-		else if (!ft_strcmp(cmd, "export"))
+		else if (!ft_strcmp_special(cmd, "export"))
 			export(node->arg);
-		else if (!ft_strcmp(cmd, "unset"))
+		else if (!ft_strcmp_special(cmd, "unset"))
 			unset(node->arg);
-		else if (!ft_strcmp(cmd, "exit"))
+		else if (!ft_strcmp_special(cmd, "exit"))
 			cmd_exit(node->arg);
 		else
 			fork_execve(node);

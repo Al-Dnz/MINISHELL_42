@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/23 08:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:32:03 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,28 @@ static void	err_num(char *str)
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(g_data.token_err, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
-	if (isatty(0))
-	{
-		clean_program();
-		exit(g_data.status);
-	}
+	clean_program();
+	exit(g_data.status);
 }
 
 static int	ft_can_int_convert(char *str)
 {
 	long long	atoll_res;
 	char		*lltoa_res;
+	char		*n;
 
 	atoll_res = ft_atolong(str);
 	lltoa_res = ft_lltoa(atoll_res);
-	if (ft_strcmp(lltoa_res, str) == 0 || (ft_strcmp(lltoa_res, str + 1) == 0
-			&& str[0] == '+'))
+	n = split_zero(str);
+	if (ft_strcmp(lltoa_res, n) == 0 || (ft_strcmp(lltoa_res, n + 1) == 0
+			&& (str[0] == '+' || str[0] == '-')))
 	{
-		free(lltoa_res);
+		ft_strclr(&n);
+		ft_strclr(&lltoa_res);
 		return (1);
 	}
-	free(lltoa_res);
+	ft_strclr(&n);
+	ft_strclr(&lltoa_res);
 	return (0);
 }
 

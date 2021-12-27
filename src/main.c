@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 19:28:06 by ivloisy           #+#    #+#             */
+/*   Updated: 2021/12/27 19:49:14 by ivloisy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-// unsigned int	g_data.status;
-t_data g_data;
+t_data	g_data;
 
 int	set_env(char **env)
 {
@@ -11,9 +22,14 @@ int	set_env(char **env)
 	g_data.env = dup_env(env);
 	if (!g_data.env)
 		return (0);
-	s = ft_itoa(ft_atoi(getvar_val("SHLVL=", g_data.env)) + 1);
-	if (s == NULL)
-		return (0);
+	if (exist(g_data.env, "SHLVL=") != -1)
+	{
+		s = ft_itoa(ft_atoi(getvar_val("SHLVL=", g_data.env)) + 1);
+		if (s == NULL)
+			return (0);
+	}
+	else
+		s = ft_strdup("1");
 	if (!change_var(g_data.env, "SHLVL=", s, 0))
 	{
 		ft_free_tab(g_data.env);
@@ -28,7 +44,6 @@ int	set_env(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-
 	g_data.status = 0;
 	if (env[0] == NULL)
 	{
@@ -45,16 +60,8 @@ int	main(int argc, char **argv, char **env)
 		ft_putstr_fd("minishell doesn't take arguments\n", 2);
 		return (EXIT_SUCCESS);
 	}
-	// (void)env;
-	// char *path = argv[1];
-	// printf("%s\n",path);
-	// printf("access F_OK[%d]\n",access(path, F_OK ));
-	// printf("access F_OK|R_OK[%d]\n",access(path, F_OK | R_OK ));
-	// printf("access F_OK|W_OK[%d]\n",access(path, F_OK | W_OK));
-	// printf("access F_OK|X_OK[%d]\n",access(path, F_OK | X_OK));
 	if (!set_env(env))
 		return (0);
 	main_loop(env);
 	return (g_data.status);
 }
-
