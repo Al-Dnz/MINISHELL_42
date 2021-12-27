@@ -45,6 +45,11 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	g_data.status = 0;
+	if (env[0] == NULL)
+	{
+		ft_putstr_fd("minishell execution needs env paremeters\n", 2);
+		return (EXIT_FAILURE);
+	}
 	if (isatty(0) == 0)
 	{
 		ft_putstr_fd("open the minishell before execute commands\n", 2);

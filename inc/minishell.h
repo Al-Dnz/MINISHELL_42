@@ -89,6 +89,8 @@ typedef struct s_data
 	int		stop;
 	int		dd;
 	int		dash;
+	int		std_in;
+	int		std_out;
 }	t_data;
 
 //t_data		*data(void);
@@ -225,7 +227,7 @@ char		**dup_env(char **tab);
 int			exist(char **tab, char *name);
 
 int			ft_strcmp_special(char *s1, char *s2);
-// extern unsigned int	g_data.status;
+
 extern t_data g_data;
 
 #endif
