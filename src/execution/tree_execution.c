@@ -49,7 +49,6 @@ void	launch_pipe(t_btree *node)
 		dup2(pipe_fd[0], 0);
 		launch_tree(node->right);
 		close(pipe_fd[0]);
-		
 	}
 }
 

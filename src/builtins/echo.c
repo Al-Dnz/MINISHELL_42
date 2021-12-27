@@ -49,5 +49,5 @@ void	echo(t_arg *arg)
 	}
 	if (n == 0)
 		write(1, "\n", 1);
-	g_status = 0;
+	g_data.status = 0;
 }

@@ -2,15 +2,15 @@
 
 char	*free_rdl_str(void)
 {
-	free(data()->str);
-	data()->str = NULL;
+	free(g_data.str);
+	g_data.str = NULL;
 	return (NULL);
 }
 
 char	*str_error2(char *s, char *ret, int status)
 {
 	ft_putendl_fd(s, 2);
-	g_status = status;
+	g_data.status = status;
 	return (ret);
 }
 

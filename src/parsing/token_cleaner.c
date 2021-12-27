@@ -16,7 +16,7 @@ char	*get_exp(char **str)
 	else if (**str == '?')
 	{
 		(*str)++;
-		return (ft_itoa(g_status));
+		return (ft_itoa(g_data.status));
 	}
 	while ((*str)[len] && (*str)[len] != ' ' && !is_quote((*str)[len])
 		&& (*str)[len] != '$')
@@ -24,7 +24,7 @@ char	*get_exp(char **str)
 	var_name = ft_substr(*str, 0, len);
 	*str += len;
 	var_eq = ft_strjoin(var_name, "=");
-	dest = ft_strdup_special(getvar_val(var_eq, data()->env));
+	dest = ft_strdup_special(getvar_val(var_eq, g_data.env));
 	ft_strclr(&var_eq);
 	ft_strclr(&var_name);
 	return (dest);

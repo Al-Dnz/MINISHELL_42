@@ -43,11 +43,11 @@ static int	ft_str_isalnum_eq(char *s)
 
 static	int	twist_tab(char **tmp)
 {
-	ft_free_tab(data()->env);
-	data()->env = dup_env(tmp);
-	if (!data()->env)
+	ft_free_tab(g_data.env);
+	g_data.env = dup_env(tmp);
+	if (!g_data.env)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
@@ -60,20 +60,20 @@ static int	exec_unset(char *name)
 	int		i;
 	int		j;
 
-	tmp = (char **)malloc(sizeof(char *) * ft_tabsize(data()->env));
+	tmp = (char **)malloc(sizeof(char *) * ft_tabsize(g_data.env));
 	if (!tmp)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
 	i = 0;
 	j = 0;
-	while (data()->env[i + j] && i < ft_tabsize(data()->env) - 1)
+	while (g_data.env[i + j] && i < ft_tabsize(g_data.env) - 1)
 	{
-		if (!strncmp(data()->env[i + j], name, ft_strlen(name)))
+		if (!strncmp(g_data.env[i + j], name, ft_strlen(name)))
 			j = 1;
-		tmp[i] = ft_strdup(data()->env[i + j]);
+		tmp[i] = ft_strdup(g_data.env[i + j]);
 		i++;
 	}
 	tmp[i] = NULL;
@@ -89,20 +89,20 @@ static int	check_argu(t_arg *arg)
 
 	if (!ft_str_isalnum_eq(arg->word) || arg->word[0] == '-')
 	{
-		data()->token_err = ft_strjoin("minishell: unset: `", arg->word);
-		write (2, data()->token_err, ft_strlen(data()->token_err));
+		g_data.token_err = ft_strjoin("minishell: unset: `", arg->word);
+		write (2, g_data.token_err, ft_strlen(g_data.token_err));
 		write (2, "': not a valid identifier\n", 26);
-		g_status = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	name = ft_strjoin(arg->word, "=");
 	if (!name)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		print_error();
 		return (0);
 	}
-	if (exist(data()->env, name) != -1)
+	if (exist(g_data.env, name) != -1)
 	{
 		if (!exec_unset(name))
 			return (0);
@@ -120,11 +120,11 @@ void	unset(t_arg *arg)
 	if (tmp->next && tmp->next->word[0] == '-'
 		&& ft_strlen(tmp->next->word) > 1)
 	{
-		data()->token_err = ft_strjoin("minishell: unset: ",
+		g_data.token_err = ft_strjoin("minishell: unset: ",
 				ft_substr(tmp->next->word, 0, 2));
-		write (2, data()->token_err, ft_strlen(data()->token_err));
+		write (2, g_data.token_err, ft_strlen(g_data.token_err));
 		write (2, ": invalid option\n", 17);
-		g_status = 2;
+		g_data.status = 2;
 		return ;
 	}
 	while (tmp->next)
@@ -138,5 +138,5 @@ void	unset(t_arg *arg)
 				return ;
 		}
 	}
-	g_status = 0;
+	g_data.status = 0;
 }
