@@ -172,6 +172,7 @@ void		error_cmd(char *cmd, int fd, int status);
 void		error_message(char *str, int fd, int status);
 void		clean_program(void);
 void		clean_exit(int status, int error);
+void		clean_process(void);
 
 int			valid_redir(t_btree *node);
 int			launch_redir(t_redir *redir);

@@ -15,41 +15,6 @@ void	error_message(char *str, int fd, int status)
 	g_data.exit_status = status;
 }
 
-#ifdef __linux__
-
-void	clean_program(void)
-{
-	rl_clear_history();
-	ft_free_tab(g_data.token_tab);
-	g_data.token_tab = NULL;
-	ft_free_tab(g_data.env);
-	g_data.env = NULL;
-	free_btree(g_data.tree);
-	g_data.tree = NULL;
-	ft_strclr(&g_data.str);
-	if (g_data.token_err)
-		ft_strclr(&g_data.token_err);
-	g_data.str = NULL;
-}
-
-#else
-
-void	clean_program(void)
-{
-	ft_free_tab(g_data.token_tab);
-	g_data.token_tab = NULL;
-	ft_free_tab(g_data.env);
-	g_data.env = NULL;
-	free_btree(g_data.tree);
-	g_data.tree = NULL;
-	ft_strclr(&g_data.str);
-	if (g_data.token_err)
-		ft_strclr(&g_data.token_err);
-	g_data.str = NULL;
-}
-
-#endif
-
 void	clean_exit(int status, int error)
 {
 	if (error == 1)
@@ -62,6 +27,7 @@ void	clean_exit(int status, int error)
 		error_message("minishell: parse error", 2, status);
 	if (error == 1 || error == 2)
 		status = 2;
+	rl_clear_history();
 	clean_program();
 	exit(status);
 }

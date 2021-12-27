@@ -44,12 +44,12 @@ void	launch_pipe(t_btree *node)
 	}
 	else
 	{
-		pid = waitpid(0, &g_data.chd_status, 0);
 		close(pipe_fd[1]);
 		dup2(pipe_fd[0], 0);
 		launch_tree(node->right);
 		close(pipe_fd[0]);
-		clean_program();
+		pid = waitpid(0, &g_data.chd_status, 0);
+		clean_process();
 	}
 }
 
