@@ -4,6 +4,7 @@ char	*free_rdl_str(void)
 {
 	free(g_data.str);
 	g_data.str = NULL;
+	clean_process();
 	return (NULL);
 }
 
