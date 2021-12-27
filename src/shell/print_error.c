@@ -14,7 +14,7 @@
 
 void	print_error(void)
 {
-	if (g_status == 258)
+	if (g_data.status == 258)
 		printf("minishell: syntax error near unexpected token `%s'\n",
-			data()->token_err);
+			g_data.token_err);
 }

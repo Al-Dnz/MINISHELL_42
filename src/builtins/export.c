@@ -37,25 +37,25 @@ static int	add_var(t_arg *arg)
 	char	**tmp;
 	int		i;
 
-	tmp = (char **)malloc(sizeof(char *) * (ft_tabsize(data()->env) + 2));
+	tmp = (char **)malloc(sizeof(char *) * (ft_tabsize(g_data.env) + 2));
 	if (!tmp)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	i = 0;
-	while (data()->env[i])
+	while (g_data.env[i])
 	{
-		tmp[i] = ft_strdup(data()->env[i]);
+		tmp[i] = ft_strdup(g_data.env[i]);
 		i++;
 	}
 	tmp[i] = ft_strdup(arg->word);
 	tmp[i + 1] = NULL;
-	ft_free_tab(data()->env);
-	data()->env = dup_env(tmp);
-	if (!data()->env)
+	ft_free_tab(g_data.env);
+	g_data.env = dup_env(tmp);
+	if (!g_data.env)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		return (0);
 	}
 	ft_free_tab(tmp);
@@ -69,11 +69,11 @@ static int	update_env(t_arg *arg, int eq)
 
 	name = ft_substr(arg->word, 0, eq + 1);
 	val = ft_strdup(arg->word + eq + 1);
-	if (exist(data()->env, name) != -1)
+	if (exist(g_data.env, name) != -1)
 	{
-		if (!change_var(data()->env, name, val, 0))
+		if (!change_var(g_data.env, name, val, 0))
 		{
-			g_status = 1;
+			g_data.status = 1;
 			return (0);
 		}
 	}
@@ -106,10 +106,10 @@ static int	check_arg(t_arg *arg)
 		}
 		else
 		{
-			data()->token_err = ft_strjoin("minishell: export: `", arg->word);
-			write (2, data()->token_err, ft_strlen(data()->token_err));
+			g_data.token_err = ft_strjoin("minishell: export: `", arg->word);
+			write (2, g_data.token_err, ft_strlen(g_data.token_err));
 			write (2, "': not a valid identifier\n", 26);
-			g_status = 1;
+			g_data.status = 1;
 			return (0);
 		}
 	}
@@ -122,12 +122,12 @@ void	export(t_arg *arg)
 
 	tmp = arg;
 	if (!tmp->next)
-		print_env(data()->env);
+		print_env(g_data.env);
 	while (tmp->next)
 	{
 		tmp = tmp->next;
 		if (!check_arg(tmp))
 			return ;
 	}
-	g_status = 0;
+	g_data.status = 0;
 }

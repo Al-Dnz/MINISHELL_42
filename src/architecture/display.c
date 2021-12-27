@@ -39,9 +39,9 @@ void	display_tree(t_btree *node)
 {
 	static int	i;
 
-	if (data()->displayer == 0)
+	if (g_data.displayer == 0)
 		i = 0;
-	data()->displayer = 1;
+	g_data.displayer = 1;
 	if (i == 0)
 		printf("[ROOT]");
 	else if (i % 2)

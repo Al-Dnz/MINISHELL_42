@@ -20,22 +20,22 @@ void	pwd(int print)
 	buf = getcwd(buf, 0);
 	if (buf == NULL)
 	{
-		g_status = 1;
-		data()->token_err = ft_strdup("minishell: pwd");
+		g_data.status = 1;
+		g_data.token_err = ft_strdup("minishell: pwd");
 		print_error();
 	}
-	if (!change_var(data()->env, "PWD=", buf, data()->dd))
+	if (!change_var(g_data.env, "PWD=", buf, g_data.dd))
 	{
-		g_status = 1;
-		data()->token_err = ft_strdup("minishell");
+		g_data.status = 1;
+		g_data.token_err = ft_strdup("minishell");
 		print_error();
 	}
 	if (print)
 	{
-		write(1, getvar_val("PWD=", data()->env),
-			ft_strlen(getvar_val("PWD=", data()->env)));
+		write(1, getvar_val("PWD=", g_data.env),
+			ft_strlen(getvar_val("PWD=", g_data.env)));
 		write(1, "\n", 1);
 	}
 	ft_strclr(&buf);
-	g_status = 0;
+	g_data.status = 0;
 }

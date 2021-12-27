@@ -30,23 +30,23 @@ static int	check_ope(char *line, int i)
 	{
 		i++;
 		if (line[i] == '>')
-			data()->token_err = ft_strdup(">>");
+			g_data.token_err = ft_strdup(">>");
 		else
 		{
 			if (line[i + 1] && line[i + 1] == line[i])
-				data()->token_err = ft_strdup("<<<");
+				g_data.token_err = ft_strdup("<<<");
 			else
-				data()->token_err = ft_strdup("<<");
+				g_data.token_err = ft_strdup("<<");
 		}
 	}
 	else if (line[i + 1] && line[i + 1] == '>' && line[i] == '<')
-		data()->token_err = ft_strdup("<>");
+		g_data.token_err = ft_strdup("<>");
 	else
 	{
 		if (line[i] == '<')
-			data()->token_err = ft_strdup("<");
+			g_data.token_err = ft_strdup("<");
 		else
-			data()->token_err = ft_strdup(">");
+			g_data.token_err = ft_strdup(">");
 	}
 	return (0);
 }
@@ -61,9 +61,9 @@ static int	check_next(char *line, int i)
 		if (line[i] == '|')
 		{
 			if (line[i + 1] && line[i + 1] == '|')
-				data()->token_err = ft_strdup("||");
+				g_data.token_err = ft_strdup("||");
 			else
-				data()->token_err = ft_strdup("|");
+				g_data.token_err = ft_strdup("|");
 			return (0);
 		}
 		else if ((line[i] == '<' || line[i] == '>') && !check_ope(line, i))
@@ -77,7 +77,7 @@ static int	check_end(char *line, int i)
 	i++;
 	if (is_end(line, i))
 	{
-		data()->token_err = ft_strdup("newline");
+		g_data.token_err = ft_strdup("newline");
 		return (0);
 	}
 	else if (line[i + 1] == line[i])
@@ -86,9 +86,9 @@ static int	check_end(char *line, int i)
 		if (is_end(line, i))
 		{
 			if (line[i] == '<' && line[i] == line[i - 1])
-				data()->token_err = ft_strdup("newline");
+				g_data.token_err = ft_strdup("newline");
 			else
-				data()->token_err = ft_strdup(">");
+				g_data.token_err = ft_strdup(">");
 			return (0);
 		}
 		else if (!check_next(line, i))
@@ -103,7 +103,7 @@ int	check_syntax_redir(char *line, int i)
 {
 	if (is_end(line, i))
 	{
-		data()->token_err = ft_strdup("newline");
+		g_data.token_err = ft_strdup("newline");
 		return (0);
 	}
 	else if (line[i + 1] == line[i] && !check_end(line, i))
