@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 22:26:46 by ivloisy           #+#    #+#             */
+/*   Updated: 2021/12/27 22:27:32 by ivloisy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,25 +22,8 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-//# include <curses.h>
-//# include <term.h>
 
 # include "../libft/libft.h"
-
-// # define REDIR_OP 1
-// # define FILE 2
-// # define CMD 3
-
-// typedef struct	s_split
-// {
-// 	int		k;
-// 	int		i;
-// 	int		j;
-// 	int		len;
-// 	int		count_words;
-// 	char	c;
-// 	char	**str;
-// }				t_split;
 
 /*
 ** 	REDIR KIND
@@ -225,7 +220,7 @@ char		**dup_env(char **tab);
 int			exist(char **tab, char *name);
 
 int			ft_strcmp_special(char *s1, char *s2);
-// extern unsigned int	g_data.status;
-extern t_data g_data;
+
+extern t_data	g_data;
 
 #endif
