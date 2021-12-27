@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 22:51:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/24 14:13:46 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/27 23:57:52 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	sigint_handler(int sig)
 void	sigint_handler(int sig)
 {
 	(void)sig;
-	
 	g_data.status = 130;
 	rl_on_new_line();
 	if (g_data.in_hdoc == 0)
@@ -94,5 +93,5 @@ void	sigquit_handler(int sig)
 	rl_redisplay();
 	g_data.quit = 1;
 	g_data.status = 131;
-	clean_exit(g_data.status, 0);
+	clean_process();
 }

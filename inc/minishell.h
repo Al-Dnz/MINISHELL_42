@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:54:26 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,25 +22,13 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-//# include <curses.h>
-//# include <term.h>
+
+/*
+**# include <curses.h>
+**# include <term.h>
+*/
 
 # include "../libft/libft.h"
-
-// # define REDIR_OP 1
-// # define FILE 2
-// # define CMD 3
-
-// typedef struct	s_split
-// {
-// 	int		k;
-// 	int		i;
-// 	int		j;
-// 	int		len;
-// 	int		count_words;
-// 	char	c;
-// 	char	**str;
-// }				t_split;
 
 /*
 ** 	REDIR KIND
@@ -93,8 +93,6 @@ typedef struct s_data
 	int		std_out;
 }	t_data;
 
-//t_data		*data(void);
-
 void		main_loop(char **env);
 
 void		formalize_env_path(char **env_tab);
@@ -143,7 +141,8 @@ int			get_all_token(char *line, int i, int j);
 int			save_node_cmd(t_btree **node, char *str);
 int			save_node_redir(t_btree **node, char *str);
 int			save_node_redir_file(t_btree **node, char *str);
-int			set_node(t_btree **node);
+
+int			set_node(t_btree **node, int i);
 int			tree_constructor(void);
 
 void		display_arg(t_arg *arg);
@@ -156,7 +155,7 @@ char		*ft_strextend_2(char **s1, char **s2, int nb);
 char		*revert_null_str(char *dest, char *src);
 void		free_mode(char **str1, char **str2, int mode);
 
-char		*get_exp(char **str);
+char		*get_exp(char **str, int len);
 char		*ft_replace_str(char *str);
 char		*store_exp_unq(char **str, char type);
 char		*store_dollar(char **str);
@@ -228,6 +227,6 @@ int			exist(char **tab, char *name);
 
 int			ft_strcmp_special(char *s1, char *s2);
 
-extern t_data g_data;
+extern t_data	g_data;
 
 #endif

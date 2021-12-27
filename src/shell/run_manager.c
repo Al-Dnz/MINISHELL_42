@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_manager.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:08:25 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:50:48 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	init_g_data(void)
@@ -67,9 +79,6 @@ void	main_loop(char **env)
 
 void	run(char *line, char **env)
 {
-	// int	std_out;
-	// int	std_in;
-
 	(void)env;
 	if (get_all_token(line, 0, 0) == 0)
 		return ;

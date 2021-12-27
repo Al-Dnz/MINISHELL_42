@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_prog.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:07:59 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:12:07 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	error_cmd(char *cmd, int fd, int status)
@@ -35,7 +47,6 @@ void	clean_exit(int status, int error)
 }
 
 #else
-
 
 void	clean_exit(int status, int error)
 {

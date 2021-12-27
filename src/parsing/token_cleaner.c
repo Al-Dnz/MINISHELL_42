@@ -1,13 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_cleaner.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:12:48 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:21:28 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char	*get_exp(char **str)
+char	*get_exp(char **str, int len)
 {
-	int		len;
 	char	*dest;
 	char	*var_name;
 	char	*var_eq;
 
-	len = 0;
 	(*str)++;
 	if (**str == 0)
 		return (ft_strdup_special("$"));
@@ -41,7 +51,7 @@ char	*ft_replace_str(char *str)
 	while (*str)
 	{
 		if (*str == '$')
-			tmp = get_exp(&str);
+			tmp = get_exp(&str, 0);
 		else
 		{
 			i = 0;
