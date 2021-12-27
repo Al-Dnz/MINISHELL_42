@@ -42,18 +42,18 @@ void	ft_execve(char **arr, char **envp)
 void	child_status(int status)
 {
 	if (WIFSIGNALED(status))
-		g_status = WTERMSIG(status);
+		g_data.status = WTERMSIG(status);
 	else if (WIFEXITED(status))
-		g_status = WEXITSTATUS(status);
+		g_data.status = WEXITSTATUS(status);
 	if (status == 2)
 	{
 		write(1, "\n", 1);
-		g_status = 130;
+		g_data.status = 130;
 	}
-	else if (status == 131 || data()->quit == 1)
-		g_status = 131;
+	else if (status == 131 || g_data.quit == 1)
+		g_data.status = 131;
 	else if (status == 0)
-		g_status = 0;
+		g_data.status = 0;
 }
 
 void	fork_execve(t_btree *node)
@@ -62,7 +62,7 @@ void	fork_execve(t_btree *node)
 	int		status;
 
 	pid = fork();
-	data()->child_pid = pid;
+	g_data.child_pid = pid;
 	if (pid < 0)
 		return ;
 	if (pid > 0)
@@ -73,7 +73,8 @@ void	fork_execve(t_btree *node)
 		if (pid == -1)
 			return ;
 		child_status(status);
+		clean_program();
 	}
 	else if (pid == 0)
-		ft_execve(node->arr, data()->env);
+		ft_execve(node->arr, g_data.env);
 }

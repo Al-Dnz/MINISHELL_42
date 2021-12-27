@@ -12,40 +12,40 @@ void	error_message(char *str, int fd, int status)
 {
 	ft_putstr_fd(str, fd);
 	ft_putstr_fd("\n", fd);
-	data()->exit_status = status;
+	g_data.exit_status = status;
 }
 
 #ifdef __linux__
 
 void	clean_program(void)
 {
-	rl_clear_history();
-	ft_free_tab(data()->token_tab);
-	data()->token_tab = NULL;
-	ft_free_tab(data()->env);
-	data()->env = NULL;
-	free_btree(data()->tree);
-	data()->tree = NULL;
-	ft_strclr(&data()->str);
-	if (data()->token_err)
-		ft_strclr(&data()->token_err);
-	data()->str = NULL;
+//	rl_clear_history();
+	ft_free_tab(g_data.token_tab);
+	g_data.token_tab = NULL;
+	ft_free_tab(g_data.env);
+	g_data.env = NULL;
+	free_btree(g_data.tree);
+	g_data.tree = NULL;
+	ft_strclr(&g_data.str);
+	if (g_data.token_err)
+		ft_strclr(&g_data.token_err);
+	g_data.str = NULL;
 }
 
 #else
 
 void	clean_program(void)
 {
-	ft_free_tab(data()->token_tab);
-	data()->token_tab = NULL;
-	ft_free_tab(data()->env);
-	data()->env = NULL;
-	free_btree(data()->tree);
-	data()->tree = NULL;
-	ft_strclr(&data()->str);
-	if (data()->token_err)
-		ft_strclr(&data()->token_err);
-	data()->str = NULL;
+	ft_free_tab(g_data.token_tab);
+	g_data.token_tab = NULL;
+	ft_free_tab(g_data.env);
+	g_data.env = NULL;
+	free_btree(g_data.tree);
+	g_data.tree = NULL;
+	ft_strclr(&g_data.str);
+	if (g_data.token_err)
+		ft_strclr(&g_data.token_err);
+	g_data.str = NULL;
 }
 
 #endif

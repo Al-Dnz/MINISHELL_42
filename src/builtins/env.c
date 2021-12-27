@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:30:19 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/26 14:24:02 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:29:40 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cmd_env(t_arg *arg)
 {
 	if (arg->next)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		if (arg->next->word && arg->next->word[0] == '-'
 			&& ft_strlen(arg->next->word) > 1 && next_char(arg->next->word))
 		{
@@ -53,14 +53,14 @@ void	cmd_env(t_arg *arg)
 		}
 		else if (arg->next->word)
 		{
-			(data()->token_err) = ft_strjoin("env: ", arg->next->word);
-			g_status = 127;
+			g_data.token_err = ft_strjoin("env: ", arg->next->word);
+			g_data.status = 127;
 			print_error();
 		}
 	}
 	else
 	{
-		print_env(data()->env);
-		g_status = 0;
+		print_env(g_data.env);
+		g_data.status = 0;
 	}
 }

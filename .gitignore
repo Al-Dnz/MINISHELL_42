@@ -6,4 +6,5 @@ a.out
 prog
 .vscode
 #libft/*
-minishell*
+minishell
+.nfs*

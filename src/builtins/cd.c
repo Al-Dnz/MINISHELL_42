@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 17:03:00 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 18:02:47 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,28 @@ static char	*set_path(t_arg *arg)
 	path = NULL;
 	if (arg->next && !ft_strncmp(arg->next->word, "//", 2)
 		&& (!arg->next->word[2] || arg->next->word[2] != '/'))
-		data()->dd = 1;
+		g_data.dd = 1;
 	if (!arg->next || (arg->next->word[0] == '/' && arg->next->word[1]
 			&& arg->next->word[1] != '/')
 		|| !ft_strncmp(arg->next->word, "///", 3) || arg->next->word[0] == '~')
-		data()->dd = 0;
+		g_data.dd = 0;
 	if (!arg->next || !ft_strcmp(arg->next->word, "~"))
 	{
-		if (exist(data()->env, "HOME=") != -1)
-			path = ft_strdup(getvar_val("HOME=", data()->env));
+		if (exist(g_data.env, "HOME=") != -1)
+			path = ft_strdup(getvar_val("HOME=", g_data.env));
 		else
 			print_err_env("HOME");
 	}
 	else if (!strcmp(arg->next->word, "-"))
 	{
-		if (exist(data()->env, "OLDPWD=") != -1)
+		if (exist(g_data.env, "OLDPWD=") != -1)
 		{
-			if (!ft_strncmp(getvar_val("OLDPWD=", data()->env), "//", 2))
-				data()->dd = 1;
+			if (!ft_strncmp(getvar_val("OLDPWD=", g_data.env), "//", 2))
+				g_data.dd = 1;
 			else
-				data()->dd = 0;
-			path = ft_strdup(getvar_val("OLDPWD=", data()->env));
-			data()->dash = 1;
+				g_data.dd = 0;
+			path = ft_strdup(getvar_val("OLDPWD=", g_data.env));
+			g_data.dash = 1;
 		}
 		else
 			print_err_env("OLDPWD");
@@ -59,28 +59,28 @@ static void	print_opt_error(char *opt)
 
 static void	update_pwd(void)
 {
-	if (exist(data()->env, "OLDPWD=") != -1)
+	if (exist(g_data.env, "OLDPWD=") != -1)
 	{
-		if (exist(data()->env, "PWD=") != -1)
+		if (exist(g_data.env, "PWD=") != -1)
 		{
-			if (!change_var(data()->env, "OLDPWD=",
-					getvar_val("PWD=", data()->env), 0))
+			if (!change_var(g_data.env, "OLDPWD=",
+					getvar_val("PWD=", g_data.env), 0))
 			{
-				g_status = 1;
-				data()->token_err = ft_strdup("minishell");
+				g_data.status = 1;
+				g_data.token_err = ft_strdup("minishell");
 				print_error();
 			}
 			else
 			{
-				pwd(data()->dash);
-				g_status = 0;
+				pwd(g_data.dash);
+				g_data.status = 0;
 			}
 		}
 	}
 	else
 	{
-		pwd(data()->dash);
-		g_status = 0;
+		pwd(g_data.dash);
+		g_data.status = 0;
 	}
 }
 
@@ -91,15 +91,15 @@ static void	exec_cd(char *path)
 	if (path[0] == '-' && ft_strlen(path) > 1)
 	{
 		print_opt_error(path);
-		g_status = 1;
+		g_data.status = 1;
 		ft_strclr(&path);
 		return ;
 	}
 	err = chdir(path);
 	if (err == -1)
 	{
-		(data()->token_err) = ft_strjoin("minishell: cd: ", path);
-		g_status = 1;
+		g_data.token_err = ft_strjoin("minishell: cd: ", path);
+		g_data.status = 1;
 		print_error();
 	}
 	else
@@ -115,7 +115,7 @@ void	cd(t_arg *arg)
 
 	if (arg->next && arg->next->next)
 	{
-		g_status = 1;
+		g_data.status = 1;
 		write(2, "minishell: cd: too many arguments\n", 34);
 		return ;
 	}
@@ -124,8 +124,8 @@ void	cd(t_arg *arg)
 		exec_cd(path);
 	else
 	{
-		g_status = 1;
-		data()->token_err = ft_strdup("minishell");
+		g_data.status = 1;
+		g_data.token_err = ft_strdup("minishell");
 		print_error();
 	}
 }

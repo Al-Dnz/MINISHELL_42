@@ -17,7 +17,7 @@ void	signal_handler(void)
 	signal(SIGINT, &sigint_handler);
 	signal(SIGCHLD, &sigchild_handler);
 	signal(SIGQUIT, &sigquit_handler);
-	data()->quit = 0;
+	g_data.quit = 0;
 }
 
 void	sigchild_handler(int sig)
@@ -37,15 +37,15 @@ void	sigint_handler(int sig)
 {
 	if (sig == 2)
 	{
-		g_status = 130;
+		g_data.status = 130;
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		if (data()->in_hdoc == 0)
+		if (g_data.in_hdoc == 0)
 		{
 			write(1, "\n", 1);
 			rl_redisplay();
 		}
-		else if (data()->in_hdoc == 1)
+		else if (g_data.in_hdoc == 1)
 		{
 			write(1, "\n", 1);
 			clean_exit(130, 0);
@@ -59,14 +59,14 @@ void	sigint_handler(int sig)
 {
 	(void)sig;
 	
-	g_status = 130;
+	g_data.status = 130;
 	rl_on_new_line();
-	if (data()->in_hdoc == 0)
+	if (g_data.in_hdoc == 0)
 	{
 		write(1, "\n", 1);
 		rl_redisplay();
 	}
-	else if (data()->in_hdoc == 1)
+	else if (g_data.in_hdoc == 1)
 	{
 		write(1, "\n", 1);
 		clean_exit(130, 0);
@@ -77,13 +77,14 @@ void	sigint_handler(int sig)
 
 void	sigquit_handler(int sig)
 {
-	int	status;
+	// int	status;
 	int	tmp;
 
 	(void)sig;
-	// if (data()->child_pid == -1)
+	// if (g_data.child_pid == -1)
 	// 	return ;
-	tmp = waitpid(data()->child_pid, &status, WUNTRACED);
+	tmp = 0;
+	// tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
 	if (tmp == -1)
 	{
 		write(1, "\b\b  \b\b", 6);
@@ -91,6 +92,7 @@ void	sigquit_handler(int sig)
 	}
 	write(1, "Quit: (core dumped)\n", 20);
 	rl_redisplay();
-	data()->quit = 1;
-	g_status = 131;
+	g_data.quit = 1;
+	g_data.status = 131;
+	clean_exit(g_data.status, 0);
 }

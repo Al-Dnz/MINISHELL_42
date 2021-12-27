@@ -91,9 +91,7 @@ typedef struct s_data
 	int		dash;
 }	t_data;
 
-extern unsigned int	g_status;
-
-t_data		*data(void);
+//t_data		*data(void);
 
 void		main_loop(char **env);
 
@@ -224,5 +222,7 @@ char		**dup_env(char **tab);
 int			exist(char **tab, char *name);
 
 int			ft_strcmp_special(char *s1, char *s2);
+// extern unsigned int	g_data.status;
+extern t_data g_data;
 
 #endif
