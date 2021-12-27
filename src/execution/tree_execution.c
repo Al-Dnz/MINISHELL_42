@@ -56,6 +56,7 @@ void	launch_pipe(t_btree *node)
 		close(pipe_fd[0]);
 		dup2(pipe_fd[1], 1);
 		launch_tree(node->left);
+		clean_process();
 		close(pipe_fd[1]);
 		clean_exit(0, 0);
 	}
@@ -89,5 +90,6 @@ int	launch_tree(t_btree *tree)
 		launch_pipe(tree);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
+	clean_process();
 	return (0);
 }
