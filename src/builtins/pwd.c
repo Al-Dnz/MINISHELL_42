@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 21:31:11 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/25 20:07:46 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:02:12 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,30 @@ void	pwd(int print)
 	if (buf == NULL)
 	{
 		g_status = 1;
-		data()->token_err = ft_strdup("minishell: pwd");
-		print_error();
-	}
-	if (!change_var(data()->env, "PWD=", buf, data()->dd))
-	{
-		g_status = 1;
 		data()->token_err = ft_strdup("minishell");
 		print_error();
 	}
-	if (print)
+	else
 	{
-		write(1, getvar_val("PWD=", data()->env),
-			ft_strlen(getvar_val("PWD=", data()->env)));
-		write(1, "\n", 1);
+		if (exist(data()->env, "PWD=") != -1)
+		{
+			if (!change_var(data()->env, "PWD=", buf, data()->dd))
+			{
+				g_status = 1;
+				data()->token_err = ft_strdup("minishell");
+				print_error();
+				ft_strclr(&buf);
+				return ;
+			}
+		}
+		if (print)
+		{
+			if (exist(data()->env, "PWD=") == -1)
+				printf("%s\n", buf);
+			else
+				printf("%s\n", getvar_val("PWD=", data()->env));
+		}
+		ft_strclr(&buf);
+		g_status = 0;
 	}
-	ft_strclr(&buf);
-	g_status = 0;
 }

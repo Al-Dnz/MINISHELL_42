@@ -103,6 +103,7 @@ char		*find_path(char *cmd);
 void		run(char *line, char **env);
 
 void		print_error(void);
+void		print_err_env(char *s);
 
 int			check_syntax_redir(char *line, int i);
 int			check_syntax(char *line);

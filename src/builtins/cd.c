@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/26 23:19:18 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:03:00 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*set_path(t_arg *arg)
 {
 	char	*path;
 
+	path = NULL;
 	if (arg->next && !ft_strncmp(arg->next->word, "//", 2)
 		&& (!arg->next->word[2] || arg->next->word[2] != '/'))
 		data()->dd = 1;
@@ -24,15 +25,25 @@ static char	*set_path(t_arg *arg)
 		|| !ft_strncmp(arg->next->word, "///", 3) || arg->next->word[0] == '~')
 		data()->dd = 0;
 	if (!arg->next || !ft_strcmp(arg->next->word, "~"))
-		path = ft_strdup(getvar_val("HOME=", data()->env));
+	{
+		if (exist(data()->env, "HOME=") != -1)
+			path = ft_strdup(getvar_val("HOME=", data()->env));
+		else
+			print_err_env("HOME");
+	}
 	else if (!strcmp(arg->next->word, "-"))
 	{
-		if (!ft_strncmp(getvar_val("OLDPWD=", data()->env), "//", 2))
-			data()->dd = 1;
+		if (exist(data()->env, "OLDPWD=") != -1)
+		{
+			if (!ft_strncmp(getvar_val("OLDPWD=", data()->env), "//", 2))
+				data()->dd = 1;
+			else
+				data()->dd = 0;
+			path = ft_strdup(getvar_val("OLDPWD=", data()->env));
+			data()->dash = 1;
+		}
 		else
-			data()->dd = 0;
-		path = ft_strdup(getvar_val("OLDPWD=", data()->env));
-		data()->dash = 1;
+			print_err_env("OLDPWD");
 	}
 	else
 		path = ft_strdup(arg->next->word);
@@ -48,12 +59,23 @@ static void	print_opt_error(char *opt)
 
 static void	update_pwd(void)
 {
-	if (!change_var(data()->env, "OLDPWD=",
-			getvar_val("PWD=", data()->env), 0))
+	if (exist(data()->env, "OLDPWD=") != -1)
 	{
-		g_status = 1;
-		data()->token_err = ft_strdup("minishell");
-		print_error();
+		if (exist(data()->env, "PWD=") != -1)
+		{
+			if (!change_var(data()->env, "OLDPWD=",
+					getvar_val("PWD=", data()->env), 0))
+			{
+				g_status = 1;
+				data()->token_err = ft_strdup("minishell");
+				print_error();
+			}
+			else
+			{
+				pwd(data()->dash);
+				g_status = 0;
+			}
+		}
 	}
 	else
 	{

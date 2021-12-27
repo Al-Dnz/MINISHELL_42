@@ -10,9 +10,14 @@ static int	set_env(char **env)
 	data()->env = dup_env(env);
 	if (!data()->env)
 		return (0);
-	s = ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1);
-	if (s == NULL)
-		return (0);
+	if (exist(data()->env, "SHLVL=") != -1)
+	{
+		s = ft_itoa(ft_atoi(getvar_val("SHLVL=", data()->env)) + 1);
+		if (s == NULL)
+			return (0);
+	}
+	else
+		s = ft_strdup("1");
 	if (!change_var(data()->env, "SHLVL=", s, 0))
 	{
 		ft_free_tab(data()->env);
@@ -27,7 +32,6 @@ static int	set_env(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-
 	if (isatty(0) == 0)
 	{
 		ft_putstr_fd("open the minishell before execute commands\n", 2);
@@ -45,4 +49,3 @@ int	main(int argc, char **argv, char **env)
 	main_loop(env);
 	return (g_status);
 }
-
