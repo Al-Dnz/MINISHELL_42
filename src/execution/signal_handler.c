@@ -84,7 +84,7 @@ void	sigquit_handler(int sig)
 	// if (g_data.child_pid == -1)
 	// 	return ;
 	tmp = 0;
-	//tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
+	// tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
 	if (tmp == -1)
 	{
 		write(1, "\b\b  \b\b", 6);
@@ -94,4 +94,5 @@ void	sigquit_handler(int sig)
 	rl_redisplay();
 	g_data.quit = 1;
 	g_data.status = 131;
+	clean_exit(g_data.status, 0);
 }

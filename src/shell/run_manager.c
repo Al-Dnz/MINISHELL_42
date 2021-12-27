@@ -14,6 +14,7 @@ void	init_g_data(void)
 	g_data.tree = NULL;
 	g_data.dd = 0;
 	g_data.dash = 0;
+	g_data.stop = 0;
 }
 
 void	reinit_g_data(void)
@@ -26,11 +27,14 @@ void	reinit_g_data(void)
 	g_data.displayer = 0;
 	ft_free_tab(g_data.token_tab);
 	g_data.token_tab = NULL;
+	ft_strclr(&g_data.token_err);
+	g_data.token_err = NULL;
 	free_btree(g_data.tree);
 	g_data.tree = NULL;
 	ft_strclr(&g_data.str);
 	g_data.str = NULL;
 	g_data.dash = 0;
+	g_data.stop = 0;
 }
 
 void	main_loop(char **env)

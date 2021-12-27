@@ -73,6 +73,7 @@ void	fork_execve(t_btree *node)
 		if (pid == -1)
 			return ;
 		child_status(status);
+		clean_program();
 	}
 	else if (pid == 0)
 		ft_execve(node->arr, g_data.env);

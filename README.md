@@ -25,8 +25,9 @@ $!
 -----------------------------------------------------------
 
 # DISABLE VALGRIND READLINE LEAKS
-alias minishell_leaks='valgrind --leak-check=full --track-fds=yes --show-leak-kinds=all --suppressions=.ignore_readline -q ./minishell'
+alias minishell_leaks='valgrind --leak-check=full --show-leak-kinds=all --suppressions=.ignore_readline -q ./minishell'
 
+--track-fds=yes 
 
 # NOTES
 
