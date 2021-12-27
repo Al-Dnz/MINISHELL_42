@@ -102,6 +102,8 @@ void		run(char *line, char **env);
 
 void		print_error(void);
 void		print_err_env(char *s);
+void		print_basic_error(void);
+void		print_opt_error(char *opt);
 
 int			check_syntax_redir(char *line, int i);
 int			check_syntax(char *line);
@@ -172,6 +174,7 @@ int			launch_tree(t_btree *tree);
 void		error_cmd(char *cmd, int fd, int status);
 void		error_message(char *str, int fd, int status);
 void		clean_program(void);
+void		clean_process(void);
 void		clean_exit(int status, int error);
 
 int			valid_redir(t_btree *node);

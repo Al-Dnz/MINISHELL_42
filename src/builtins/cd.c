@@ -6,11 +6,26 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:02:31 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 18:02:47 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/27 20:45:47 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	set_dash(char **path)
+{
+	if (exist(g_data.env, "OLDPWD=") != -1)
+	{
+		if (!ft_strncmp(getvar_val("OLDPWD=", g_data.env), "//", 2))
+			g_data.dd = 1;
+		else
+			g_data.dd = 0;
+		*path = ft_strdup(getvar_val("OLDPWD=", g_data.env));
+		g_data.dash = 1;
+	}
+	else
+		print_err_env("OLDPWD");
+}
 
 static char	*set_path(t_arg *arg)
 {
@@ -32,29 +47,10 @@ static char	*set_path(t_arg *arg)
 			print_err_env("HOME");
 	}
 	else if (!strcmp(arg->next->word, "-"))
-	{
-		if (exist(g_data.env, "OLDPWD=") != -1)
-		{
-			if (!ft_strncmp(getvar_val("OLDPWD=", g_data.env), "//", 2))
-				g_data.dd = 1;
-			else
-				g_data.dd = 0;
-			path = ft_strdup(getvar_val("OLDPWD=", g_data.env));
-			g_data.dash = 1;
-		}
-		else
-			print_err_env("OLDPWD");
-	}
+		set_dash(&path);
 	else
 		path = ft_strdup(arg->next->word);
 	return (path);
-}
-
-static void	print_opt_error(char *opt)
-{
-	write(2, "minishell: cd: ", 15);
-	write(2, opt, ft_strlen(opt));
-	write(2, ": invalid option\n", 17);
 }
 
 static void	update_pwd(void)

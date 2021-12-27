@@ -22,6 +22,7 @@ SRC	= main.c \
 	  set_node_hdoc.c \
 	  path_manager.c \
 	  free_prog.c \
+	  clean_prog.c \
 	  cmd_execution.c \
 	  redir_execution.c \
 	  tree_execution.c \
@@ -45,7 +46,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 LIB = ./libft/libft.a
 LIBFT = ./libft
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra# -g -fsanitize=address
 UNAME = $(shell uname -s)
 
 ifeq ($(UNAME), Linux)

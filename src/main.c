@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 19:28:06 by ivloisy           #+#    #+#             */
+/*   Updated: 2021/12/27 19:49:14 by ivloisy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-// unsigned int	g_data.status;
-t_data g_data;
+t_data	g_data;
 
 int	set_env(char **env)
 {
@@ -44,8 +55,6 @@ int	main(int argc, char **argv, char **env)
 		ft_putstr_fd("minishell doesn't take arguments\n", 2);
 		return (EXIT_SUCCESS);
 	}
-	if (env[0] == NULL)
-		return (EXIT_FAILURE);
 	if (!set_env(env))
 		return (0);
 	main_loop(env);
