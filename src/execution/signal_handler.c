@@ -77,12 +77,13 @@ void	sigint_handler(int sig)
 
 void	sigquit_handler(int sig)
 {
-	int	status;
+	// int	status;
 	int	tmp;
 
 	(void)sig;
 	// if (g_data.child_pid == -1)
 	// 	return ;
+	tmp = 0;
 	//tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
 	if (tmp == -1)
 	{
