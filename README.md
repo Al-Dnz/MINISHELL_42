@@ -1,7 +1,5 @@
 # MINISHELL 42
 
-
-
 # OPERATOR TAKEN AS CHAR
 
 &&
@@ -39,6 +37,7 @@ alias minishell_leaks='valgrind --leak-check=full --show-leak-kinds=all --suppre
 
 [ ] Set fd=2 in error messages
 [ ] CLEAN EXIT ! + leaks
+[ ] display var env in heredoc
 [X] Bien verifier que le fichhier file existe dans echo < file
 [ ] echo message 1 >> file message 2
 
