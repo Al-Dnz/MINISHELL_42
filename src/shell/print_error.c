@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 00:39:07 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 20:11:22 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/28 18:44:00 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	print_error(void)
 		write(2, "minishell: syntax error near unexpected token `", 47);
 		write(2, g_data.token_err, ft_strlen(g_data.token_err));
 		write(2, "'\n", 2);
+		ft_strclr(&g_data.token_err);
 	}
 	if (g_data.status == 1 && errno)
 		perror(g_data.token_err);

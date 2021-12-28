@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:17:20 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 17:32:03 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/28 17:54:36 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	err_num(char *str)
 {
 	g_data.token_err = ft_strdup(str);
-	g_data.status = 255;
+	g_data.status = 2;
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(g_data.token_err, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);

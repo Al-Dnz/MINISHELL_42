@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:42:55 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 23:13:16 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 21:13:26 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	check_operator(char *line, int i)
 	if ((line[i] == '|' && !check_pipe(line, i))
 		|| (line[i] == '|' && !check_pipe2(line, i)))
 		return (0);
-	if ((line[i] == '<' || line[i] == '>') && !check_syntax_redir(line, i))
+	if ((line[i] == '<' || line[i] == '>') && !check_syntax_ope(line, i))
 		return (0);
 	if (line[i] == '\\')
 	{

@@ -6,7 +6,7 @@
 /*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 12:12:31 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/28 21:14:02 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void		print_opt_error(char *opt);
 
 int			check_syntax_redir(char *line, int i);
 int			check_syntax(char *line);
+int			check_syntax_ope(char *line, int i);
 
 int			is_quote(char c);
 int			is_operator(char c);
