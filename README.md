@@ -1,5 +1,6 @@
 # MINISHELL 42
 
+## USAGE
 ```
 make ; ./minishell
 ```
