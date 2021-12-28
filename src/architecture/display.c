@@ -6,11 +6,22 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:41:12 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 12:41:12 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 23:52:30 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	display_fd_list(t_fd_list *list)
+{
+	printf("fd_list: ");
+	while (list != NULL)
+	{
+		printf("[%d]->", list->fd);
+		list = list->next;
+	}
+	printf("NULL\n");
+}
 
 void	display_arg(t_arg *arg)
 {

@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 23:13:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 23:13:28 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 00:14:35 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	del_fd_list(t_fd_list *lst)
 {
 	if (lst == NULL)
 		return ;
-	if (lst->fd != 0 && lst->fd != 1)
-		close(lst->fd);
+	// if (lst->fd != 0 && lst->fd != 1)
+	// 	close(lst->fd);
 }
 
 void	fd_list_clr(t_fd_list **lst)

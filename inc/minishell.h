@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 23:14:05 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 23:51:40 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_data
 	int		dash;
 	int		std_in;
 	int		std_out;
+	t_fd_list *fd_list;
 }	t_data;
 
 void		main_loop(char **env);
@@ -158,6 +159,7 @@ int			save_node_redir_file(t_btree **node, char *str);
 int			set_node(t_btree **node, int i);
 int			tree_constructor(void);
 
+void		display_fd_list(t_fd_list *list);
 void		display_arg(t_arg *arg);
 void		display_redir(t_redir *redir);
 void		display_hdoc(t_hdoc *hdoc);

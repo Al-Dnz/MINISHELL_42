@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:07:59 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:12:07 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 00:14:07 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	clean_exit(int status, int error)
 	if (error == 1 || error == 2)
 		status = 2;
 	rl_clear_history();
-	close(g_data.std_in);
-	close(g_data.std_out);
+	// close(g_data.std_in);
+	// close(g_data.std_out);
 	clean_program();
 	exit(status);
 }
@@ -49,6 +49,7 @@ void	clean_exit(int status, int error)
 	close(g_data.std_in);
 	close(g_data.std_out);
 	clean_program();
+	
 	exit(status);
 }
 
