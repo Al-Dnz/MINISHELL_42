@@ -94,4 +94,5 @@ void	run(char *line, char **env)
 	dup2(g_data.std_out, STDOUT_FILENO);
 	dup2(g_data.std_in, STDIN_FILENO);
 	reinit_g_data();
+	clean_process();
 }
