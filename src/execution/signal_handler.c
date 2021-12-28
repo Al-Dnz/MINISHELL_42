@@ -12,14 +12,6 @@
 
 #include "minishell.h"	
 
-void	signal_handler(void)
-{
-	signal(SIGINT, &sigint_handler);
-	signal(SIGCHLD, &sigchild_handler);
-	signal(SIGQUIT, &sigquit_handler);
-	g_data.quit = 0;
-}
-
 void	sigchild_handler(int sig)
 {
 	pid_t	pid;
@@ -53,6 +45,26 @@ void	sigint_handler(int sig)
 	}
 }
 
+void	sigquit_handler(int sig)
+{
+	int	status;
+	int	tmp;
+
+	(void)sig;
+	tmp = 0;
+	tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
+	if (tmp == -1)
+	{
+		write(1, "\b\b  \b\b", 6);
+		return ;
+	}
+	write(1, "Quit: (core dumped)\n", 20);
+	rl_redisplay();
+	g_data.quit = 1;
+	g_data.status = 131;
+	clean_process();
+}
+
 #else
 
 void	sigint_handler(int sig)
@@ -72,16 +84,14 @@ void	sigint_handler(int sig)
 	}
 }
 
-#endif
-
 void	sigquit_handler(int sig)
 {
 	int	status;
 	int	tmp;
 
 	(void)sig;
-	// if (g_data.child_pid == -1)
-	// 	return ;
+	if (g_data.child_pid == -1)
+		return ;
 	tmp = 0;
 	tmp = waitpid(g_data.child_pid, &status, WUNTRACED);
 	if (tmp == -1)
@@ -95,3 +105,5 @@ void	sigquit_handler(int sig)
 	g_data.status = 131;
 	clean_process();
 }
+
+#endif

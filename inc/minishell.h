@@ -95,6 +95,7 @@ typedef struct s_data
 
 void		main_loop(char **env);
 
+int			is_env_unset(char *str);
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 

@@ -69,7 +69,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 all:
 	@mkdir -p $(OBJ_DIR)
 	@(make -C $(LIBFT))
-	@$(MAKE) -s $(NAME)
+	@(make  $(NAME))
 
 $(NAME): $(OBJ)
 	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAG) $(INCFLAG) 
