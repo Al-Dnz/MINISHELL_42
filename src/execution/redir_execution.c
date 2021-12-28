@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_execution.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:08:13 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:10:24 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int check_file_r(t_redir *tmp)
+int	check_file_r(t_redir *tmp)
 {
-	int fd;
+	int	fd;
 
 	fd = open(tmp->file, O_RDONLY);
 	if (fd == -1 && access(tmp->file, F_OK | R_OK) == -1)
@@ -15,12 +27,12 @@ int check_file_r(t_redir *tmp)
 	return (1);
 }
 
-int check_file_w(t_redir *tmp)
+int	check_file_w(t_redir *tmp)
 {
-	int fd;
+	int	fd;
 
-	fd = open(tmp->file,  O_CREAT | O_RDWR | O_APPEND, S_IRWXU
-				| S_IRWXG | S_IRWXO);
+	fd = open(tmp->file, O_CREAT | O_RDWR | O_APPEND, S_IRWXU
+			| S_IRWXG | S_IRWXO);
 	if (fd == -1 && access(tmp->file, F_OK | W_OK) == -1)
 	{
 		printf("minishell: %s:", tmp->file);
@@ -34,7 +46,7 @@ int check_file_w(t_redir *tmp)
 int	valid_redir(t_btree *node)
 {
 	t_redir	*tmp;
-	
+
 	if (node->right != NULL)
 		valid_redir(node->right);
 	if (node->left != NULL)

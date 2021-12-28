@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_token.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:13:01 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:16:59 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	count_token(char *line)
@@ -39,13 +51,19 @@ char	**create_token_tab(int size)
 	return (tab);
 }
 
+int	squeeze_space(char *line, int i)
+{
+	while (line[i] == ' ')
+		i++;
+	return (i);
+}
+
 int	get_all_token(char *line, int i, int j)
 {
 	g_data.token_tab = create_token_tab(count_token(line));
 	if (g_data.token_tab == NULL)
 		return (0);
-	while (line[i] == ' ')
-		i++;
+	i = squeeze_space(line, i);
 	while (line[i] && line[i] != '\n')
 	{
 		if (token_size(line + i) > 0)
@@ -64,8 +82,7 @@ int	get_all_token(char *line, int i, int j)
 			ft_retro_free_tab(g_data.token_tab);
 			return (0);
 		}
-		while (line[i] == ' ')
-			i++;
+		i = squeeze_space(line, i);
 	}
 	return (1);
 }

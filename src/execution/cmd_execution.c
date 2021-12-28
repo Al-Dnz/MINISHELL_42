@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_execution.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:07:49 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:10:54 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	ft_execve(char **arr, char **envp)
@@ -5,7 +17,8 @@ void	ft_execve(char **arr, char **envp)
 	char	*cmd_path;
 
 	cmd_path = find_path(arr[0]);
-	if (cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
+	if (ft_strequ(arr[0], "minishell")
+		|| cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
 	{
 		ft_strclr(&cmd_path);
 		error_cmd(arr[0], 2, 127);

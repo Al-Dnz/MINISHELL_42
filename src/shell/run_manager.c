@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_manager.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:08:25 by adenhez           #+#    #+#             */
+/*   Updated: 2021/12/27 23:50:48 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	init_g_data(void)
@@ -67,14 +79,11 @@ void	main_loop(char **env)
 
 void	run(char *line, char **env)
 {
-	int	std_out;
-	int	std_in;
-
 	(void)env;
 	if (get_all_token(line, 0, 0) == 0)
 		return ;
-	std_out = dup(STDOUT_FILENO);
-	std_in = dup(STDIN_FILENO);
+	g_data.std_out = dup(STDOUT_FILENO);
+	g_data.std_in = dup(STDIN_FILENO);
 	tree_constructor();
 	set_arg_tab(&g_data.tree);
 	set_tree_hdoc(&g_data.tree);
@@ -82,7 +91,7 @@ void	run(char *line, char **env)
 		g_data.stop = 1;
 	if (g_data.stop != 1)
 		launch_tree(g_data.tree);
-	dup2(std_out, STDOUT_FILENO);
-	dup2(std_in, STDIN_FILENO);
+	dup2(g_data.std_out, STDOUT_FILENO);
+	dup2(g_data.std_in, STDIN_FILENO);
 	reinit_g_data();
 }
