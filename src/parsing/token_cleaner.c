@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:12:48 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:21:28 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 15:09:34 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_exp(char **str, int len)
 	char	*var_eq;
 
 	(*str)++;
-	if (**str == 0)
+	if (**str == 0 || **str == ' ' || **str == '\'')
 		return (ft_strdup_special("$"));
 	else if (is_quote(**str))
 		return (ft_strdup_special(""));
@@ -29,7 +29,8 @@ char	*get_exp(char **str, int len)
 		return (ft_itoa(g_data.status));
 	}
 	while ((*str)[len] && (*str)[len] != ' ' && !is_quote((*str)[len])
-		&& (*str)[len] != '$')
+		&& (*str)[len] != '$'
+		&& (ft_isalnum((*str)[len]) || (*str)[len] == '_'))
 		len++;
 	var_name = ft_substr(*str, 0, len);
 	*str += len;
