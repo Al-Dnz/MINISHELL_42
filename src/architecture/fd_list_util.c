@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 23:13:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 23:13:28 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 00:56:47 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_fd_list	*new_fd_list(int fd)
 	if (element == NULL)
 		return (NULL);
 	element->fd = fd;
+	element->next = NULL;
 	return (element);
 }
 
