@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:54:26 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:12:31 by ivloisy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ char		*del_zero(char *s, int z);
 char		*split_zero(char *s);
 int			ft_str_isalnum_eq(char *s);
 
+int			set_env(char **env);
 int			change_var(char **tab, char *name, char *new, int dd);
 char		*getvar_val(char *name, char **tab);
 char		**dup_env(char **tab);

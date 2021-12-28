@@ -30,6 +30,7 @@ SRC	= main.c \
 	  launch_pipe_hdoc.c \
 	  signal_handler.c \
 	  signal_handler2.c \
+	  set_env.c \
 	  env_utils.c \
 	  echo.c \
 	  env.c \
