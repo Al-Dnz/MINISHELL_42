@@ -9,6 +9,7 @@ SRC	= main.c \
 	  size_util.c \
 	  get_token.c \
 	  arg_util.c \
+	  fd_list_util.c \
 	  redir_util.c \
 	  hdoc_util.c \
 	  btree_util.c \
@@ -30,6 +31,7 @@ SRC	= main.c \
 	  launch_pipe_hdoc.c \
 	  signal_handler.c \
 	  signal_handler2.c \
+	  set_env.c \
 	  env_utils.c \
 	  echo.c \
 	  env.c \
@@ -68,7 +70,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 all:
 	@mkdir -p $(OBJ_DIR)
 	@(make -C $(LIBFT))
-	@$(MAKE) -s $(NAME)
+	@(make  $(NAME))
 
 $(NAME): $(OBJ)
 	${CC} $(CFLAGS) $(OBJ) -I $(INC) -o $(NAME) $(LIB) $(LIBFLAG) $(INCFLAG) 

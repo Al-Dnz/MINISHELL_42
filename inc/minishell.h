@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:54:26 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/28 23:14:05 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 **	<<	3
 **	>>	4
 */
+
+typedef struct s_fd_list
+{
+	int					fd;
+	struct s_fd_list	*next;
+}				t_fd_list;
 
 typedef struct s_redir
 {
@@ -95,6 +101,7 @@ typedef struct s_data
 
 void		main_loop(char **env);
 
+int			is_env_unset(char *str);
 void		formalize_env_path(char **env_tab);
 char		*find_path(char *cmd);
 
@@ -116,6 +123,12 @@ int			is_word(char *str);
 
 t_btree		*create_node(t_btree *left, t_btree *right);
 int			free_btree(t_btree *node);
+
+t_fd_list	*new_fd_list(int fd);
+void		del_fd_list(t_fd_list *lst);
+void		fd_list_clr(t_fd_list **lst);
+t_fd_list	*ft_fd_listlast(t_fd_list *lst);
+int			fd_lst_add_back(t_fd_list **lst, int fd);
 
 t_redir		*new_redir(char *str);
 void		del_redir(t_redir *redir);
@@ -220,6 +233,7 @@ char		*del_zero(char *s, int z);
 char		*split_zero(char *s);
 int			ft_str_isalnum_eq(char *s);
 
+int			set_env(char **env);
 int			change_var(char **tab, char *name, char *new, int dd);
 char		*getvar_val(char *name, char **tab);
 char		**dup_env(char **tab);

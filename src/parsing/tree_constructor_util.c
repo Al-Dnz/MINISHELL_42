@@ -49,6 +49,7 @@ int	save_node_redir_file(t_btree **node, char *str)
 	if (new_str == NULL)
 		return (0);
 	tmp->file = ft_strdup(new_str);
+	ft_strclr(&new_str);
 	if (tmp->file == NULL)
 		return (0);
 	return (1);
