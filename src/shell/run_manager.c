@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:08:25 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/29 00:05:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 00:49:01 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_g_data(void)
 	g_data.dd = 0;
 	g_data.dash = 0;
 	g_data.stop = 0;
-	//g_data.fd_list = NULL;
+	g_data.fd_list = NULL;
 }
 
 void	reinit_g_data(void)
@@ -96,7 +96,6 @@ void	run(char *line, char **env)
 		launch_tree(g_data.tree);
 	dup2(g_data.std_out, STDOUT_FILENO);
 	dup2(g_data.std_in, STDIN_FILENO);
-	
 	
 	display_fd_list(g_data.fd_list);
 	fd_list_clr(&g_data.fd_list);

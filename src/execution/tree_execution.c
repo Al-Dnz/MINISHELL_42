@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:08:18 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 23:57:05 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 00:55:19 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	launch_pipe(t_btree *node)
 	if (pipe(pipe_fd) == -1)
 		return ;
 	if (pipe_fd[0] != 0 && pipe_fd[0] != 1)
-		fd_lst_add_back(&g_data.fd_list, pipe_fd[0]);
+		fd_lst_add_back(&(g_data.fd_list), pipe_fd[0]);
 	if (pipe_fd[1] != 0 && pipe_fd[1] != 1)
-		fd_lst_add_back(&g_data.fd_list, pipe_fd[1]);
+		fd_lst_add_back(&(g_data.fd_list), pipe_fd[1]);
 	pid = fork();
 	if (pid == -1)
 		return ;
@@ -76,11 +76,11 @@ void	launch_pipe(t_btree *node)
 	}
 	else
 	{
-		pid = waitpid(0, &g_data.chd_status, 0);
 		close(pipe_fd[1]);
 		dup2(pipe_fd[0], 0);
 		launch_tree(node->right);
 		close(pipe_fd[0]);
+		pid = waitpid(0, &g_data.chd_status, 0);
 		clean_process();
 	}
 }
