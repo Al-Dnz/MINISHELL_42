@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	is_unset(char *str)
+int	is_env_unset(char *str)
 {
 	int		i;
 	char	**tab;
@@ -65,7 +65,7 @@ char	*find_path(char *cmd)
 	int		i;
 
 	env = getenv("PATH");
-	if (env == NULL || is_unset("PATH") == 1)
+	if (env == NULL || is_env_unset("PATH") == 1)
 		return (NULL);
 	env_tab = ft_split(env, ":");
 	formalize_env_path(env_tab);

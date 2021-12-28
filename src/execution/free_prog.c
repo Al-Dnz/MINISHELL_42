@@ -31,17 +31,11 @@ void	error_message(char *str, int fd, int status)
 
 void	clean_exit(int status, int error)
 {
-	if (error == 1)
-		error_message("minishell: exit: too many arguments", 2, 2);
-	else if (error == 2)
-		error_message("minishell: exit: need numeric argument", 2, 2);
-	else if (error == 3)
-		error_message("minishell: function failed", 2, status);
-	else if (error == 4)
-		error_message("minishell: parse error", 2, status);
 	if (error == 1 || error == 2)
 		status = 2;
 	rl_clear_history();
+	close(g_data.std_in);
+	close(g_data.std_out);
 	clean_program();
 	exit(status);
 }
@@ -50,17 +44,10 @@ void	clean_exit(int status, int error)
 
 void	clean_exit(int status, int error)
 {
-	if (error == 1)
-		error_message("minishell: exit: too many arguments", 2, 2);
-	else if (error == 2)
-		error_message("minishell: exit: need numeric argument", 2, 2);
-	else if (error == 3)
-		error_message("minishell: function failed", 2, status);
-	else if (error == 4)
-		error_message("minishell: parse error", 2, status);
 	if (error == 1 || error == 2)
 		status = 2;
-	//rl_clear_history();
+	close(g_data.std_in);
+	close(g_data.std_out);
 	clean_program();
 	exit(status);
 }

@@ -32,19 +32,19 @@ int	launch_command(t_btree *node, char *cmd)
 {
 	if (node && cmd != 0)
 	{
-		if (!ft_strcmp_special(cmd, "echo"))
+		if (ft_strequ(cmd, "echo"))
 			echo(node->arg);
-		else if (!ft_strcmp_special(cmd, "env"))
+		else if (ft_strequ(cmd, "env"))
 			cmd_env(node->arg);
-		else if (!ft_strcmp_special(cmd, "pwd"))
+		else if (ft_strequ(cmd, "pwd"))
 			pwd(1);
-		else if (!ft_strcmp_special(cmd, "cd"))
+		else if (ft_strequ(cmd, "cd"))
 			cd(node->arg);
-		else if (!ft_strcmp_special(cmd, "export"))
+		else if (ft_strequ(cmd, "export"))
 			export(node->arg);
-		else if (!ft_strcmp_special(cmd, "unset"))
+		else if (ft_strequ(cmd, "unset"))
 			unset(node->arg);
-		else if (!ft_strcmp_special(cmd, "exit"))
+		else if (ft_strequ(cmd, "exit"))
 			cmd_exit(node->arg);
 		else
 			fork_execve(node);

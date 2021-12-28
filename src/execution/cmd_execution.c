@@ -16,7 +16,10 @@ void	ft_execve(char **arr, char **envp)
 {
 	char	*cmd_path;
 
-	cmd_path = find_path(arr[0]);
+	if (is_env_unset("PATH"))
+		cmd_path = ft_strdup(arr[0]);
+	else
+		cmd_path = find_path(arr[0]);
 	if (ft_strequ(arr[0], "minishell")
 		|| cmd_path == NULL || execve(cmd_path, arr, envp) == -1)
 	{

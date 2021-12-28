@@ -2,7 +2,7 @@
 
 
 
-# OPERATOR TAKEN AS CHAR
+# OPERATOR TAKEN AS CHAR OR STRING
 
 &&
 
@@ -10,15 +10,15 @@
 
 
 ||
-;
-\
-$#
-$$
-$*
-$-
-$@
-$0
-$!
+ ;
+ \
+ $#
+ $$
+ $*
+ $-
+ $@
+ $0
+ $!
 
 
 

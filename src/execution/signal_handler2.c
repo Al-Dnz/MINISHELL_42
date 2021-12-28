@@ -18,3 +18,11 @@ void	exit_by_signal(void)
 	clean_program();
 	exit(g_data.status);
 }
+
+void	signal_handler(void)
+{
+	signal(SIGINT, &sigint_handler);
+	signal(SIGCHLD, &sigchild_handler);
+	signal(SIGQUIT, &sigquit_handler);
+	g_data.quit = 0;
+}
