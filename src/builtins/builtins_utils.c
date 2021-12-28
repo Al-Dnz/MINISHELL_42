@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 17:23:34 by ivloisy           #+#    #+#             */
-/*   Updated: 2021/12/27 13:27:28 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/28 15:18:44 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*del_zero(char *s, int z)
 		i++;
 	}
 	while (s[i] && s[i] == '0')
-			i++;
+		i++;
 	while (s[i])
 	{
 		n[i - z] = s[i];
