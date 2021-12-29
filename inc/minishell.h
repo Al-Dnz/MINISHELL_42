@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/29 09:22:29 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 09:25:34 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,26 @@ typedef struct s_btree
 
 typedef struct s_data
 {
-	int		chd_status;
-	int		exit_status;
-	int		displayer;
-	int		err;
-	char	*token_err;
-	char	**token_tab;
-	int		index;
-	char	**env;
-	t_btree	*tree;
-	pid_t	child_pid;
-	int		status;
-	int		quit;
-	char	*str;
-	int		in_hdoc;
-	int		stop;
-	int		dd;
-	int		dash;
-	int		std_in;
-	int		std_out;
-	t_fd_list *fd_list;
+	int			chd_status;
+	int			exit_status;
+	int			displayer;
+	int			err;
+	char		*token_err;
+	char		**token_tab;
+	int			index;
+	char		**env;
+	t_btree		*tree;
+	pid_t		child_pid;
+	int			status;
+	int			quit;
+	char		*str;
+	int			in_hdoc;
+	int			stop;
+	int			dd;
+	int			dash;
+	int			std_in;
+	int			std_out;
+	t_fd_list	*fd_list;
 }	t_data;
 
 void		main_loop(char **env);
