@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:08:25 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:50:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 09:23:13 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_g_data(void)
 	g_data.dd = 0;
 	g_data.dash = 0;
 	g_data.stop = 0;
+	g_data.fd_list = NULL;
 }
 
 void	reinit_g_data(void)
