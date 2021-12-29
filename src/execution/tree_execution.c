@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:08:18 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:10:38 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 14:33:24 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,16 @@ int	launch_command(t_btree *node, char *cmd)
 	return (0);
 }
 
-void	launch_pipe(t_btree *node)
+void	store_pipe_fd(int pipe_fd0, int pipe_fd1)
 {
-	pid_t	pid;
+	if (pipe_fd0 != 0 && pipe_fd0 != 1)
+		fd_lst_add_back(&g_data.fd_list, pipe_fd0);
+	if (pipe_fd1 != 0 && pipe_fd1 != 1)
+		fd_lst_add_back(&g_data.fd_list, pipe_fd1);
+}
+
+void	launch_pipe(t_btree *node, pid_t pid)
+{
 	int		pipe_fd[2];
 
 	if (pipe(pipe_fd) == -1)
@@ -62,6 +69,7 @@ void	launch_pipe(t_btree *node)
 	pid = fork();
 	if (pid == -1)
 		return ;
+	store_pipe_fd(pipe_fd[0], pipe_fd[1]);
 	if (pid == 0)
 	{
 		close(pipe_fd[0]);
@@ -93,11 +101,12 @@ int	launch_tree(t_btree *tree)
 		if (tree->arr == NULL
 			|| launch_command(tree, tree->arr[0]) == -1)
 			return (-1);
+		clean_process();
 	}
 	else if ((tree->left != NULL && tree->left->arr != NULL)
 		&& (tree->right != NULL && tree->right->arr != NULL)
 		&& ft_strequ(tree->arg->word, "|"))
-		launch_pipe(tree);
+		launch_pipe(tree, 0);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	return (0);

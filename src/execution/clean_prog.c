@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:07:42 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:07:55 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 14:06:01 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	clean_program(void)
 	if (g_data.token_err)
 		ft_strclr(&g_data.token_err);
 	g_data.str = NULL;
+	fd_list_clr(&g_data.fd_list);
 }
 
 void	clean_process(void)
@@ -36,4 +37,5 @@ void	clean_process(void)
 	if (g_data.token_err)
 		ft_strclr(&g_data.token_err);
 	g_data.str = NULL;
+	fd_list_clr(&g_data.fd_list);
 }

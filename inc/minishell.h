@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/29 09:25:34 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 14:06:51 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ int			save_node_redir_file(t_btree **node, char *str);
 int			set_node(t_btree **node, int i);
 int			tree_constructor(void);
 
+void		display_fd_list(t_fd_list *list);
 void		display_arg(t_arg *arg);
 void		display_redir(t_redir *redir);
 void		display_hdoc(t_hdoc *hdoc);
@@ -183,9 +184,10 @@ void		child_status(int status);
 void		fork_execve(t_btree *node);
 
 int			launch_command(t_btree *node, char *cmd);
-void		launch_pipe(t_btree *node);
+void		launch_pipe(t_btree *node, pid_t pid);
 int			launch_tree(t_btree *tree);
 
+void		close_all(void);
 void		error_cmd(char *cmd, int fd, int status);
 void		error_message(char *str, int fd, int status);
 void		clean_program(void);
