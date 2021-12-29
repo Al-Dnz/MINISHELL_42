@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivloisy <ivloisy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:53:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/28 12:12:31 by ivloisy          ###   ########.fr       */
+/*   Updated: 2021/12/29 15:09:55 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 **	<<	3
 **	>>	4
 */
+
+typedef struct s_fd_list
+{
+	int					fd;
+	struct s_fd_list	*next;
+}				t_fd_list;
 
 typedef struct s_redir
 {
@@ -72,25 +78,26 @@ typedef struct s_btree
 
 typedef struct s_data
 {
-	int		chd_status;
-	int		exit_status;
-	int		displayer;
-	int		err;
-	char	*token_err;
-	char	**token_tab;
-	int		index;
-	char	**env;
-	t_btree	*tree;
-	pid_t	child_pid;
-	int		status;
-	int		quit;
-	char	*str;
-	int		in_hdoc;
-	int		stop;
-	int		dd;
-	int		dash;
-	int		std_in;
-	int		std_out;
+	int			chd_status;
+	int			exit_status;
+	int			displayer;
+	int			err;
+	char		*token_err;
+	char		**token_tab;
+	int			index;
+	char		**env;
+	t_btree		*tree;
+	pid_t		child_pid;
+	int			status;
+	int			quit;
+	char		*str;
+	int			in_hdoc;
+	int			stop;
+	int			dd;
+	int			dash;
+	int			std_in;
+	int			std_out;
+	t_fd_list	*fd_list;
 }	t_data;
 
 void		main_loop(char **env);
@@ -117,6 +124,12 @@ int			is_word(char *str);
 
 t_btree		*create_node(t_btree *left, t_btree *right);
 int			free_btree(t_btree *node);
+
+t_fd_list	*new_fd_list(int fd);
+void		del_fd_list(t_fd_list *lst);
+void		fd_list_clr(t_fd_list **lst);
+t_fd_list	*ft_fd_listlast(t_fd_list *lst);
+int			fd_lst_add_back(t_fd_list **lst, int fd);
 
 t_redir		*new_redir(char *str);
 void		del_redir(t_redir *redir);
@@ -146,6 +159,7 @@ int			save_node_redir_file(t_btree **node, char *str);
 int			set_node(t_btree **node, int i);
 int			tree_constructor(void);
 
+void		display_fd_list(t_fd_list *list);
 void		display_arg(t_arg *arg);
 void		display_redir(t_redir *redir);
 void		display_hdoc(t_hdoc *hdoc);
@@ -170,9 +184,10 @@ void		child_status(int status);
 void		fork_execve(t_btree *node);
 
 int			launch_command(t_btree *node, char *cmd);
-void		launch_pipe(t_btree *node);
+void		launch_pipe(t_btree *node, pid_t pid);
 int			launch_tree(t_btree *tree);
 
+void		close_all(void);
 void		error_cmd(char *cmd, int fd, int status);
 void		error_message(char *str, int fd, int status);
 void		clean_program(void);
