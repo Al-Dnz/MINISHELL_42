@@ -10,6 +10,7 @@ SRC	= main.c \
 	  size_util.c \
 	  get_token.c \
 	  arg_util.c \
+	  fd_list_util.c \
 	  redir_util.c \
 	  hdoc_util.c \
 	  btree_util.c \

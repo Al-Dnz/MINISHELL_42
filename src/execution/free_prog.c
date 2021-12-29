@@ -6,11 +6,20 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:07:59 by adenhez           #+#    #+#             */
-/*   Updated: 2021/12/27 23:12:07 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/12/29 13:50:15 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	close_all(void)
+{
+	int	fd;
+
+	fd = 2;
+	while (fd < 11)
+		close(fd++);
+}
 
 void	error_cmd(char *cmd, int fd, int status)
 {
@@ -37,6 +46,8 @@ void	clean_exit(int status, int error)
 	close(g_data.std_in);
 	close(g_data.std_out);
 	clean_program();
+	close(g_data.std_in);
+	close(g_data.std_out);
 	exit(status);
 }
 
